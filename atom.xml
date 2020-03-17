@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang</title>
-    <updated>2020-03-17T10:39:26.971Z</updated>
+    <updated>2020-03-17T10:46:48.288Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -11,34 +11,36 @@
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang</rights>
     <entry>
-        <title type="html"><![CDATA[常用的内置函数]]></title>
-        <id>https://nzt-yzang.github.io/post/chang-yong-de-nei-zhi-han-shu/</id>
-        <link href="https://nzt-yzang.github.io/post/chang-yong-de-nei-zhi-han-shu/">
+        <title type="html"><![CDATA[算法日常(updating!)]]></title>
+        <id>https://nzt-yzang.github.io/post/suan-fa-ri-chang-updating/</id>
+        <link href="https://nzt-yzang.github.io/post/suan-fa-ri-chang-updating/">
         </link>
-        <updated>2020-03-17T10:34:37.000Z</updated>
-        <summary type="html"><![CDATA[<p>#isalnum() : 判断一个字符是否为字符或者数字<br>
-#isalpha() : 判断一个字符是否为字母<br>
-#isupper() : 判断一个字母是否为大写<br>
-#islower() : 判断一个字母是否为小写<br>
-#tolower() : 返回一个字母的小写形式<br>
-#toupper() : 返回一个字母的大写形式<br>
-#isdigit() : 判断一个字符是否为数字<br>
-#string.substr(起始位置,截取字串的长度);<br>
-#string.find(字符串) 成功返回位置索引 失败返回string::npos<br>
-#string.append(追加长度,追加字符必须是char类型)<br>
-#a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt; b 返回 -1 相等返回 0</p>
+        <updated>2020-03-17T10:40:55.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>常用的内置函数</strong><br>
+isalnum() : 判断一个字符是否为字符或者数字<br>
+isalpha() : 判断一个字符是否为字母<br>
+isupper() : 判断一个字母是否为大写<br>
+islower() : 判断一个字母是否为小写<br>
+tolower() : 返回一个字母的小写形式<br>
+toupper() : 返回一个字母的大写形式<br>
+isdigit() : 判断一个字符是否为数字<br>
+string.substr(起始位置,截取字串的长度);<br>
+string.find(字符串) 成功返回位置索引 失败返回string::npos<br>
+string.append(追加长度,追加字符必须是char类型)<br>
+a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt; b 返回 -1 相等返回 0</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>#isalnum() : 判断一个字符是否为字符或者数字<br>
-#isalpha() : 判断一个字符是否为字母<br>
-#isupper() : 判断一个字母是否为大写<br>
-#islower() : 判断一个字母是否为小写<br>
-#tolower() : 返回一个字母的小写形式<br>
-#toupper() : 返回一个字母的大写形式<br>
-#isdigit() : 判断一个字符是否为数字<br>
-#string.substr(起始位置,截取字串的长度);<br>
-#string.find(字符串) 成功返回位置索引 失败返回string::npos<br>
-#string.append(追加长度,追加字符必须是char类型)<br>
-#a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt; b 返回 -1 相等返回 0</p>
+        <content type="html"><![CDATA[<p><strong>常用的内置函数</strong><br>
+isalnum() : 判断一个字符是否为字符或者数字<br>
+isalpha() : 判断一个字符是否为字母<br>
+isupper() : 判断一个字母是否为大写<br>
+islower() : 判断一个字母是否为小写<br>
+tolower() : 返回一个字母的小写形式<br>
+toupper() : 返回一个字母的大写形式<br>
+isdigit() : 判断一个字符是否为数字<br>
+string.substr(起始位置,截取字串的长度);<br>
+string.find(字符串) 成功返回位置索引 失败返回string::npos<br>
+string.append(追加长度,追加字符必须是char类型)<br>
+a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt; b 返回 -1 相等返回 0</p>
 ]]></content>
     </entry>
     <entry>
