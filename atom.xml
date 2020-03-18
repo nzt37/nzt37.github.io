@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>yzang</title>
-    <updated>2020-03-18T06:40:40.529Z</updated>
+    <updated>2020-03-18T23:30:51.840Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
-    <subtitle>Nothing is impossible</subtitle>
+    <subtitle>牛泽同</subtitle>
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, yzang</rights>
@@ -31,12 +31,12 @@
         <link href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/">
         </link>
         <updated>2020-03-18T03:38:22.000Z</updated>
-        <summary type="html"><![CDATA[<p>##进制转换</p>
+        <summary type="html"><![CDATA[<h2 id="进制转换">进制转换</h2>
 <ul>
 <li><a href="https://www.luogu.com.cn/problem/P1143">P1143 进制转换</a></li>
 </ul>
 ]]></summary>
-        <content type="html"><![CDATA[<p>##进制转换</p>
+        <content type="html"><![CDATA[<h2 id="进制转换">进制转换</h2>
 <ul>
 <li><a href="https://www.luogu.com.cn/problem/P1143">P1143 进制转换</a></li>
 </ul>
