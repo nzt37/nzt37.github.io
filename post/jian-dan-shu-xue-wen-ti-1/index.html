@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="UTF-8"/>
+    <meta charset="UTF-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="Nothing is impossible">
 <meta name="theme-color" content="#000">
-<title>yzang</title>
+<title>简单数学问题1 | yzang</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1584504527146">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,6 +27,8 @@
 
 
 
+    <meta name="description" content="简单数学问题1" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -75,7 +77,7 @@
               
             </li>
           
-            <li class="nav-item nav-item-active">
+            <li class="nav-item ">
               
               
                 <a href="/tags" target="_self">
@@ -128,10 +130,25 @@
     </div>
     <div class="main-continer">
       
-      <div class="section-layout  gemini">
+      <div class="section-layout gemini ">
         <div class="section-layout-wrapper">
-          <div id="sidebarMeta" class="sidebar">
-    
+          
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://nzt-yzang.github.io/images/avatar.png"/>
@@ -189,114 +206,257 @@
 
 
 </div>
-</div>
-<script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
-      }
-    });
-  }
-  </script>
-          <div class="section-box box-shadow-wrapper">
-            <section class="section tags-section bg-color posts-expand">
-              <div class="tags-box">
-  <div class="tag-cloud-title">
-    目前共计 2 个标签
-  </div>
-  <div class="tag-cloud-list" id="tags">
-    
-      
-      
-        
-      
-        
-      
-        
-          
-            
-      
-        
-      
-      <a class="cloud-tag" href="https://nzt-yzang.github.io/tag/LnFenECij/" rel="1">算法</a>
-    
-      
-      
-        
-      
-        
-      
-        
           
         
-          
-            
-      
-        
-      
-      <a class="cloud-tag" href="https://nzt-yzang.github.io/tag/OawVBSFMH/" rel="1">c++</a>
-    
-  </div>
-</div>
-<script>
-
-  let fontStart = 12, fontEnd = 30, colorStart = '#ccc', colorEnd = '#111';
-  let tags = document.querySelector('#tags').children;
-  let counts = [];
-  for(let i = 0; i < tags.length; i++) {
-    counts.push(tags[i].rel);
-  }
-  let lowest = Math.min.apply(null,counts), highest = Math.max.apply(null,counts);;
-  let range = highest - lowest;
-  if (range === 0) {
-    range = 1;
-  }
-  let fontIncr, colorIncr;
-  fontIncr = (fontEnd - fontStart) / range;
+      </div>
+    </div>
   
-  let sColorArr = toRGB(colorStart), eColorArr = toRGB(colorEnd);
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
 
-  for(let i = 0; i < tags.length; i++) {
-    let disCount = tags[i].rel - lowest;
-    let fontSize = fontStart + disCount * fontIncr;
-    let style = 'font-size: ' + fontSize + 'px;';
-    let arr = [];
-    for(let c = 0; c < sColorArr.length; c++) {
-      if (disCount === 0) {
-        disCount = 1;
-      }
-      let val = (sColorArr[c] - eColorArr[c]) / range * disCount;
-      if (val >= 255) {
-        val = eColorArr[c];
-      } else if (val <= 0) {
-        val = sColorArr[c];
-      }
-      arr[c] = Math.floor(255 - val);
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
     }
-    style += 'color: ' + toHex(arr);
-    tags[i].style = style;
-  }
-
-  function toRGB(code) {
-    if (code.length === 4) {
-      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
     }
-    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
-    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
   }
 
-  function toHex(ary) {
-    return "#" + ((1 << 24) + (ary[0] << 16) + (ary[1] << 8) + ary[2]).toString(16).slice(1);
-  }
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
 
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
 </script>
-            </section>
+          <div class="section-box box-shadow-wrapper">
+            <div class="section bg-color post post-page">
+              <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/">
+      简单数学问题1
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2020-03-18</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>3分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>395<span class="pc-show">字数</span></span>
+    </span>
+    
+      <span id="/post/jian-dan-shu-xue-wen-ti-1/" class="meta-item pc-show leancloud_visitors">
+        <span class="post-meta-divider">|</span>
+        <i class="fa fa-eye"></i>
+        <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
+      </span>
+    
+  </div>
+</header>
+              <div class="post-body next-md-body" id="post_body">
+                <p>##进制转换</p>
+<!-- more -->
+<p>常规方法<br>
+将一个10进制数转换为n进制数</p>
+<pre><code> int main()
+ {
+     int n , k; 
+     cin&gt;&gt;n&gt;&gt;k;
+     string a;
+     while(n){
+         if(k &gt; 10){
+             a = (char) (n%k + 55)+a ;
+         }
+         else{
+             a = (char) (n%k + '0')+a ;
+         }
+	     cout&lt;&lt;a&lt;&lt;endl;
+	     n /= k;
+     }
+
+ }
+</code></pre>
+<!-- more -->
+<p><strong>从快读进阶</strong><br>
+输入优化</p>
+<pre><code> inline int isint(char c)//可将'0'~'9'及'A'~'F'转化
+ {
+  if(c&gt;='A'&amp;&amp;c&lt;='F')
+    return c-55;//'A'=65,10=10;
+  if(c&gt;47&amp;&amp;c&lt;58)
+    return c-48;
+  return -1;
+ }
+ inline void read(int &amp;x)
+ {
+     char c=getchar();
+     while(isint(c)==-1) c=getchar();
+     while(~isint(c)/*判断是不是数*/) x*=n,x+=isint(c),c=getchar();
+ }
+</code></pre>
+<p>输出优化</p>
+<pre><code> int m;
+ inline char cic(int x)//change into char 意在将一个n进制数的某位转成对应的m进制
+ {
+     if(x&lt;10)//毕竟不会出负数，算个小优化~
+         return x+48;
+     return x-10+'A';
+ }
+ void otp(int k)
+ {
+     if(!k) return;
+     otp(k/m);
+     putchar(cic(k%m));
+ }
+</code></pre>
+<!-- more -->
+<p>##完整代码(将n进制数转换为m进制数)</p>
+<pre><code>     #include&lt;cstdio&gt;
+ int n,x,m;
+ inline int isint(char c)//可将'0'~'9'及'A'~'F'转化成如题所示数字并将非数字字符      返    回-1注意此时c并不会被修改
+ {
+     if (c &gt;= 'A' &amp;&amp; c &lt;= 'F')
+         return c - 55;//'A'=65,10=10;
+     if (c &gt; 47 &amp;&amp; c &lt; 58)
+         return c - 48;
+     return -1;
+ }
+ inline int read()
+ {
+     int x = 0;
+     char c = getchar();
+  while (isint(c) == -1) c = getchar();
+  while (~isint(c)/*判断是不是数*/) x *= n, x += isint(c), c = getchar();
+     return x;
+ }//r
+ inline char cic(int x) {
+     if (x &lt; 10)
+         return x + 48;
+     return x - 10 + 'A';
+ }
+ void otp(int k)
+ {
+     if (!k) return;
+     otp(k / m);
+     putchar(cic(k % m));
+ }
+ int main()
+ {
+     scanf(&quot;%d&quot;, &amp;n);
+     x = read();
+     scanf(&quot;%d&quot;, &amp;m);
+     otp(x);
+     putchar('\n');
+ }
+</code></pre>
+
+              </div>
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      yzang
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/" title="简单数学问题1">简单数学问题1</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="谷歌访问助手(破解)" href="https://nzt-yzang.github.io/post/gu-ge-fang-wen-zhu-shou-po-jie/">谷歌访问助手(破解)</a>
+        <a class="nav-mobile-next" title="谷歌访问助手(破解)" href="https://nzt-yzang.github.io/post/gu-ge-fang-wen-zhu-shou-po-jie/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
+              
+                
+              
+            </div>
           </div>
         </div>
       </div>
@@ -498,4 +658,4 @@ var apiKey = landlord.dataset.key;
     </div>
   </body>
   <script src="/media/js/motion.js"></script>
-</html> 
+</html>
