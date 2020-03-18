@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>yzang</title>
-    <updated>2020-03-18T05:56:32.451Z</updated>
+    <updated>2020-03-18T06:35:05.354Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, yzang</rights>
+    <entry>
+        <title type="html"><![CDATA[秦九韶算法]]></title>
+        <id>https://nzt-yzang.github.io/post/qin-jiu-shao-suan-fa/</id>
+        <link href="https://nzt-yzang.github.io/post/qin-jiu-shao-suan-fa/">
+        </link>
+        <updated>2020-03-18T06:16:17.000Z</updated>
+        <summary type="html"><![CDATA[<ul>
+<li><a href="https://www.luogu.com.cn/problem/P2312">P2312 解方程</a></li>
+</ul>
+]]></summary>
+        <content type="html"><![CDATA[<ul>
+<li><a href="https://www.luogu.com.cn/problem/P2312">P2312 解方程</a></li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[简单数学问题1]]></title>
         <id>https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/</id>
