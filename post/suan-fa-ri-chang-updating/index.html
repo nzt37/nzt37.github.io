@@ -8,7 +8,7 @@
 <meta name="description" content="Nothing is impossible">
 <meta name="theme-color" content="#000">
 <title>算法日常(updating!) | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1584504527146">
+<link rel="shortcut icon" href="/favicon.ico?v=1584505005628">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -338,7 +338,7 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>176<span class="pc-show">字数</span></span>
+      <span>222<span class="pc-show">字数</span></span>
     </span>
     
       <span id="/post/suan-fa-ri-chang-updating/" class="meta-item pc-show leancloud_visitors">
@@ -366,6 +366,13 @@ string.append(追加长度,追加字符必须是char类型)<br>
 a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt; b 返回 -1 相等返回 0</p>
 </blockquote>
 <!-- more -->
+<p>快读板子</p>
+<pre><code> inline int read(register int x=0,register char ch=getchar(),register int f=0) {
+     for(;!isdigit(ch);ch=getchar()) f=ch=='-';
+     for(; isdigit(ch);ch=getchar()) x=(x&lt;&lt;1)+(x&lt;&lt;3)+(ch^48);
+     return f?-x:x;
+ }    
+</code></pre>
 <!-- more -->
 
               </div>
