@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>简单数学问题1 | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1584620115622">
+<link rel="shortcut icon" href="/favicon.ico?v=1584661863483">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -238,6 +238,8 @@
 <li>
 <ul>
 <li><a href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2">进制转换</a></li>
+<li><a href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E5%B0%86n%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E6%8D%A2%E4%B8%BAm%E8%BF%9B%E5%88%B6%E6%95%B0">完整代码(将n进制数转换为m进制数)</a></li>
+<li><a href="#3%E8%B4%9F%E8%BF%9B%E5%88%B6">3,负进制,</a></li>
 </ul>
 </li>
 </ul>
@@ -516,12 +518,12 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3分钟</span>
+      <span>4分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>400<span class="pc-show">字数</span></span>
+      <span>692<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -544,97 +546,130 @@ window.addEventListener('load', function() {
 <!-- more -->
 <p>常规方法<br>
 将一个10进制数转换为n进制数</p>
-<pre><code> int main()
- {
-     int n , k; 
-     cin&gt;&gt;n&gt;&gt;k;
-     string a;
-     while(n){
-         if(k &gt; 10){
-             a = (char) (n%k + 55)+a ;
-         }
-         else{
-             a = (char) (n%k + '0')+a ;
-         }
-	     cout&lt;&lt;a&lt;&lt;endl;
-	     n /= k;
+<pre><code class="language-c">
+     int main()
+     {
+	     int n , k; 
+	     cin&gt;&gt;n&gt;&gt;k;
+	     string a;
+	     while(n){
+             if(k &gt; 10){
+                 a = (char) (n%k + 55)+a ;
+             }
+             else{
+                 a = (char) (n%k + '0')+a ;
+             }
+		     cout&lt;&lt;a&lt;&lt;endl;
+		     n /= k;
+	     }
+	
      }
-
- }
 </code></pre>
 <!-- more -->
 <p><strong>从快读进阶</strong><br>
 输入优化</p>
-<pre><code> inline int isint(char c)//可将'0'~'9'及'A'~'F'转化
- {
-  if(c&gt;='A'&amp;&amp;c&lt;='F')
-    return c-55;//'A'=65,10=10;
-  if(c&gt;47&amp;&amp;c&lt;58)
-    return c-48;
-  return -1;
- }
- inline void read(int &amp;x)
- {
-     char c=getchar();
-     while(isint(c)==-1) c=getchar();
-     while(~isint(c)/*判断是不是数*/) x*=n,x+=isint(c),c=getchar();
- }
-</code></pre>
-<p>输出优化</p>
-<pre><code> int m;
- inline char cic(int x)//change into char 意在将一个n进制数的某位转成对应的m进制
- {
-     if(x&lt;10)//毕竟不会出负数，算个小优化~
-         return x+48;
-     return x-10+'A';
- }
- void otp(int k)
- {
-     if(!k) return;
-     otp(k/m);
-     putchar(cic(k%m));
- }
+<pre><code class="language-c">     inline int isint(char c)//可将'0'~'9'及'A'~'F'转化
+     {
+      if(c&gt;='A'&amp;&amp;c&lt;='F')
+        return c-55;//'A'=65,10=10;
+      if(c&gt;47&amp;&amp;c&lt;58)
+        return c-48;
+      return -1;
+     }
+     inline void read(int &amp;x)
+     {
+         char c=getchar();
+         while(isint(c)==-1) c=getchar();
+         while(~isint(c)/*判断是不是数*/) x*=n,x+=isint(c),c=getchar();
+     }
+
+输出优化
+
+     int m;
+     inline char cic(int x)//change into char 意在将一个n进制数的某位转成对应的m进制
+     {
+         if(x&lt;10)//毕竟不会出负数，算个小优化~
+             return x+48;
+         return x-10+'A';
+     }
+     void otp(int k)
+     {
+         if(!k) return;
+         otp(k/m);
+         putchar(cic(k%m));
+     }
 </code></pre>
 <!-- more -->
-<p>##完整代码(将n进制数转换为m进制数)</p>
-<pre><code> #include&lt;cstdio&gt;
- int n,x,m;
- inline int isint(char c)//可将'0'~'9'及'A'~'F'转化成如题所示数字并将非数字字符      返    回-1注意此时c并不会被修改
- {
-     if (c &gt;= 'A' &amp;&amp; c &lt;= 'F')
-         return c - 55;//'A'=65,10=10;
-     if (c &gt; 47 &amp;&amp; c &lt; 58)
-         return c - 48;
-     return -1;
- }
- inline int read()
- {
-     int x = 0;
-     char c = getchar();
-  while (isint(c) == -1) c = getchar();
-  while (~isint(c)/*判断是不是数*/) x *= n, x += isint(c), c = getchar();
-     return x;
- }//r
- inline char cic(int x) {
-     if (x &lt; 10)
-         return x + 48;
-     return x - 10 + 'A';
- }
- void otp(int k)
- {
-     if (!k) return;
-     otp(k / m);
-     putchar(cic(k % m));
- }
- int main()
- {
-     scanf(&quot;%d&quot;, &amp;n);
-     x = read();
-     scanf(&quot;%d&quot;, &amp;m);
-     otp(x);
-     putchar('\n');
- }
+<h2 id="完整代码将n进制数转换为m进制数">完整代码(将n进制数转换为m进制数)</h2>
+<pre><code class="language-c">     #include&lt;cstdio&gt;
+     int n,x,m;
+     inline int isint(char c)//可将'0'~'9'及'A'~'F'转化成如题所示数字并将非数字字符      返    回-1注意此时c并不会被修改
+     {
+         if (c &gt;= 'A' &amp;&amp; c &lt;= 'F')
+             return c - 55;//'A'=65,10=10;
+         if (c &gt; 47 &amp;&amp; c &lt; 58)
+             return c - 48;
+         return -1;
+     }
+     inline int read()
+     {
+	     int x = 0;
+         char c = getchar();
+      while (isint(c) == -1) c = getchar();
+      while (~isint(c)/*判断是不是数*/) x *= n, x += isint(c), c = getchar();
+         return x;
+     }//r
+     inline char cic(int x) {
+         if (x &lt; 10)
+             return x + 48;
+         return x - 10 + 'A';
+     }
+     void otp(int k)
+     {
+         if (!k) return;
+         otp(k / m);
+         putchar(cic(k % m));
+     }
+     int main()
+     {
+         scanf(&quot;%d&quot;, &amp;n);
+         x = read();
+         scanf(&quot;%d&quot;, &amp;m);
+         otp(x);
+         putchar('\n');
+     }
 </code></pre>
+<!-- more -->
+<h2 id="3负进制">3,负进制,</h2>
+<p>例如在C++里，-15%-2=-1，-15/-2=7,而7*-2+（-1）=-15<br>
+又因为不能出现负数,<br>
+我们只需要将商+1，余数-除数即可，因为余数（绝对值）一定小于除数，所以这样就可以将余数装换为正数<br>
+正确性证明：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">（</mi><mi mathvariant="normal">商</mi><mo>+</mo><mn>1</mn><mi mathvariant="normal">）</mi><mo>∗</mo><mi mathvariant="normal">除</mi><mi mathvariant="normal">数</mi><mo>+</mo><mi mathvariant="normal">（</mi><mi mathvariant="normal">余</mi><mi mathvariant="normal">数</mi><mo>−</mo><mi mathvariant="normal">除</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">）</mi><mo>=</mo><mi mathvariant="normal">商</mi><mo>∗</mo><mi mathvariant="normal">除</mi><mi mathvariant="normal">数</mi><mo>+</mo><mi mathvariant="normal">除</mi><mi mathvariant="normal">数</mi><mo>+</mo><mi mathvariant="normal">余</mi><mi mathvariant="normal">数</mi><mo>−</mo><mi mathvariant="normal">除</mi><mi mathvariant="normal">数</mi><mo>=</mo><mi mathvariant="normal">商</mi><mo>∗</mo><mi mathvariant="normal">除</mi><mi mathvariant="normal">数</mi><mo>+</mo><mi mathvariant="normal">余</mi><mi mathvariant="normal">数</mi><mo>=</mo><mi mathvariant="normal">被</mi><mi mathvariant="normal">除</mi><mi mathvariant="normal">数</mi></mrow><annotation encoding="application/x-tex">（商+1）*除数+（余数-除数）=商*除数+除数+余数-除数=商*除数+余数=被除数</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">（</span><span class="mord cjk_fallback">商</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord cjk_fallback">）</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">除</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">（</span><span class="mord cjk_fallback">余</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">除</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">）</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord cjk_fallback">商</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">除</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">除</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">余</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">除</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord cjk_fallback">商</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">除</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">余</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord cjk_fallback">被</span><span class="mord cjk_fallback">除</span><span class="mord cjk_fallback">数</span></span></span></span><br>
+即:<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>7</mn><mo>+</mo><mn>1</mn><mo>)</mo><mo>∗</mo><mo>−</mo><mn>2</mn><mo>+</mo><mo>(</mo><mo>−</mo><mn>1</mn><mo>−</mo><mo>(</mo><mo>−</mo><mn>2</mn><mo>)</mo><mo>)</mo><mo>=</mo><mo>−</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">(7+1)*-2+(-1-(-2)) = -15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">2</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mord">5</span></span></span></span> 余数就为正了.</p>
+<p>实现:</p>
+<pre><code class="language-c">void zhuan(int n,int r)//n的r进制,
+{
+    if(n==0) return ;
+    int m=n%r;//m为余数 
+
+    if(m&lt;0) m-=r,n+=r;//如果余数小于0，转化为正数
+
+    //将余数转化为ascll码方便输出，省略了一个数组 
+    if(m&gt;=10) m='A'+m-10;
+    else m+='0';
+
+    zhuan(n/r,r);
+
+    printf(&quot;%c&quot;,m);//注意，因为结果为余数倒序，输出要写在递归后面，不然会顺序输出 
+    return ;
+}
+</code></pre>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1017">P1017 进制转换</a></li>
+<li></li>
+</ul>
+<!-- more -->
 
               </div>
               <div class="post-footer">
