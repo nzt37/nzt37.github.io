@@ -1890,10 +1890,10 @@ blockquote:before {
   font-weight: bold;
 }
 body {
-      background-color: #eee;
+      background-color: #e3fafc;
     }
     .nav-toggle .line {
-      background-color: #eee !important;
+      background-color: #e3fafc !important;
     }.header {
         width: 960px;
         margin: 0 auto;
@@ -1959,12 +1959,21 @@ body {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #f9f9f9;
+      background: #1098ad;
     }
 
     .nav-item:hover {
-      background: #f9f9f9;
+      background: #1098ad;
       color: rgba(0, 0, 0, 0.98);
+    }.site-author-image {
+      border-radius: 50%;
+    }
+    .site-author-image:hover {
+      transform: rotate(666turn);
+      transition-delay: 1s;
+      transition-property: all;
+      transition-duration: 59s;
+      transition-timing-function: cubic-bezier(.34,0,.84,1);
     }.markdownIt-TOC a {
       color: #eee;
       border-bottom-color: #eee;

@@ -4,18 +4,18 @@
       <meta charset="UTF-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="keywords" content="Gridea静态个人博客">
+<meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1584574243653">
+<link rel="shortcut icon" href="/favicon.ico?v=1584576748012">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
-<link href="/media/hljs/styles/androidstudio.css" rel="stylesheet">  
+<link href="/media/hljs/styles/github.css" rel="stylesheet">  
 
 <script src="/media/hljs/highlight.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
@@ -170,7 +170,11 @@
   </div>
   
     
-      <div class="sidebar-item" style="border-top: 1px dotted #ccc; margin-top: 10px;">
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://nzt-yzang.github.io/atom.xml" target="_blank">RSS</a>
+        </span>
       </div>
     
   
@@ -179,16 +183,26 @@
       <div class="social-item">
         
           
-            <a href="">
-              <i class="fa fa-globe"></i> 
+            <a href="nzts.ml">
+              <i class="fa fa-globe"></i> 牛泽同
             </a>
           
         
         
           
             <a class="social-img" href="#">
-              <img src="\media\images\custom-array-imgSocials-1584499097397-socialImg.jpg" />
+              <img src="\media\images\custom-array-imgSocials-1584576367533-socialImg.jpg" />
               <i class="fa fa-globe"></i> QQ
+            </a>
+          
+            <a class="social-img" href="#">
+              <img src="\media\images\custom-array-imgSocials-1584576367543-socialImg.png" />
+              <i class="fa fa-globe"></i> 微信
+            </a>
+          
+            <a class="social-img" href="#">
+              <img src="\media\images\custom-array-imgSocials-1584576367548-socialImg.jpg" />
+              <i class="fa fa-globe"></i> 网易云
             </a>
           
         
@@ -273,6 +287,9 @@
       <div class="post-body">
         
           
+            
+            
+          
         
         
         <div class="post-button text-center">
@@ -317,10 +334,16 @@
 </header>
       <div class="post-body">
         
-          <ul>
+          
+            
+            
+              <p><ul>
 <li><a href="https://www.luogu.com.cn/problem/P2312">P2312 解方程</a></li>
 </ul>
 
+              
+            
+          
         
         
         <div class="post-button text-center">
@@ -365,11 +388,17 @@
 </header>
       <div class="post-body">
         
-          <h2 id="进制转换">进制转换</h2>
+          
+            
+            
+              <p><h2 id="进制转换">进制转换</h2>
 <ul>
 <li><a href="https://www.luogu.com.cn/problem/P1143">P1143 进制转换</a></li>
 </ul>
 
+              
+            
+          
         
         
         <div class="post-button text-center">
@@ -415,6 +444,9 @@
       <div class="post-body">
         
           
+            
+            
+          
         
         
         <div class="post-button text-center">
@@ -459,6 +491,9 @@
 </header>
       <div class="post-body">
         
+          
+            
+            
           
         
         
@@ -517,7 +552,7 @@
   
     <link rel="stylesheet" href="/media/live2d/histoire/css/live2d.css" />
 <div class="box-scale">
-  <div id="landlord" style="left:5px;bottom:0px;" data-key="">
+  <div id="landlord" style="left:5px;bottom:0px;" data-key="be52d58729f74e699daa183cc6234469">
     <div class="message" style="opacity:0"></div>
     <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
     <div class="live_talk_input_body">
@@ -534,11 +569,15 @@
       <div class="live_ico_item type_info" id="showInfoBtn"></div>
       <div class="live_ico_item type_talk" id="showTalkBtn"></div>
       
+      <div class="live_ico_item type_music" id="musicButton"></div>
+      
       <div class="live_ico_item type_youdu" id="youduButton"></div>
       <div class="live_ico_item type_quit" id="hideButton"></div>
       <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
       <audio src="" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
       <input id="duType" value="douqilai" type="hidden">
+      
+        <input name="live2dBGM" value="http://music.163.com/song?id=357126&amp;userid=372409181" type="hidden">
       
     </div>
   </div>
