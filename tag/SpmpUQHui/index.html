@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8"/>
+      <meta charset="UTF-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="keywords" content="yznag">
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
-<title>秦九韶算法 | yzang</title>
+<title>yzang</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1584705063826">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,8 +27,6 @@
 
 
 
-    <meta name="description" content="秦九韶算法" />
-    <meta name="keywords" content="数论,算法,c++" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -139,25 +137,10 @@
     </div>
     <div class="main-continer">
       
-      <div class="section-layout gemini ">
+      <div class="section-layout  gemini">
         <div class="section-layout-wrapper">
-          
-
-<div class="sidebar">
-  
-    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
-      
-        <div class="post-list-sidebar">
-          <div class="sidebar-title">
-            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
-            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
-          </div>
-        </div>
-      
-      <div class="sidebar-body gemini" id="sidebar_body">
-        
-          
-            
+          <div id="sidebarMeta" class="sidebar">
+    
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://nzt-yzang.github.io/images/avatar.png"/>
@@ -229,238 +212,100 @@
 
 
 </div>
-          
-        
-      </div>
-    </div>
-  
 </div>
 <script>
-  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
-  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
-  const SLIDE_UP_IN = 'slide-up-in';
-
-  let sidebar = document.querySelector('#sidebar'),
-  tocSideBar = document.querySelector('#tocSideBar'),
-  metaSideBar = document.querySelector('#metaSideBar'),
-  postToc = document.querySelector('#post_toc'),
-  postSiteMeta = document.querySelector('#post_side_meta'),
-  sidebarTitle = document.querySelector('.sidebar-title'),
-  sidebarBody = document.querySelector('#sidebar_body');
-
-  tocSideBar && tocSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  metaSideBar && metaSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  function toggleSidebar(e) {
-    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
-    if (currentTitle == e.srcElement) {
-      return ;
-    }
-    let current, showElement, hideElement;
-    if (e.srcElement == metaSideBar) {
-      showElement = postSiteMeta;
-      hideElement = postToc;
-    } else if (e.srcElement == tocSideBar){
-      showElement = postToc;
-      hideElement = postSiteMeta;
-    }
-    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
-    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
-
-    window.Velocity(hideElement, 'stop');
-    window.Velocity(hideElement, 'transition.slideUpOut', {
-      display: 'none',
-      duration: 200,
-      complete: function () {
-        window.Velocity(showElement, 'transition.slideDownIn', {
-          duration: 200
-        });
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
       }
-    })
-    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
-    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+    });
   }
-
-  postToc && postToc.addEventListener('transitionend', function() {
-    this.classList.remove(SLIDE_UP_IN);
-  });
-
-  if (sidebarBody) {
-    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
-      let hasFix = false;
-      let scrollEl = document.querySelector('.main-continer');
-      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
-      window.addEventListener('scroll', function(e) {
-        if (document.scrollingElement.scrollTop >= limitTop) {
-          if (!hasFix) {
-            sidebar.classList.add('sidebar-fixed');
-            hasFix = true;
-          }
-        } else {
-          if (hasFix) {
-            sidebar.classList.remove('sidebar-fixed');
-            hasFix = false;
-          }
-        }
-      });
-    }
-  }
-  
-</script>
-          <div class="section-box box-shadow-wrapper">
-            <div class="section bg-color post post-page">
-              <header class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/qin-jiu-shao-suan-fa/">
-      秦九韶算法
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span>发布于</span>
-      <span>2020-03-18</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-      <span class="meta-item">
-        <i class="fa fa-folder-o"></i>
-        <span class="pc-show">分类于</span>
+  </script>
+            <div class="section-box tag-line">
+              <div class="box-shadow-wrapper">
+                <div class="bg-color">
+                  <section class="section posts-expand">
+                    <div class="padding-wrapper">
+  <div class="tag-timeline-box">
+    <div class="tag-timeline-wrapper">
+      <div class="tag-timeline-title">
+        <h2>
+          数据结构
+          <small>标签</small>
+        </h2>
+      </div>
+      
         
-          
-            <a href="https://nzt-yzang.github.io/tag/IiC9nCoNa/">
-              <span>数论</span>
-            </a>、
           
         
           
-            <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
-              <span>算法</span>
-            </a>、
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/">
-              <span>c++</span>
+            <a href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">
+              <div class="motion-warpper">
+                <div class="tag-post-node">
+                  <h1>
+                    03-20
+                    <small>存图的三种方式</small>
+                  </h1>
+                </div>  
+              </div>
             </a>
           
         
-      </span>
-      <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>134<span class="pc-show">字数</span></span>
-    </span>
-    
+          
+        
+          
+        
       
+        
+          
+        
+      
+        
+          
+        
+          
+        
+          
+        
+      
+        
+          
+        
+          
+        
+          
+        
+      
+        
+          
+        
+          
+        
+          
+        
       
         
       
-      <span id="/post/qin-jiu-shao-suan-fa/" data-flag-title="秦九韶算法" class="meta-item pc-show leancloud_visitors">
-        <span class="post-meta-divider">|</span>
-        <i class="fa fa-eye"></i>
-        <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
-      </span>
-    
-  </div>
-</header>
-              <div class="post-body next-md-body" id="post_body">
-                <ul>
-<li><a href="https://www.luogu.com.cn/problem/P2312">P2312 解方程</a></li>
-</ul>
-<!-- more --> 
-<p>已知多项式方程：a0+a1x+a2x<sup>2+..+anx</sup>n=0，求方程在[1, m ] 内的整数解（n 和m 均为正整数）<br>
-//a0+a1x+a2x2+...+anxn=a0+x(a1+x(a2+x(a3+......anx;</p>
-<!--  -->
-<p><strong>主代码</strong></p>
-<pre><code>bool calc(ll x)
-{
-     sum=0;//一定要清零
-     for(ll i=n;i&gt;=1;i--)
-  {
-         sum=((A[i]+sum)*x)%p;
-          //这里套用秦九韶算法求多项式的值 注意A[0]并不需要乘x！
- }
-     sum=(sum+A[0])%p;//这里再算上A[0]
-     return !sum;//如果答案是0说明x值为该多项式的解，返回1(true) 
-}
-</code></pre>
-
-              </div>
-              <div class="post-footer">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong>本文作者：</strong>
-      yzang
-    </li>
-    <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/qin-jiu-shao-suan-fa/" title="秦九韶算法">秦九韶算法</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong>
-      本博客所有文章除特别声明外，转载请注明出处！
-    </li>
-  </ul>
-  <div class="tags">
-    
-      <a href="https://nzt-yzang.github.io/tag/IiC9nCoNa/"># 数论</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/"># c++</a>
-    
-  </div>
-  <div class="nav">
-    <div class="nav-prev">
+        
+          
+        
+          
+        
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">Day 1.</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">上一篇</a>
-      
-    </div>
-    <div class="nav-next">
-      
-        <a class="nav-pc-next" title="简单数学问题1" href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/">简单数学问题1</a>
-        <a class="nav-mobile-next" title="简单数学问题1" href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/">下一篇</a>
-        <i class="fa fa-chevron-right"></i>
+        
       
     </div>
   </div>
 </div>
-              
-                
-<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
-<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
-<script>
-new Valine({
-    el: '#vcomments' ,
-    appId: '9mxN5lrhF6BCeph89omlhWdi-gzGzoHsz',
-    appKey: '4Ohq4QkHL27wgc5wmrbTsVci',
-    notify: 'true' === 'false', 
-    avatar:'mp', 
-    placeholder: 'Welcome.',
-    pageSize: '',
-    lang: 'zh-cn',
-    visitor: 'true' === 'true',
-    highlight: 'true' === 'true',
-    avatarForce: 'true' === 'false',
-});
-</script>
-              
-            </div>
+                  </section>
+                </div>
+              </div>
           </div>
         </div>
       </div>

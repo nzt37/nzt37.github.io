@@ -7,7 +7,7 @@
 <meta name="keywords" content="yznag">
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
-<title>秦九韶算法 | yzang</title>
+<title>Day 2 | yzang</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1584705063826">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,8 +27,8 @@
 
 
 
-    <meta name="description" content="秦九韶算法" />
-    <meta name="keywords" content="数论,算法,c++" />
+    <meta name="description" content="Day 2" />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -157,7 +157,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://nzt-yzang.github.io/images/avatar.png"/>
@@ -229,6 +230,190 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%B9%B3%E9%9D%A2%E4%B8%8A%E6%9C%89n%E6%9D%A1%E7%9B%B4%E7%BA%BF%E4%B8%94%E6%97%A0%E4%B8%89%E7%BA%BF%E5%85%B1%E7%82%B9%E9%82%A3%E4%B9%88%E8%BF%99%E4%BA%9B%E7%9B%B4%E7%BA%BF%E8%83%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%A4%E7%82%B9%E6%95%B0">平面上有N条直线，且无三线共点，那么这些直线能有多少不同的交点数？</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+      lList.push(elem);
+    }
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+
+(function() {
+  // 处理不是从#一级标题开始目录
+  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+  }
+  addTocNumber(tocContent, '');
+})();
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -316,8 +501,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/qin-jiu-shao-suan-fa/">
-      秦九韶算法
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-2/">
+      Day 2
     </a>
   </h1>
   <div class="post-meta">
@@ -325,7 +510,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-18</span>
+      <span>2020-03-20</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -334,20 +519,8 @@
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://nzt-yzang.github.io/tag/IiC9nCoNa/">
-              <span>数论</span>
-            </a>、
-          
-        
-          
             <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
               <span>算法</span>
-            </a>、
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/">
-              <span>c++</span>
             </a>
           
         
@@ -356,19 +529,19 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>134<span class="pc-show">字数</span></span>
+      <span>404<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/qin-jiu-shao-suan-fa/" data-flag-title="秦九韶算法" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/day-2/" data-flag-title="Day 2" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -378,23 +551,104 @@
 </header>
               <div class="post-body next-md-body" id="post_body">
                 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P2312">P2312 解方程</a></li>
+<li><a href="https://www.luogu.com.cn/problem/P2789">P2789 直线交点数</a></li>
+<li></li>
 </ul>
-<!-- more --> 
-<p>已知多项式方程：a0+a1x+a2x<sup>2+..+anx</sup>n=0，求方程在[1, m ] 内的整数解（n 和m 均为正整数）<br>
-//a0+a1x+a2x2+...+anxn=a0+x(a1+x(a2+x(a3+......anx;</p>
-<!--  -->
-<p><strong>主代码</strong></p>
-<pre><code>bool calc(ll x)
+<!-- more -->
+<h2 id="平面上有n条直线且无三线共点那么这些直线能有多少不同的交点数">平面上有N条直线，且无三线共点，那么这些直线能有多少不同的交点数？</h2>
+<p>这道题是对N条直线分别讨论平行线的条数,(<strong>最低有一条平行线</strong>)<br>
+已知有n条直线,r条平行线时,交点个数为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">r*(n-r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>在加上这<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(n-r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>个交点的个数,</p>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+bool f[10001];
+int MAX = -1;
+int n;
+int ans;
+void work(int n , int k)
 {
-     sum=0;//一定要清零
-     for(ll i=n;i&gt;=1;i--)
-  {
-         sum=((A[i]+sum)*x)%p;
-          //这里套用秦九韶算法求多项式的值 注意A[0]并不需要乘x！
- }
-     sum=(sum+A[0])%p;//这里再算上A[0]
-     return !sum;//如果答案是0说明x值为该多项式的解，返回1(true) 
+	if(n == 0)
+	{
+		f[k] = true;
+		MAX = max(k,MAX);
+		return ;
+	}
+	for(int r = n ; i &gt;= 1 ; i--)
+		work(n-r,r * (n-r) + k);
+}
+int main()
+{
+	cin &gt;&gt; n;
+	work(n,0);
+	for(int i = 0 ;  i &lt;= MAX ; i++)
+	{
+		if(f[i]) ans++;
+	}
+	cout&lt;&lt;ans;
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P5318">P5318 【深基18.例3】查找文献</a></li>
+<li><strong>图的bfs和dfs</strong></li>
+</ul>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn = 1e5;
+int n,m,head[maxn&lt;&lt;1],cnt;
+bool vis[maxn];
+struct Edge{
+	int u,v;
+};
+	queue&lt;int&gt;q;
+vector &lt;int&gt; edge[maxn];
+void dfs(int x,int num)
+{
+	vis[x] = 1;
+	cout&lt;&lt;x&lt;&lt;&quot; &quot;;
+	if(num == n) return ;
+	for(int i = 0 ; i &lt; edge[x].size() ; i++)
+	{
+		if(!vis[edge[x][i]])
+		dfs(edge[x][i],num+1);
+	}
+	
+}
+void bfs(int x)
+{
+	memset(vis,false,sizeof(vis));
+	q.push(x);
+	vis[x] = 1;
+	while(!q.empty())
+	{
+		int v = q.front();
+		q.pop();
+		cout&lt;&lt;v&lt;&lt;&quot; &quot;;
+		for(int i = 0 ; i &lt; edge[v].size() ; i++){
+			if(!vis[edge[v][i]])
+			{
+				vis[edge[v][i]] = 1;
+				q.push(edge[v][i]);
+			}
+			
+		}
+	}
+	
+}
+int main()
+{
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i = 0 ; i &lt; m ; i++){
+		int u,v;
+		cin&gt;&gt;u&gt;&gt;v;
+		edge[u].push_back(v);//邻接表建有向图 
+	}
+	for (int i=1; i&lt;=n; i++) 
+	sort(edge[i].begin(), edge[i].end());
+	dfs(1,0);
+	printf(&quot;\n&quot;);
+	bfs(1);
+	return 0;
 }
 </code></pre>
 
@@ -407,7 +661,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/qin-jiu-shao-suan-fa/" title="秦九韶算法">秦九韶算法</a>
+      <a href="https://nzt-yzang.github.io/post/day-2/" title="Day 2">Day 2</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -416,25 +670,21 @@
   </ul>
   <div class="tags">
     
-      <a href="https://nzt-yzang.github.io/tag/IiC9nCoNa/"># 数论</a>
-    
       <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/"># c++</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">Day 1.</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">上一篇</a>
+        <a class="nav-pc-next" title="存图的三种方式" href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">存图的三种方式</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="存图的三种方式" href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="简单数学问题1" href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/">简单数学问题1</a>
-        <a class="nav-mobile-next" title="简单数学问题1" href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/">下一篇</a>
+        <a class="nav-pc-next" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">Day 1.</a>
+        <a class="nav-mobile-next" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
