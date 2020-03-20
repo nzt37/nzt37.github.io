@@ -1890,10 +1890,10 @@ blockquote:before {
   font-weight: bold;
 }
 body {
-      background-color: #e3fafc;
+      background-color: #eee;
     }
     .nav-toggle .line {
-      background-color: #e3fafc !important;
+      background-color: #eee !important;
     }.header {
         width: 960px;
         margin: 0 auto;
@@ -1959,11 +1959,11 @@ body {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #1098ad;
+      background: #f9f9f9;
     }
 
     .nav-item:hover {
-      background: #1098ad;
+      background: #f9f9f9;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2013,6 +2013,8 @@ body {
     }
     .mist .site-title i {
       background: #FFF;
+    }.box-shadow-wrapper {
+      padding: 10px;
     }.box-shadow-wrapper {
       box-shadow: none !important;
     }
