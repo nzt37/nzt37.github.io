@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>Day 2 | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1584705063826">
+<link rel="shortcut icon" href="/favicon.ico?v=1584706830066">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -534,7 +534,7 @@ window.addEventListener('load', function() {
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>404<span class="pc-show">字数</span></span>
+      <span>511<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -650,6 +650,27 @@ int main()
 	bfs(1);
 	return 0;
 }
+</code></pre>
+<!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P6195">P6195 [EER1]迫害</a><br>
+一道数学推论题,要用到快速幂(<strong>这两天就去学快速幂</strong>)</li>
+</ul>
+<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define ll long long
+#define mo 1000000007
+int main(){
+    ll n,m,k=1,i,yu;
+    scanf(&quot;%lld%lld&quot;,&amp;n,&amp;m);
+    yu=m%15;m/=15;
+    for(i=1;i&lt;=m;i++)
+    k*=32768,k%=mo;//算(2^15)^m
+    for(i=1;i&lt;=yu;i++)
+    k*=2,k%=mo;//算2^yu
+    printf(&quot;%lld\n&quot;,((n+1)*(k%mo)-1)%mo);
+    return 0;
+} 
 </code></pre>
 
               </div>
