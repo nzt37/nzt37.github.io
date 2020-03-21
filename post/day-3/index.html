@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>Day 3 | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1584776343382">
+<link rel="shortcut icon" href="/favicon.ico?v=1584777618682">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -350,12 +350,12 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>139<span class="pc-show">字数</span></span>
+      <span>292<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -403,6 +403,42 @@ int main(){
 }
 </code></pre>
 <!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P2638">P2638 安全系统</a><br>
+一道关于组合数的题</li>
+</ul>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;a
+unsigned long long z[201][201],ans1,ans2,sum;
+void yhsj(int n)
+{
+    for (int i = 0; i &lt;= n; ++i)
+    {
+        z[i][0] = z[i][i] = 1;//杨辉三角形侧边初始值
+    }
+        for (int i = 2; i &lt;= n; ++i)
+        {
+            for (int j = 1; j &lt;= i; j++)
+            {
+                z[i][j] = z[i - 1][j] + z[i - 1][j - 1];
+            }
+        }
+}
+int main()
+{
+	int n,a,b;
+	cin&gt;&gt;n&gt;&gt;a&gt;&gt;b;
+	yhsj(n+max(a,b));
+	for(int i = 0 ; i &lt;= a ; i++){
+		ans1 += z[n][i] * z[a][i];
+	} 
+	for(int i = 0 ; i &lt;= b ; i++){
+		ans2 += z[n][i]*z[b][i];
+	}
+	unsigned long long ans= ans1*ans2;
+	cout&lt;&lt;ans;
+	return 0;
+}</code></pre>
 
               </div>
               <div class="post-footer">
