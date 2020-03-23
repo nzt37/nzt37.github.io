@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>C++ STL | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1584940467542">
+<link rel="shortcut icon" href="/favicon.ico?v=1584943670592">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -229,7 +229,11 @@
 <li>
 <ul>
 <li><a href="#1unique%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%8E%BB%E9%87%8D%E7%94%A8%E6%B3%95%E4%B8%80%E8%88%AC%E6%98%AFunique%E6%95%B0%E7%BB%84%E5%90%8D%E6%95%B0%E7%BB%84%E5%90%8D%E5%A4%A7%E5%B0%8F">1,unique(),也就是去重,用法一般是<strong>unique(数组名,数组名+大小)</strong>;</a></li>
-<li><a href="#2%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0">2,查找函数</a></li>
+<li><a href="#2%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0">2,查找函数</a>
+<ul>
+<li><a href="#%E9%87%8D%E8%BD%BDlower_bound%E5%87%BD%E6%95%B0">重载lower_bound函数</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -514,12 +518,12 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>344<span class="pc-show">字数</span></span>
+      <span>502<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -554,7 +558,7 @@ int p = unique(x,x+m) - x;//p即去重后数组的长度;
 </code></pre>
 <!-- more -->
 <h2 id="2查找函数">2,查找函数</h2>
-<pre><code class="language-c">lower_bound 和 upper_bound函数
+<pre><code class="language-c">  lower_bound 和 upper_bound函数
 </code></pre>
 <p>这两个函数的作用是二分查找一个数在数组中出现的位置。<br>
 <strong>必须是有序序列</strong><br>
@@ -570,6 +574,46 @@ upper_bound(a.begin(),a.end(),x)
 int p = upper_bound(a.begin(),a.end(),x) - a; 
 </code></pre>
 <p>upper_bound 和lower_bound 函数用法相同.</p>
+<h3 id="重载lower_bound函数">重载lower_bound函数</h3>
+<pre><code class="language-c">//数字查找
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const int maxn = 1e5;
+int n,m;
+struct node
+{
+    int sum,num;
+     friend bool operator &lt;( node a, node b ) // 这就是重点了，需要手动在结构体里添加小于号的重载
+      {
+          return a.sum&lt;b.sum;
+      }
+
+}a[maxn];
+bool cmp(node a,node b)
+{
+	return a.sum &lt; b.sum;
+}
+int main()
+{
+	cin&gt;&gt;n&gt;&gt;m;
+	for(int i = 1 ; i &lt;= n ; i++){
+		scanf(&quot;%d&quot;,&amp;a[i].sum);
+		a[i].num = i;
+	}
+	sort(a+1,a+1+n,cmp);
+	while(m--)
+	{
+		node k;
+		scanf(&quot;%d&quot;,&amp;k.sum);
+		int it = lower_bound(a,a+n,k) - a;
+		if(a[it].sum == k.sum) printf(&quot;%d&quot;,a[it].num);
+		else
+		printf(&quot;-1&quot;);
+	}
+	return 0;
+ } 
+</code></pre>
 <!-- more -->
 
               </div>
