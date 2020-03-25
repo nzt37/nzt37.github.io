@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>C++ STL | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1584966419847">
+<link rel="shortcut icon" href="/favicon.ico?v=1585119328726">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -160,7 +160,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">11</span>
+        <span class="site-item-stat-count">12</span>
         <span class="site-item-stat-name">文章</span>
       </a>
     </div>
@@ -236,6 +236,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#3list">3,<list></a></li>
 </ul>
 
   </div>
@@ -518,12 +519,12 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3分钟</span>
+      <span>4分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>502<span class="pc-show">字数</span></span>
+      <span>931<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -545,7 +546,7 @@ window.addEventListener('load', function() {
 <h2 id="1unique也就是去重用法一般是unique数组名数组名大小">1,unique(),也就是去重,用法一般是<strong>unique(数组名,数组名+大小)</strong>;</h2>
 <p>然后值得注意的有两点：</p>
 <ul>
-<li>第一点：在<strong>unique</strong>之前必须保证去重数组有序，也就是得sortsort一下。</li>
+<li>第一点：在<strong>unique</strong>之前必须保证去重数组有序，也就是得sort一下。</li>
 <li>第二点：<strong>unique</strong>并不会生成一个新的数组，而是将原数组多余的部分“移”到了数组之后，同时<strong>unique</strong>本身还会返回一个指针，指向去重之后的最后一位。</li>
 <li><strong>所以我们可以通过 unique-数组指针 来知道去重之后数组的“大小”</strong></li>
 </ul>
@@ -576,11 +577,6 @@ int p = upper_bound(a.begin(),a.end(),x) - a;
 <p>upper_bound 和lower_bound 函数用法相同.</p>
 <h3 id="重载lower_bound函数">重载lower_bound函数</h3>
 <pre><code class="language-c">//数字查找
-#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-const int maxn = 1e5;
-int n,m;
 struct node
 {
     int sum,num;
@@ -590,31 +586,39 @@ struct node
       }
 
 }a[maxn];
-bool cmp(node a,node b)
-{
-	return a.sum &lt; b.sum;
-}
 int main()
 {
-	cin&gt;&gt;n&gt;&gt;m;
-	for(int i = 1 ; i &lt;= n ; i++){
-		scanf(&quot;%d&quot;,&amp;a[i].sum);
-		a[i].num = i;
-	}
-	sort(a+1,a+1+n,cmp);
-	while(m--)
-	{
 		node k;
 		scanf(&quot;%d&quot;,&amp;k.sum);
 		int it = lower_bound(a,a+n,k) - a;
 		if(a[it].sum == k.sum) printf(&quot;%d&quot;,a[it].num);
 		else
 		printf(&quot;-1&quot;);
-	}
 	return 0;
  } 
 </code></pre>
 <!-- more -->
+<h1 id="3list">3,<list></h1>
+<p>**常用函数:**int size() 返回容器元素个数；bool empty() 判断容器是否为空,true为空；<br>
+**增加函数:**void push_back(元素) 尾元素后增加一个元素；push_front(元素) 首元素前增加一个元素；<br>
+iterator insert(lit,元素)在迭代器指针lit前插入元素，返回插入元素的迭代器指针；<br>
+``	 void insert(lit,n,元素)在迭代器指针lit前插入n个相同元素；<br>
+void insert(lit,first,last) 把[first,last)间的元素插入lit前；<br>
+<strong>删除函数</strong>:void pop_back()删除容器尾元素，当且仅当容器不为空； 需判断，否则报错decrementable<br>
+void pop_front()删除容器首元素，当且仅当容器不为空；需判断，否则报错decrementable<br>
+void remove(元素)删除所有等于参数的元素；void clear()删除所有元素<br>
+iterator erase(lit)删除lit指向的元素，并返回下一指针<br>
+&lt;遍历函数:iterator begin() 返回首元素迭代器指针；iterator end() 返回尾元素迭代器指针<br>
+reverse_iterator rbegin() 返回尾元素的逆向迭代器指针；reverse_iterator rend() 返回首元素前的逆向迭代器指针<br>
+reference front()返回首元素；reference back()返回尾元素<br>
+排序函数:void sort()默认升序；void sort(Pred pr)按预判定函数排序;<br>
+其他函数:void swap(list &amp; str) 两个list容器交换；void unique() 相邻元素重复，保留一个；<br>
+void splice(iterator lit,list &amp;x) list x的所有元素插入lit前,x变为空<br>
+void splice(iterator lit,list &amp;x,iterator first) list x的[first,end)间所有元素移走，插入lit前,x变为空<br>
+void splice(iterator lit,list &amp;x,iterator first,iterator last) list x的[first,last)的所有元素移走,插入lit前,x变为空<br>
+void reverse()反转容器元素顺序<br>
+void unique()重复的相邻元素仅保留一个,需要排序，比较鸡肋<br>
+void Merge(list&lt;元素&gt;)合并函数，用于两个list容器，是数据移动不是复制，有set，显得也比较鸡肋</p>
 
               </div>
               <div class="post-footer">
