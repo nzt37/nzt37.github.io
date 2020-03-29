@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>C++ STL | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1585453837848">
+<link rel="shortcut icon" href="/favicon.ico?v=1585458732465">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -228,15 +228,25 @@
     <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#1unique%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%8E%BB%E9%87%8D%E7%94%A8%E6%B3%95%E4%B8%80%E8%88%AC%E6%98%AFunique%E6%95%B0%E7%BB%84%E5%90%8D%E6%95%B0%E7%BB%84%E5%90%8D%E5%A4%A7%E5%B0%8F">1,unique(),也就是去重,用法一般是<strong>unique(数组名,数组名+大小)</strong>;</a></li>
-<li><a href="#2%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0">2,查找函数</a>
+<li><a href="#map-unordered_map">map / unordered_map</a></li>
+<li><a href="#set">set</a></li>
+<li><a href="#-more-"><!-- more --></a></li>
+<li><a href="#%E6%A0%88">栈</a></li>
+<li><a href="#%E9%98%9F%E5%88%97">队列</a></li>
+<li><a href="#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列</a></li>
+<li><a href="#vector">vector</a></li>
+<li><a href="#string">string</a></li>
+<li><a href="#unique%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%8E%BB%E9%87%8D%E7%94%A8%E6%B3%95%E4%B8%80%E8%88%AC%E6%98%AFunique%E6%95%B0%E7%BB%84%E5%90%8D%E6%95%B0%E7%BB%84%E5%90%8D%E5%A4%A7%E5%B0%8F">unique(),也就是去重,用法一般是<strong>unique(数组名,数组名+大小)</strong>;</a></li>
+<li><a href="#-more--2"><!-- more --></a></li>
+<li><a href="#%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0">,查找函数</a>
 <ul>
 <li><a href="#%E9%87%8D%E8%BD%BDlower_bound%E5%87%BD%E6%95%B0">重载lower_bound函数</a></li>
 </ul>
 </li>
+<li><a href="#-more--3"><!-- more --></a></li>
+<li><a href="#list">list</a></li>
 </ul>
 </li>
-<li><a href="#3list">3,<list></a></li>
 </ul>
 
   </div>
@@ -519,12 +529,12 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>4分钟</span>
+      <span>8分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>931<span class="pc-show">字数</span></span>
+      <span>1677<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -543,7 +553,170 @@ window.addEventListener('load', function() {
                 <!-- more -->
 <p>这里写一些常见的STL用法,遇到什么写什么</p>
 <!-- more -->
-<h2 id="1unique也就是去重用法一般是unique数组名数组名大小">1,unique(),也就是去重,用法一般是<strong>unique(数组名,数组名+大小)</strong>;</h2>
+<h2 id="map-unordered_map">map / unordered_map</h2>
+<p>map可以构造字典（key，value），底层维护的是一个红黑树。<br>
+用途：键值-映射【默认会按照键对其中的元素进行排序】</p>
+<pre><code class="language-c">//map&lt;type1,type2&gt;m 例如：
+map&lt;int ,string&gt; m;
+</code></pre>
+<p><strong>插入元素</strong></p>
+<pre><code class="language-c">1.m.insert(pair&lt;int,string&gt;(102,&quot;aclive&quot;));
+2.m[112]=&quot;April&quot;;//map中最简单最常用的插入添加！
+</code></pre>
+<p>常用方法：</p>
+<ul>
+<li>
+<p>mp.clear() 无返回值，清空mp</p>
+</li>
+<li>
+<p>mp.count(key) 返回的是被查找键 是否存在，存在返回1</p>
+</li>
+<li>
+<p>mp.find(key) 返回的是被查找元素的位置，没有则返回map.end()</p>
+</li>
+<li>
+<p>mp.begin() 返回mp首元素的位置</p>
+</li>
+<li>
+<p>mp.end()<br>
+对map中元素进行访问的方法（需要借助迭代器）：</p>
+</li>
+</ul>
+<pre><code class="language-c">//map&lt;type1,type2&gt;it 例如：
+map&lt;int ,string&gt;::iterator it;
+for(it=mp.begin();it!=mp.end();it++)
+   cout &lt;&lt; it-&gt;first &lt;&lt; it-&gt;second;
+</code></pre>
+<p><strong>ps: unordered_map与map类似，只是其底层维护的是一个哈希表，不会对元素进行排序 运行速度比map快，针对大数据推荐使用</strong></p>
+<!-- more -->
+<hr>
+<!-- more -->
+<h2 id="set">set</h2>
+<p>集合，set中每个元素的值都唯一，系统能根据元素的值自动进行排序。</p>
+<p>底层依然是红黑树，支持高效的增删改查操作。</p>
+<pre><code class="language-c">//声明
+set&lt;type&gt;s
+</code></pre>
+<p>常用方法：</p>
+<ul>
+<li>
+<p>s.clear()</p>
+</li>
+<li>
+<p>s.size() 获取集合大小</p>
+</li>
+<li>
+<p>s.insert(v)</p>
+</li>
+<li>
+<p>s.erase(v)</p>
+</li>
+<li>
+<p>s.find(v) 在set中查找元素v，返回一个迭代器</p>
+</li>
+<li>
+<p>s.begin()</p>
+</li>
+<li>
+<p>s.end()<br>
+<strong>对set中的元素进行访问需要利用 迭代器</strong></p>
+</li>
+</ul>
+<h2 id="-more-"><!-- more --></h2>
+<h2 id="栈">栈</h2>
+<p><code>stack&lt;int&gt; mystack;</code></p>
+<h2 id="队列">队列</h2>
+<p><code>queue&lt;int&gt;q;</code></p>
+<h2 id="优先队列">优先队列</h2>
+<p><strong>默认大根堆，优先级最高的元素先出队列</strong></p>
+<pre><code class="language-c">//以int类型举例
+priority_queue&lt;int&gt;q
+</code></pre>
+<p><strong>小根堆</strong><br>
+`priority_queue&lt;int,vector<int>,greater<int>&gt;``<br>
+<strong>自定义数据类型</strong></p>
+<pre><code class="language-c">struct Node{//默认优先级 a由小到大 b由大到小
+    int a,b;
+    bool operator &lt; (const Node &amp; rs) const {
+        if(a==rs.a) return b &gt; rs.b;
+        return a &lt; rs.a;
+    }
+}
+……
+……
+Node d[2]={{1,1},{1,2}};
+sort(d,d+2);
+</code></pre>
+<hr>
+<h2 id="vector">vector</h2>
+<p><code>vector&lt;int&gt;a</code><br>
+常用操作</p>
+<ul>
+<li>
+<p>v.clear()</p>
+</li>
+<li>
+<p>v.push_back(a) 末尾添加元素</p>
+</li>
+<li>
+<p>v.pop_back(a) 末尾删除元素</p>
+</li>
+<li>
+<p>v.size()<br>
+其他操作</p>
+</li>
+<li>
+<p>v.empty()</p>
+</li>
+<li>
+<p>v.erase(v.begin()+1,v.begin()+3) 删除第1，2个元素 【左闭右开 [1，3) 】</p>
+</li>
+<li>
+<p>v.insert(v.begin()+1,5) 插入元素5在v[1]位置</p>
+</li>
+<li>
+<p>v.insert(v.begin()+1,3,5) 从v[1]位置开始插入3个5</p>
+</li>
+<li>
+<p>a.swap(b) b为向量，将a和b中元素进行整体性互换<br>
+<strong>判断条件删除vector中元素</strong></p>
+</li>
+</ul>
+<pre><code class="language-c">for(vector&lt;int&gt;::iterator it=v.begin(); it!=v.end(); )
+{
+     if(...)
+          it= v.erase(it);
+      else
+            it ++ ;
+}
+</code></pre>
+<hr>
+<h2 id="string">string</h2>
+<p>常用方法：</p>
+<ul>
+<li>
+<p>s.length() / s.size() 返回字符串长度</p>
+</li>
+<li>
+<p>s.substr(pos) 从s的第pos个位置取到末尾 的子串</p>
+</li>
+<li>
+<p>s.substr(pos,len) 从s的第pos个位置取出长度为len的子串</p>
+</li>
+<li>
+<p>s.find(&quot; &quot;,pos ) 从s的第pos个位置开始寻找，返回查找到的位置，查找不到返回-1<br>
+<strong>翻转字符串</strong></p>
+</li>
+<li>
+<p>reverse(s.begin(),s.end())<br>
+<strong>char * 与string相互转换：</strong></p>
+</li>
+</ul>
+<pre><code class="language-c">char*s1 = s.c_str();   //string转化为char*类型
+string s = string(s1) //char*转化为string类型
+</code></pre>
+<hr>
+<h2 id="unique也就是去重用法一般是unique数组名数组名大小">unique(),也就是去重,用法一般是<strong>unique(数组名,数组名+大小)</strong>;</h2>
 <p>然后值得注意的有两点：</p>
 <ul>
 <li>第一点：在<strong>unique</strong>之前必须保证去重数组有序，也就是得sort一下。</li>
@@ -557,8 +730,8 @@ window.addEventListener('load', function() {
 sort(x,x+m);
 int p = unique(x,x+m) - x;//p即去重后数组的长度;
 </code></pre>
-<!-- more -->
-<h2 id="2查找函数">2,查找函数</h2>
+<h2 id="-more--2"><!-- more --></h2>
+<h2 id="查找函数">,查找函数</h2>
 <pre><code class="language-c">  lower_bound 和 upper_bound函数
 </code></pre>
 <p>这两个函数的作用是二分查找一个数在数组中出现的位置。<br>
@@ -597,28 +770,62 @@ int main()
 	return 0;
  } 
 </code></pre>
-<!-- more -->
-<h1 id="3list">3,<list></h1>
-<p>**常用函数:**int size() 返回容器元素个数；bool empty() 判断容器是否为空,true为空；<br>
-**增加函数:**void push_back(元素) 尾元素后增加一个元素；push_front(元素) 首元素前增加一个元素；<br>
-iterator insert(lit,元素)在迭代器指针lit前插入元素，返回插入元素的迭代器指针；<br>
-``	 void insert(lit,n,元素)在迭代器指针lit前插入n个相同元素；<br>
-void insert(lit,first,last) 把[first,last)间的元素插入lit前；<br>
-<strong>删除函数</strong>:void pop_back()删除容器尾元素，当且仅当容器不为空； 需判断，否则报错decrementable<br>
-void pop_front()删除容器首元素，当且仅当容器不为空；需判断，否则报错decrementable<br>
-void remove(元素)删除所有等于参数的元素；void clear()删除所有元素<br>
-iterator erase(lit)删除lit指向的元素，并返回下一指针<br>
-&lt;遍历函数:iterator begin() 返回首元素迭代器指针；iterator end() 返回尾元素迭代器指针<br>
-reverse_iterator rbegin() 返回尾元素的逆向迭代器指针；reverse_iterator rend() 返回首元素前的逆向迭代器指针<br>
-reference front()返回首元素；reference back()返回尾元素<br>
-排序函数:void sort()默认升序；void sort(Pred pr)按预判定函数排序;<br>
-其他函数:void swap(list &amp; str) 两个list容器交换；void unique() 相邻元素重复，保留一个；<br>
-void splice(iterator lit,list &amp;x) list x的所有元素插入lit前,x变为空<br>
-void splice(iterator lit,list &amp;x,iterator first) list x的[first,end)间所有元素移走，插入lit前,x变为空<br>
-void splice(iterator lit,list &amp;x,iterator first,iterator last) list x的[first,last)的所有元素移走,插入lit前,x变为空<br>
-void reverse()反转容器元素顺序<br>
-void unique()重复的相邻元素仅保留一个,需要排序，比较鸡肋<br>
-void Merge(list&lt;元素&gt;)合并函数，用于两个list容器，是数据移动不是复制，有set，显得也比较鸡肋</p>
+<h2 id="-more--3"><!-- more --></h2>
+<h2 id="list">list</h2>
+<ul>
+<li>**常用函数:**int size() 返回容器元素个数；bool empty() 判断容器是否为空,true为空；</li>
+<li>**增加函数:**void push_back(元素) 尾元素后增加一个元素；push_front(元素) 首元素前增加一个元素；<br>
+*   iterator insert(lit,元素)在迭代器指针lit前插入元素，返回插入元素的迭代器指针；<br>
+* ``	 void insert(lit,n,元素)在迭代器指针lit前插入n个相同元素；<br>
+* 	 void insert(lit,first,last) 把[first,last)间的元素插入lit前；</li>
+<li><strong>删除函数</strong>:void pop_back()删除容器尾元素，当且仅当容器不为空； 需判断，否则报错decrementable</li>
+<li>
+<pre><code>       void pop_front()删除容器首元素，当且仅当容器不为空；需判断，否则报错decrementable
+</code></pre>
+</li>
+<li>void remove(元素)删除所有等于参数的元素；void clear()删除所有元素</li>
+<li>
+<pre><code>  	 iterator erase(lit)删除lit指向的元素，并返回下一指针
+</code></pre>
+</li>
+</ul>
+<p>&lt;遍历函数:iterator begin() 返回首元素迭代器指针；iterator end() 返回尾元素迭代器指针</p>
+<ul>
+<li>
+<pre><code>       reverse_iterator rbegin() 返回尾元素的逆向迭代器指针；                 *  reverse_iterator rend() 返回首元素前的逆向迭代器指针
+</code></pre>
+</li>
+<li>
+<pre><code>       reference front()返回首元素；reference back()返回尾元素
+</code></pre>
+</li>
+<li>排序函数:void sort()默认升序；void sort(Pred pr)按预判定函数排序;</li>
+<li>其他函数:void swap(list &amp; str) 两个list容器交换；void unique() 相邻元素重复，保留一个；</li>
+<li>
+<pre><code>       void splice(iterator lit,list &amp;x) list x的所有元素插入lit前,x变为空
+</code></pre>
+</li>
+<li>
+<pre><code>  	 void splice(iterator lit,list &amp;x,iterator first) list x的[first,end)间所有元素移走，插入lit前,x变为空
+</code></pre>
+</li>
+<li>
+<pre><code>  	 void splice(iterator lit,list &amp;x,iterator first,iterator last) list x的[first,last)的所有元素移走,插入lit前,x变为空
+</code></pre>
+</li>
+<li>
+<pre><code>  	 void reverse()反转容器元素顺序
+</code></pre>
+</li>
+<li>
+<pre><code>  	 void unique()重复的相邻元素仅保留一个,需要排序，比较鸡肋
+</code></pre>
+</li>
+<li>
+<pre><code>  	 void Merge(list&lt;元素&gt;)合并函数，用于两个list容器，是数据移动不是复制，有set，显得也比较鸡肋
+</code></pre>
+</li>
+</ul>
 
               </div>
               <div class="post-footer">
