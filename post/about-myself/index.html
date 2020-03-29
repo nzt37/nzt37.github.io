@@ -7,7 +7,7 @@
 <meta name="keywords" content="yznag">
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
-<title>存图的三种方式 | yzang</title>
+<title>About myself | yzang</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1585453561649">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,8 +27,8 @@
 
 
 
-    <meta name="description" content="存图的三种方式" />
-    <meta name="keywords" content="图论,数据结构,算法,c++" />
+    <meta name="description" content="About myself" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -226,14 +226,11 @@
               <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#1%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%AD%98%E5%9B%BE">1,邻接矩阵存图</a></li>
-<li><a href="#2%E9%82%BB%E6%8E%A5%E8%A1%A8">2,邻接表</a><br>
-*
+<li><a href="#%E4%B8%AA%E4%BA%BA"><strong>个人</strong></a>
 <ul>
-<li><a href="#%E5%AD%98%E5%9B%BE%E5%B8%A6%E6%9D%83">存图(带权)</a></li>
+<li><a href="#%E8%BF%99%E9%87%8C%E4%B9%9F%E5%B0%B1%E4%B8%BB%E8%A6%81%E8%AE%B0%E5%BD%95%E8%87%AA%E5%B7%B1%E5%85%B3%E4%BA%8E%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B">这里也就主要记录自己关于算法学习的一些事：</a></li>
 </ul>
 </li>
-<li><a href="#3%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F">3,链式前向星</a></li>
 </ul>
 
   </div>
@@ -495,8 +492,8 @@ window.addEventListener('load', function() {
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">
-      存图的三种方式
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/about-myself/">
+      About myself
     </a>
   </h1>
   <div class="post-meta">
@@ -504,56 +501,25 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-20</span>
+      <span>2020-03-29</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
-      <span class="meta-item">
-        <i class="fa fa-folder-o"></i>
-        <span class="pc-show">分类于</span>
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/RZTfhx_GD/">
-              <span>图论</span>
-            </a>、
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/SpmpUQHui/">
-              <span>数据结构</span>
-            </a>、
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
-              <span>算法</span>
-            </a>、
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/">
-              <span>c++</span>
-            </a>
-          
-        
-      </span>
-      <span class="post-meta-divider">|</span>
-    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>1分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>255<span class="pc-show">字数</span></span>
+      <span>147<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/cun-tu-de-san-chong-fang-shi/" data-flag-title="存图的三种方式" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/about-myself/" data-flag-title="About myself" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -562,55 +528,19 @@ window.addEventListener('load', function() {
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <h1 id="1邻接矩阵存图">1,邻接矩阵存图</h1>
-<!-- more -->
-<pre><code class="language-c">int main()
-{
-    for(int i = 0 ; i &lt; m ; i++)
-    {
-        int u,v,w;
-        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;
-        G[u][v] = d;//有向图
-        G[u][v] = G[v][u] = d;//有向图
-    }
-}
-</code></pre>
-<!-- more -->
-<h1 id="2邻接表">2,邻接表</h1>
-<!-- more -->
-<pre><code class="language-c">vector&lt;int&gt;v[maxn];
-struct node{
-    int v,w;
-}
-</code></pre>
-<h3 id="存图带权">存图(带权)</h3>
-<pre><code class="language-c">while(cin&gt;&gt;n&gt;&gt;m,n!=0||m!=0)
-   {
-       for(int i=0; i&lt;=n; i++)
-           v[i].clear();//将vecort数组清空
-       for(int i=1; i&lt;=m; i++) //用vector存储邻接表
-       {
-           node nd;
-           scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);
-           nd.d=b,nd.w=c;//将入度的点和权值赋值给结构体
-           v[a].push_back(nd);//将每一个从a出发能直接到达的点都压到下标为a的vector数组中，以后遍历从a能到达的点就可以直接遍历v[a]
-           nd.d=a,nd.w=c;//无向图的双向存边
-           v[b].push_back(nd);
-       }
-</code></pre>
-<!-- more -->
-<h1 id="3链式前向星">3,链式前向星</h1>
-<pre><code class="language-c">int head[maxn&lt;&lt;1];
-struct Edge{
-    int v,w,next;
-}edge[maxn];
-void _addedge(int u , int v , int w)
-{
-    edge[++cnt].next = head[u];
-    edge[cnt].v = v;
-    edge[cnt].w = w;
-    head[u] = cnt;
-}</code></pre>
+                <!-- more -->
+<h1 id="个人"><strong>个人</strong></h1>
+<blockquote>
+<p>某不知名双非院校软件工程大一学生.<br>
+之前也断断续续搞过几个博客,但都没用过(域名也早就忘了).<br>
+喜欢很多,也了解过很多,想过很多,但真正做下去的很少.<br>
+喜欢算法,也只是单纯的喜欢,并不想去主攻算竞.<br>
+等到大二的时候想去健身，<br>
+其实也挺喜欢心理学.</p>
+</blockquote>
+<h2 id="这里也就主要记录自己关于算法学习的一些事">这里也就主要记录自己关于算法学习的一些事：</h2>
+<p>顺便立个flag：在明年过年的时候<strong>AC 515</strong>道题。（此贴为证）<br>
+<img src="https://nzt-yzang.github.io/post-images/1585453284002.png" alt="洛谷" loading="lazy"></p>
 
               </div>
               <div class="post-footer">
@@ -621,7 +551,7 @@ void _addedge(int u , int v , int w)
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/" title="存图的三种方式">存图的三种方式</a>
+      <a href="https://nzt-yzang.github.io/post/about-myself/" title="About myself">About myself</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -630,27 +560,15 @@ void _addedge(int u , int v , int w)
   </ul>
   <div class="tags">
     
-      <a href="https://nzt-yzang.github.io/tag/RZTfhx_GD/"># 图论</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/SpmpUQHui/"># 数据结构</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/"># c++</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="C++ STL" href="https://nzt-yzang.github.io/post/c-stl/">C++ STL</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="C++ STL" href="https://nzt-yzang.github.io/post/c-stl/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Day 2" href="https://nzt-yzang.github.io/post/day-2/">Day 2</a>
-        <a class="nav-mobile-next" title="Day 2" href="https://nzt-yzang.github.io/post/day-2/">下一篇</a>
+        <a class="nav-pc-next" title="Day 5," href="https://nzt-yzang.github.io/post/day-5/">Day 5,</a>
+        <a class="nav-mobile-next" title="Day 5," href="https://nzt-yzang.github.io/post/day-5/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
