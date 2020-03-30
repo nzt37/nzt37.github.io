@@ -7,7 +7,7 @@
 <meta name="keywords" content="yznag">
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
-<title>Day 5, | yzang</title>
+<title>Day 6 | yzang</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1585565701929">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,7 +27,7 @@
 
 
 
-    <meta name="description" content="Day 5," />
+    <meta name="description" content="Day 6" />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -307,8 +307,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-5/">
-      Day 5,
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-6/">
+      Day 6
     </a>
   </h1>
   <div class="post-meta">
@@ -316,25 +316,25 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-25</span>
+      <span>2020-03-30</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>390<span class="pc-show">字数</span></span>
+      <span>437<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/day-5/" data-flag-title="Day 5," class="meta-item pc-show leancloud_visitors">
+      <span id="/post/day-6/" data-flag-title="Day 6" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -345,86 +345,93 @@
               <div class="post-body next-md-body" id="post_body">
                 <!-- more -->
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P1241">P1241 括号序列</a><br>
-利用栈的特点,从头开始,如果是左括号就入栈,并记录它的匹配括号(b数组),如果遇到右括号,就看栈顶端的匹配括号是否与之相等,如果相等,则在b数组中清除,反之,则将记录的b数组中的括号相应改变,输出时先输出b数组中的左括号,然后输出原来数组中的括号,在输出b数组中的右括号,</li>
+<li><a href="https://www.luogu.com.cn/problem/P1835">P1835 素数密度</a><br>
+这道题看数据范围用普通的筛法肯定会炸,然后根据一个合数分解出的因子不大于sqrt(本身),所以可以先筛选出1-sqrt(r)的质数,然后用这些质数去筛选l-r之间的合数;</li>
 </ul>
-<pre><code class="language-c">#include &lt;iostream&gt;
-#include &lt;stack&gt;
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
 using namespace std;
-stack&lt;int&gt;q;
-string s,b;
-int main()
+#define int long long
+const int maxn = 1e6+9;
+bool vis[maxn],check[maxn];
+int prime[maxn];
+int cnt,l,r,ans;
+void isprime()
 {
-   cin&gt;&gt;s;
-   int l = s.size();
-   for(int i = 0 ; i &lt; l ; i++)
-   {
-   	if(s[i] == '(' ){
-   		q.push(i);
-   		b[i] = ')';
-   	}
-   	if( s[i] == '[')
-   	{
-   		q.push(i);
-   		b[i] = ']';
-   	}
-   	if(s[i] == ']' || s[i] == ')'){
-   		if(q.empty() || b[q.top()] != s[i]){
-   			if(s[i] == ')'){
-   				b[i] = '(';
-   			}
-   			else
-   			b[i] = '[';
-   		}else{
-   			b[q.top()] = ' ',q.pop();
-   		}
+   for(int i = 2 ; i &lt;= 50001 ; i++){
+   	if(!vis[i]) prime[++cnt] = i;
+   	for(int j = 1 ; i * prime[j] &lt; 50001 ; j++){
+   		vis[i*prime[j]] = 1;
+   		if(i % prime[j] == 0) break;
    	}
    }
-   for(int i = 0 ; i &lt; l ; i++)
-   {
-   	if(b[i] == '(' || b[i] == '[')
-   	cout&lt;&lt;b[i];
-   	cout&lt;&lt;s[i];
-   	if(b[i] == ')' || b[i] == ']')
-   	cout&lt;&lt;b[i]; 
-   }
-   cout&lt;&lt;endl;
-   return 0;
 }
+signed main()
+{
+   cin&gt;&gt;l&gt;&gt;r;
+   l = l==1?2:l;
+   isprime();
+   for(int i = 1 ; i &lt;= cnt ; i++)
+   {
+   	int p = prime[i];
+   	int start = max((l+p-1)/p*p,2*p);//我们从大于L的最小的能被p整除的数开始(l+p-1)/p*p就等于ceil(l+p-1),因为有可能会在接下来筛的过程中把自己也一起筛掉,所以在此特判一下
+   	for(int j = start ; j &lt;= r ; j+=p)
+   	{
+   		check[j-l+1] = 1;	
+   	}
+   }
+   for(int i = 1 ; i &lt;= r-l+1 ; i++)
+   {
+   	if(!check[i])
+   	ans++;
+    } 
+    cout&lt;&lt;ans;
+   return 0;
+} 
 </code></pre>
 <!-- more -->
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P2926">P2926 [USACO08DEC]Patting Heads S</a><br>
-拿到这道题首先想到的是暴力,但是看看数据范围,肯定会炸,所以需要提前构造答案</li>
+<li><a href="https://www.luogu.com.cn/problem/P4715">P4715 【深基16.例1】淘汰赛</a><br>
+一道树题,用线段树也挺简单的</li>
 </ul>
-<pre><code class="language-c">#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;cstdio&gt;
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
 using namespace std;
-const int maxn = 1e6+7;
+struct node{
+	int w,num;
+}a[150],tree[600];
 int n;
-int a[maxn],m,ans[1000003],b[1000004];
+node mint(node a,node b)
+{
+	return a.w &lt; b.w ? a : b;
+}
+node maxt(node a,node b)
+{
+	return a.w &gt; b.w ? a : b;
+}
+void build(int node,int l,int r)
+{
+	if(l == r)
+	{
+		tree[node] = a[l];
+		return;
+	}
+	int mid = (l+r) / 2;
+	int lnode = node*2;
+	int rnode = node*2 + 1;
+	build(lnode,l,mid);
+	build(rnode,mid+1,r);
+	tree[node] = maxt(tree[lnode],tree[rnode]);
+}
 int main()
 {
 	cin&gt;&gt;n;
-	for(int i = 1 ; i &lt;= n ; i++)
+	for(int i = 1 ; i &lt;= (1&lt;&lt;n) ; i++)
 	{
-		scanf(&quot;%d&quot;,&amp;a[i]);
-		m = max(m , a[i]);
-		++b[a[i]];
+		scanf(&quot;%d&quot;,&amp;a[i].w);
+		a[i].num = i;
 	}
-	for(int i = 1 ; i &lt;= m ; i++)
-	{
-		if(b[i] != 0){
-			for(int j = 1 ; i*j &lt;= m ; j++){			
-					ans[i*j] += b[i];
-				}
-		}
-	}
-	for(int i = 1 ; i &lt;= n ; i++)
-	{
-		cout&lt;&lt;ans[a[i]] - 1 &lt;&lt;endl;
-	}
+	build(1,1,1&lt;&lt;n);
+	
+	printf(&quot;%d&quot;,mint(tree[2],tree[3]).num);
 	return 0;
 }
 </code></pre>
@@ -438,7 +445,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/day-5/" title="Day 5,">Day 5,</a>
+      <a href="https://nzt-yzang.github.io/post/day-6/" title="Day 6">Day 6</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -451,15 +458,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="About myself" href="https://nzt-yzang.github.io/post/about-myself/">About myself</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="About myself" href="https://nzt-yzang.github.io/post/about-myself/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Day 4," href="https://nzt-yzang.github.io/post/day-4/">Day 4,</a>
-        <a class="nav-mobile-next" title="Day 4," href="https://nzt-yzang.github.io/post/day-4/">下一篇</a>
+        <a class="nav-pc-next" title="About myself" href="https://nzt-yzang.github.io/post/about-myself/">About myself</a>
+        <a class="nav-mobile-next" title="About myself" href="https://nzt-yzang.github.io/post/about-myself/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
