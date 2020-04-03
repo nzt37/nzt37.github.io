@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="UTF-8"/>
+    <meta charset="UTF-8"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="keywords" content="yznag">
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
-<title>yzang</title>
+<title>Day 7 | yzang</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1585895933598">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,6 +27,8 @@
 
 
 
+    <meta name="description" content="Day 7" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -128,10 +130,25 @@
     </div>
     <div class="main-continer">
       
-      <div class="section-layout  gemini">
+      <div class="section-layout gemini ">
         <div class="section-layout-wrapper">
-          <div id="sidebarMeta" class="sidebar">
-    
+          
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://nzt-yzang.github.io/images/avatar.png"/>
@@ -203,175 +220,228 @@
 
 
 </div>
+          
+        
+      </div>
+    </div>
+  
 </div>
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
       }
-    });
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
   }
-  </script>
-            <div class="section-box tag-line">
-              <div class="box-shadow-wrapper">
-                <div class="bg-color">
-                  <section class="section posts-expand">
-                    <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          c++
-          <small>标签</small>
-        </h2>
-      </div>
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+          <div class="section-box box-shadow-wrapper">
+            <div class="section bg-color post post-page">
+              <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-7/">
+      Day 7
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2020-04-02</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>1分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>126<span class="pc-show">字数</span></span>
+    </span>
+    
+      
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/post/day-3/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    03-21
-                    <small>Day 3</small>
-                  </h1>
-                </div>  
+      <span id="/post/day-7/" data-flag-title="Day 7" class="meta-item pc-show leancloud_visitors">
+        <span class="post-meta-divider">|</span>
+        <i class="fa fa-eye"></i>
+        <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
+      </span>
+    
+  </div>
+</header>
+              <div class="post-body next-md-body" id="post_body">
+                <!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1572">P1572 计算分数</a><br>
+模拟题,坑挺多</li>
+</ul>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int gcd(int a,int b)//辗转相除法求最大公约数;
+{
+	if(b == 0){
+		return a;
+	}
+	return gcd(b,a%b);
+}
+int main()
+{
+	int a,b,c,d,m;
+	scanf(&quot;%d/%d&quot;,&amp;a,&amp;b);
+	while(scanf(&quot;%d/%d&quot;,&amp;c,&amp;d)!=EOF)
+	{
+		m = gcd(b,d);
+		a *= d/m;
+		c *= b/m;
+		a += c;
+		b *= d/m;
+		m = gcd(a,b);
+		a/=m;
+		b/=m;
+	}
+	if(b &lt; 0)
+	{
+		a = -a;
+		b = -b;
+	}
+	if(b==1)
+        printf(&quot;%d\n&quot;,a);
+    else
+        printf(&quot;%d/%d\n&quot;,a,b);
+	return 0;
+}
+</code></pre>
+
               </div>
-            </a>
-          
-        
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      yzang
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://nzt-yzang.github.io/post/day-7/" title="Day 7">Day 7</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
       
-        
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="Day 8" href="https://nzt-yzang.github.io/post/day-8/">Day 8</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="Day 8" href="https://nzt-yzang.github.io/post/day-8/">上一篇</a>
       
-        
-          
-        
-          
-        
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    03-20
-                    <small>存图的三种方式</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
+    </div>
+    <div class="nav-next">
       
-        
-          
-        
-      
-        
-          
-        
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/post/day-1/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    03-19
-                    <small>Day 1.</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
-      
-        
-          
-        
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/post/qin-jiu-shao-suan-fa/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    03-18
-                    <small>秦九韶算法</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
-      
-        
-          
-        
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/post/jian-dan-shu-xue-wen-ti-1/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    03-18
-                    <small>简单数学问题之进制转换</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
-      
-        
-      
-        
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/post/suan-fa-ri-chang-updating/">
-              <div class="motion-warpper">
-                <div class="tag-post-node">
-                  <h1>
-                    03-17
-                    <small>算法日常(updating!)</small>
-                  </h1>
-                </div>  
-              </div>
-            </a>
-          
-        
-      
-        
+        <a class="nav-pc-next" title="Day 6" href="https://nzt-yzang.github.io/post/day-6/">Day 6</a>
+        <a class="nav-mobile-next" title="Day 6" href="https://nzt-yzang.github.io/post/day-6/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-                  </section>
-                </div>
-              </div>
+              
+                
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
+<script>
+new Valine({
+    el: '#vcomments' ,
+    appId: '9mxN5lrhF6BCeph89omlhWdi-gzGzoHsz',
+    appKey: '4Ohq4QkHL27wgc5wmrbTsVci',
+    notify: 'true' === 'false', 
+    avatar:'mp', 
+    placeholder: 'Welcome.',
+    pageSize: '',
+    lang: 'zh-cn',
+    visitor: 'true' === 'true',
+    highlight: 'true' === 'true',
+    avatarForce: 'true' === 'false',
+});
+</script>
+              
+            </div>
           </div>
         </div>
       </div>
