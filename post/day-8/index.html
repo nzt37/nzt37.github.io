@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>Day 8 | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1585897720056">
+<link rel="shortcut icon" href="/favicon.ico?v=1585899928047">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -327,7 +327,7 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>419<span class="pc-show">字数</span></span>
+      <span>582<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -417,6 +417,38 @@ int main()
 }
 </code></pre>
 <!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P2651">P2651 添加括号III</a><br>
+a1肯定是分子，a2肯定是分母，所以让a3~an的为分子就行,然后一边输入一边用a[2]约分,最后判断a[2]是否为1就行</li>
+</ul>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int a[100001];
+int gcd(int a,int b)
+{
+	if(b == 0) return a;
+	return gcd(b,a%b);
+}
+int n,t;
+int main()
+{
+	cin&gt;&gt;n;
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		cin&gt;&gt;t&gt;&gt;a[1]&gt;&gt;a[2];
+		a[2] /= gcd(a[1],a[2]);
+		for(int i = 3 ; i &lt;= t ; i++)
+		{
+			cin&gt;&gt;a[i];
+			a[2]/=gcd(a[2],a[i]);
+		}
+		if(a[2] == 1)
+		cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
+		else
+		cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
+	}
+	return 0;
+}</code></pre>
 
               </div>
               <div class="post-footer">
