@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>Day 8 | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1585895933598">
+<link rel="shortcut icon" href="/favicon.ico?v=1585897720056">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -322,12 +322,12 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>106<span class="pc-show">字数</span></span>
+      <span>419<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -366,6 +366,53 @@ signed main()
 	cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
 	int m = zsgbs(a,zsgbs(b,c));
 	cout&lt;&lt;m;
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1414">P1414 又是毕业季II</a><br>
+在这题想了好长时间,最后看题解才明白;<br>
+可以先求出每个数的因数出现的个数,,然后发现k个数均含有某个因数(即某个因数出现的次数为k),那么这个数必为这k个数的公因数,其中找出最大的即可,<br>
+输出的时候可以逆向求,（如果已经知道k个数的最大公约数是m，那么l(l&lt;k)个数的最大公约数一定大于等于m。当k = 1时,(<strong>题目中规定一个数的最大公约数为它本身</strong>),所以最大公约数必为最大的那个数,然后递减,这样可保证每次输出的为最大公约数,</li>
+</ul>
+<pre><code class="language-c">    int x=t;
+    for(int i=1;i&lt;=n;i++)
+    {
+        while(c[x]&lt;i) x--;
+        cout&lt;&lt;x&lt;&lt;endl;
+        //输出
+    }
+</code></pre>
+<p>完整代码</p>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int n,t,c[1000001];
+int main()
+{
+	cin&gt;&gt;n;
+	for(int i=1;i&lt;=n;i++)
+	{
+		int a;
+		cin&gt;&gt;a;
+		int m = sqrt(a);
+		t = max(t,a);
+		for(int i = 1 ; i &lt;= m ; i++)
+		{
+			if(a%i == 0)
+			{
+				c[i]++;
+				if(i*i != a) 
+				c[a/i]++;
+			}
+		}
+	}
+	int x = t;
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		while(c[x] &lt; i)x--;
+		cout&lt;&lt;x&lt;&lt;endl;
+	}
 	return 0;
 }
 </code></pre>
