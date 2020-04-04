@@ -7,7 +7,7 @@
 <meta name="keywords" content="yznag">
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
-<title>算法日常(updating!) | yzang</title>
+<title>Day 9 | yzang</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1585997497319">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,8 +27,8 @@
 
 
 
-    <meta name="description" content="算法日常(updating!)" />
-    <meta name="keywords" content="算法,c++" />
+    <meta name="description" content="Day 9" />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -307,22 +307,16 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/suan-fa-ri-chang-updating/">
-      算法日常(updating!)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-9/">
+      Day 9
     </a>
   </h1>
   <div class="post-meta">
     
-      <span class="meta-item">
-        <i class="fa fa-thumb-tack"></i>
-        <span>置顶</span>
-        <span class="post-meta-divider">|</span>
-      </span>
-    
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-17</span>
+      <span>2020-04-04</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -333,12 +327,6 @@
           
             <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
               <span>算法</span>
-            </a>、
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/">
-              <span>c++</span>
             </a>
           
         
@@ -347,19 +335,19 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>225<span class="pc-show">字数</span></span>
+      <span>475<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/suan-fa-ri-chang-updating/" data-flag-title="算法日常(updating!)" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/day-9/" data-flag-title="Day 9" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -369,30 +357,125 @@
 </header>
               <div class="post-body next-md-body" id="post_body">
                 <!-- more -->
-<p><strong>常用的内置函数</strong></p>
-<blockquote>
-<p>isalnum() : 判断一个字符是否为字符或者数字<br>
-isalpha() : 判断一个字符是否为字母<br>
-isupper() : 判断一个字母是否为大写<br>
-islower() : 判断一个字母是否为小写<br>
-tolower() : 返回一个字母的小写形式<br>
-toupper() : 返回一个字母的大写形式<br>
-isdigit() : 判断一个字符是否为数字<br>
-string.substr(起始位置,截取字串的长度);<br>
-string.find(字符串) 成功返回位置索引 失败返回string::npos<br>
-string.append(追加长度,追加字符必须是char类型)<br>
-a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt; b 返回 -1 相等返回 0</p>
-</blockquote>
-<!-- more -->
-<p>快读板子</p>
-<pre><code class="language-c">     inline int read(register int x=0,register char ch=getchar(),register int f=0) {
-	     for(;!isdigit(ch);ch=getchar()) f=ch=='-';
-	     for(; isdigit(ch);ch=getchar()) x=(x&lt;&lt;1)+(x&lt;&lt;3)+(ch^48);
-	     return f?-x:x;
-     }
-     ```    
-&lt;!-- more --&gt;
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1403">P1403 [AHOI2005]约数研究</a><br>
+1~n中约数i的个数为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mi>i</mi></mrow><annotation encoding="application/x-tex">n/i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord mathdefault">i</span></span></span></span>;</li>
+</ul>
+<pre><code class="language-c">#include&lt;iostream&gt;
+using namespace std;
+int n,ans;
+int main(void){
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++)ans+=n/i;
+    cout&lt;&lt;ans;
+}
 </code></pre>
+<p>也可以暴力做,稍微加一点优化(筛的思想)这题就过了</p>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int n,c[1000001],sum;	
+int main()
+{
+	cin&gt;&gt;n;
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		for(int j = i ; j &lt;= n ; j+=i)
+		{
+			c[j]++;
+			
+		}
+		sum+=c[i];
+	}
+	cout&lt;&lt;sum;
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1069">P1069 细胞分裂</a><br>
+在考虑一个数是否可以整除另一个数的时候,观察前一个数是否包含后一个数的所有质因数,<br>
+<strong>在边输入边判断时,一定要考虑是否将上一次判断留下来的数据清零</strong>,(在这里卡了好长时间)</li>
+</ul>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn = 3000;
+int minn = 214783647,now;
+int p[maxn],cell[maxn],prime[maxn],n,m1,m2,cnt,count;
+bool vis = true,flag = false;
+bool pr(int k)  //判断是否为素数，不予以注释
+{
+    int m;
+    for(m=2;m&lt;=floor(sqrt(k));m++)
+    if(k%m==0)return false;
+    return true;
+}
+int main()
+{
+	cin&gt;&gt;n;
+	cin&gt;&gt;m1&gt;&gt;m2;
+	for(int i=2;i&lt;=maxn;i++)  //把30000以内的质因数枚举出来
+    if(pr(i))
+    {
+    	cnt++;
+        prime[cnt]=i;
+    }
+	int i = 1;
+	while(m1!=1)
+	{
+		if(m1%prime[i] == 0)
+		{
+			while(m1%prime[i] == 0)
+			{
+				p[i] += m2;
+				m1/=prime[i];
+			}
+			
+		}
+		i++;
+	}
+	for(int j = 1 ; j &lt;= n ; j++)
+	{
+		int a;
+		cin&gt;&gt;a;
+		 memset(cell,0,sizeof(cell)); 
+		 now = 0,vis = true;
+		int i = 1;
+		while(i &lt;= cnt)
+		{
+			if(a%prime[i]==0)
+			{
+				while(a%prime[i] == 0)
+				{
+					cell[i]++;
+					a /= prime[i];
+				}
+			}
+			i++;
+		}
+		for(int i = 1 ; i &lt;= cnt ; i++)
+		{
+			if(p[i]!=0&amp;&amp;cell[i]==0) vis = false;
+			if(p[i]!=0&amp;&amp;cell[i]!=0)
+			{
+				if(p[i]%cell[i]==0){
+					now = max(now,p[i]/cell[i]);
+				}
+				else
+				now = max(now,p[i]/cell[i]+1);
+			}
+		}
+		if(vis)
+		{
+			flag = true;
+			if(now&lt;minn) minn = now;
+		}
+	}
+	if(flag)cout&lt;&lt;minn&lt;&lt;endl;  //如果可行
+    else cout&lt;&lt;-1&lt;&lt;endl;
+	return 0;
+ } 
+</code></pre>
+<p>ps:明天做两道蓝题可以不<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Q</mi><mi>A</mi><mi>Q</mi></mrow><annotation encoding="application/x-tex">QAQ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">Q</span><span class="mord mathdefault">A</span><span class="mord mathdefault">Q</span></span></span></span></p>
 
               </div>
               <div class="post-footer">
@@ -403,7 +486,7 @@ a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt;
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/suan-fa-ri-chang-updating/" title="算法日常(updating!)">算法日常(updating!)</a>
+      <a href="https://nzt-yzang.github.io/post/day-9/" title="Day 9">Day 9</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -414,21 +497,15 @@ a.compare(字符串b) : 比较两个字符串的大小 a &gt; b 返回 1 ,a &lt;
     
       <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
     
-      <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/"># c++</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Tools" href="https://nzt-yzang.github.io/post/gu-ge-fang-wen-zhu-shou-po-jie/">Tools</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Tools" href="https://nzt-yzang.github.io/post/gu-ge-fang-wen-zhu-shou-po-jie/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="yzang" href="https://nzt-yzang.github.io/post/317/">yzang</a>
-        <a class="nav-mobile-next" title="yzang" href="https://nzt-yzang.github.io/post/317/">下一篇</a>
+        <a class="nav-pc-next" title="Day 8" href="https://nzt-yzang.github.io/post/day-8/">Day 8</a>
+        <a class="nav-mobile-next" title="Day 8" href="https://nzt-yzang.github.io/post/day-8/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
