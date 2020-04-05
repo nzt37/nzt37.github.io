@@ -8,7 +8,7 @@
 <meta name="description" content="牛泽同">
 <meta name="theme-color" content="#000">
 <title>Day 10 | yzang</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1586056239514">
+<link rel="shortcut icon" href="/favicon.ico?v=1586072792612">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -322,12 +322,12 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>291<span class="pc-show">字数</span></span>
+      <span>455<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -384,6 +384,34 @@ int main()
 		}
 		cout&lt;&lt;sum&lt;&lt;endl;
 	}
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1827">P1827 [USACO3.4]美国血统 American Heritage</a><br>
+已知二叉树中序和前序遍历求后序的题,<br>
+首先应该清楚<strong>中序遍历是(左,根,右)</strong>,<strong>前序遍历是(根,左,右),后序遍历是(左,右,根)</strong>;<br>
+然后递归就行</li>
+</ul>
+<pre><code class="language-c"> #include &lt;bits/stdc++.h&gt;
+using namespace std;
+string a,b;
+void dfs(int x,int y,int p,int q)
+{
+	if(x&gt;y||p&gt;q) return;
+	else{
+		int i = a.find(b[x]);//前序遍历第一个是根,在后序遍历中找到根的位置, 
+	dfs(x+1,x+i-p,p,i-1);
+	dfs(x+i-p+1,y,i+1,q);
+	cout&lt;&lt;b[x];
+	} 
+}
+int main()
+{
+	cin&gt;&gt;a&gt;&gt;b;
+	int l = a.length() - 1;
+	dfs(0,l,0,l);
 	return 0;
 }
 </code></pre>
