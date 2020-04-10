@@ -8,7 +8,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>Day 12(动态规划) | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1586399830003">
+<link rel="shortcut icon" href="/favicon.ico?v=1586482362664">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -67,7 +67,7 @@
               
               
                 <a href="/" target="_self">
-                  <i class="fa fa-home"></i> 首页
+                  <i class="fa fa-home"></i> Home
                 </a>
               
             </li>
@@ -80,7 +80,7 @@
               
               
                 <a href="/archives" target="_self">
-                  <i class="fa fa-archive"></i> 归档
+                  <i class="fa fa-archive"></i> Archive
                 </a>
               
             </li>
@@ -93,7 +93,7 @@
               
               
                 <a href="/tags" target="_self">
-                  <i class="fa fa-tags"></i> 标签
+                  <i class="fa fa-tags"></i> tags
                 </a>
               
             </li>
@@ -105,8 +105,8 @@
             <li class="nav-item ">
               
               
-                <a href="/post/about" target="_blank">
-                  <i class="fa fa-user"></i> 关于
+                <a href="https://nzt-yzang.github.io/post/about-myself" target="_self">
+                  <i class="fa fa-globe"></i> About
                 </a>
               
             </li>
@@ -181,7 +181,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">19</span>
+        <span class="site-item-stat-count">21</span>
         <span class="site-item-stat-name">文章</span>
       </a>
     </div>
@@ -354,12 +354,12 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>4分钟</span>
+      <span>5分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>630<span class="pc-show">字数</span></span>
+      <span>850<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -376,6 +376,7 @@
 </header>
               <div class="post-body next-md-body" id="post_body">
                 <!-- more -->
+<!-- more -->
 <ul>
 <li><a href="https://www.luogu.com.cn/problem/P1359">P1359 租用游艇</a><br>
 看到题目就应该想到这是求DAG(有向无环图)求最短路,可以考虑Floyd来做,但是好长时间没有看过图论,所以换个方法;<br>
@@ -480,6 +481,44 @@ int main()
 	cout&lt;&lt;dp[m];
 	return 0;
 }
+</code></pre>
+<!-- more -->
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1832">P1832 A+B Problem（再升级）</a><br>
+完全背包,已经忘得差不多了,但是看了一会发现好像有懂了???<br>
+<strong>PS</strong> : <strong>01背包物品只能用一次而完全背包物品可以一直使用.</strong><br>
+这道题把n以内的所有素数看作物品.<br>
+<strong>转移方程</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>f</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>+</mo><mi>f</mi><mo>[</mo><mi>j</mi><mo>−</mo><mi>p</mi><mi>r</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[j]=f[j]+f[j-prime[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><br>
+**  f[j]是从f[j-i]（i为任意素数）转移来的，所以f[j]=f[j]+f[j-i]。 **</li>
+</ul>
+<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+long long prime[1005],cnt,f[1080];
+bool isprime(int n)
+{
+   for(int i = 2 ; i &lt;=sqrt(n) ; i++){
+   	if(n%i==0) return false;
+   }
+   return true;
+}
+int main()
+{
+   int n;
+   cin&gt;&gt;n;
+   for(int i = 2 ; i &lt;= n ; i++)
+   {
+   	if(isprime(i))
+   	prime[++cnt] = i;
+   }
+   f[0] = 1;
+   for(int i = 1 ; i &lt;= cnt ; i++){
+   	for(int j = prime[i] ; j &lt;= n ; j++){
+   		f[j] = f[j] + f[j-prime[i]];
+   	}
+   }
+   cout&lt;&lt;f[n];
+   return 0;
+} 
 </code></pre>
 
               </div>
