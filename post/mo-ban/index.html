@@ -7,7 +7,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Day 3 | Yzang&#39;s Blog</title>
+<title>模板 | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1586743452197">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -28,8 +28,8 @@
 
 
 
-    <meta name="description" content="Day 3" />
-    <meta name="keywords" content="算法,c++" />
+    <meta name="description" content="模板" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -210,7 +210,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -292,6 +293,190 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E5%B9%B3%E5%B8%B8%E7%94%A8">平常用</a>
+<ul>
+<li><a href="#io%E4%BC%98%E5%8C%96">IO优化</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+      lList.push(elem);
+    }
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+
+(function() {
+  // 处理不是从#一级标题开始目录
+  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+  }
+  addTocNumber(tocContent, '');
+})();
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -379,8 +564,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-3/">
-      Day 3
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/mo-ban/">
+      模板
     </a>
   </h1>
   <div class="post-meta">
@@ -388,28 +573,9 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-21</span>
+      <span>2020-04-13</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
-    
-      <span class="meta-item">
-        <i class="fa fa-folder-o"></i>
-        <span class="pc-show">分类于</span>
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
-              <span>算法</span>
-            </a>、
-          
-        
-          
-            <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/">
-              <span>c++</span>
-            </a>
-          
-        
-      </span>
-      <span class="post-meta-divider">|</span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
@@ -418,14 +584,14 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>292<span class="pc-show">字数</span></span>
+      <span>198<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/day-3/" data-flag-title="Day 3" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/mo-ban/" data-flag-title="模板" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -434,74 +600,60 @@
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <!-- more -->
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P3913">P3913 车的攻击</a><br>
-(虽然水题,但毕竟也是题不是)</li>
-</ul>
-<pre><code class="language-c">#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
+                <blockquote>
+<p>一些模板</p>
+</blockquote>
+<!-- more -->
+<h1 id="平常用">平常用</h1>
+<h2 id="io优化">IO优化</h2>
+<pre><code class="language-c">//Author:xht37
+#include &lt;bits/stdc++.h&gt;
+
+#define ui unsigned int
 #define ll long long
+#define ul unsigned ll
+#define ld long double
+
+#define pi pair &lt;int, int&gt;
+#define fi first
+#define se second
+#define mp make_pair
+
+#define ls (p &lt;&lt; 1)
+#define rs (ls | 1)
+#define md ((t[p].l + t[p].r) &gt;&gt; 1)
+
+#define vi vector &lt;int&gt;
+#define pb push_back
+#define pq priority_queue
+
+#define dbg(x) cerr &lt;&lt; #x&quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define debug(...) fprintf(stderr, __VA_ARGS__)
+
+#define fl(x) freopen(x&quot;.in&quot;, &quot;r&quot;, stdin), freopen(x&quot;.out&quot;, &quot;w&quot;, stdout)
+
 using namespace std;
-const ll maxm=1e6;
-ll x[maxm],y[maxm];
-inline ll read() {
-    ll x = 0, fh = 1; char ch = getchar();
-    for (; !isdigit(ch); ch = getchar() ) if (ch == '-') fh = -1;
-    for (; isdigit(ch); ch = getchar() ) x = (x&lt;&lt;1) + (x&lt;&lt;3) + (ch ^ '0');
-    return x * fh;
-}
-int main(){
-    ll n,m;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(ll i=0;i&lt;m;i++){
-        x[i] = read() , y[i] = read();
+
+namespace io {
+    int f;
+    char c;
+    #define gc getchar
+    template &lt;class I&gt;
+    inline void rd(I &amp;x) {
+        for (f = 1, c = gc(); c &lt; '0' || c &gt; '9'; c = gc())
+            if (c == '-') f = -1;
+        for (x = 0; c &gt;= '0' &amp;&amp; c &lt;= '9'; c = gc())
+            x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (c &amp; 15);
+        x *= f;
     }
-    sort(x,x+m);
-    sort(y,y+m);
-    ll sizex=unique(x, x+m)-x;
-    ll sizey=unique(y, y+m)-y;
-    cout&lt;&lt;sizex*n+sizey*n-sizey*sizex;
+}
+using io::rd;
+
+int main() {
+
     return 0;
 }
 </code></pre>
-<!-- more -->
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P2638">P2638 安全系统</a><br>
-一道关于组合数的题</li>
-</ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;a
-unsigned long long z[201][201],ans1,ans2,sum;
-void yhsj(int n)
-{
-    for (int i = 0; i &lt;= n; ++i)
-    {
-        z[i][0] = z[i][i] = 1;//杨辉三角形侧边初始值
-    }
-        for (int i = 2; i &lt;= n; ++i)
-        {
-            for (int j = 1; j &lt;= i; j++)
-            {
-                z[i][j] = z[i - 1][j] + z[i - 1][j - 1];
-            }
-        }
-}
-int main()
-{
-	int n,a,b;
-	cin&gt;&gt;n&gt;&gt;a&gt;&gt;b;
-	yhsj(n+max(a,b));
-	for(int i = 0 ; i &lt;= a ; i++){
-		ans1 += z[n][i] * z[a][i];
-	} 
-	for(int i = 0 ; i &lt;= b ; i++){
-		ans2 += z[n][i]*z[b][i];
-	}
-	unsigned long long ans= ans1*ans2;
-	cout&lt;&lt;ans;
-	return 0;
-}</code></pre>
 
               </div>
               <div class="post-footer">
@@ -512,7 +664,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/day-3/" title="Day 3">Day 3</a>
+      <a href="https://nzt-yzang.github.io/post/mo-ban/" title="模板">模板</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -521,24 +673,12 @@ int main()
   </ul>
   <div class="tags">
     
-      <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/"># c++</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Day 4," href="https://nzt-yzang.github.io/post/day-4/">Day 4,</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Day 4," href="https://nzt-yzang.github.io/post/day-4/">上一篇</a>
-      
     </div>
     <div class="nav-next">
-      
-        <a class="nav-pc-next" title="C++ STL" href="https://nzt-yzang.github.io/post/c-stl/">C++ STL</a>
-        <a class="nav-mobile-next" title="C++ STL" href="https://nzt-yzang.github.io/post/c-stl/">下一篇</a>
-        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>

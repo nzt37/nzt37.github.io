@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-04-11T01:46:52.193Z</updated>
+    <updated>2020-04-13T02:08:48.244Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -11,11 +11,154 @@
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
     <entry>
-        <title type="html"><![CDATA[Study]]></title>
-        <id>https://nzt-yzang.github.io/post/study/</id>
-        <link href="https://nzt-yzang.github.io/post/study/">
+        <title type="html"><![CDATA[Day 15(传智杯)]]></title>
+        <id>https://nzt-yzang.github.io/post/day-15/</id>
+        <link href="https://nzt-yzang.github.io/post/day-15/">
         </link>
-        <updated>2020-04-10T07:50:54.000Z</updated>
+        <updated>2020-04-13T01:53:31.000Z</updated>
+        <summary type="html"><![CDATA[<p>传智杯初赛的一些题</p>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P6363">P6363 软件工程实习</a></li>
+<li></li>
+</ul>
+<p>一道模拟题,<br>
+总结:很多模拟题不必要定义很多变量,可以观察一下是否可以边读入边解决,这样清晰很多,</p>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn = 1e6+9;
+struct node{
+	int sum,num,sorce;
+	char s;
+}p[2001];
+int c[2001],af[2001],o[2001],a[2001][2001];
+bool cmp(node a,node b)
+{
+	if(a.sorce == b.sorce)
+	return a.s &lt; b.s;
+	else
+	return a.sorce&gt;b.sorce;
+}
+int n,k;
+int main()
+{
+	cin&gt;&gt;n&gt;&gt;k;
+	for(int i = 1 ; i &lt;= n ; i++){
+		cin&gt;&gt;p[i].sum&gt;&gt;p[i].s;
+		p[i].num = p[i].s-'A'+1;
+	}
+	for(int i = 1 ; i &lt;= k ; i++){
+		for(int j = 1 ; j &lt;= k ; j++){
+			cin&gt;&gt;a[i][j];
+		}
+	}
+	for(int i = 1 ; i &lt;= k ; i++){
+		double sum = 0;
+		for(int j = 1 ; j &lt;= k ; j++){
+			sum += a[j][i];
+		}
+		double aver = sum/k;
+		int o = k;
+		for(int j = 1 ; j &lt;= k ; j++){
+			if(abs((double)a[j][i]-aver)&gt;15.0)
+			{
+				sum-=a[j][i];
+				o--;
+			}
+		}
+		double saver = sum/o*1.0;
+		af[i] = (int)round(saver);
+		
+	}
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		p[i].sorce = (int)round(0.6*p[i].sum+0.4*af[p[i].num] );
+	}
+
+	sort(p+1,p+1+n,cmp);
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		cout&lt;&lt;p[i].sorce&lt;&lt;&quot; &quot;&lt;&lt;p[i].s&lt;&lt;endl;
+	}
+
+	return 0;
+}
+</code></pre>
+]]></summary>
+        <content type="html"><![CDATA[<p>传智杯初赛的一些题</p>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P6363">P6363 软件工程实习</a></li>
+<li></li>
+</ul>
+<p>一道模拟题,<br>
+总结:很多模拟题不必要定义很多变量,可以观察一下是否可以边读入边解决,这样清晰很多,</p>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn = 1e6+9;
+struct node{
+	int sum,num,sorce;
+	char s;
+}p[2001];
+int c[2001],af[2001],o[2001],a[2001][2001];
+bool cmp(node a,node b)
+{
+	if(a.sorce == b.sorce)
+	return a.s &lt; b.s;
+	else
+	return a.sorce&gt;b.sorce;
+}
+int n,k;
+int main()
+{
+	cin&gt;&gt;n&gt;&gt;k;
+	for(int i = 1 ; i &lt;= n ; i++){
+		cin&gt;&gt;p[i].sum&gt;&gt;p[i].s;
+		p[i].num = p[i].s-'A'+1;
+	}
+	for(int i = 1 ; i &lt;= k ; i++){
+		for(int j = 1 ; j &lt;= k ; j++){
+			cin&gt;&gt;a[i][j];
+		}
+	}
+	for(int i = 1 ; i &lt;= k ; i++){
+		double sum = 0;
+		for(int j = 1 ; j &lt;= k ; j++){
+			sum += a[j][i];
+		}
+		double aver = sum/k;
+		int o = k;
+		for(int j = 1 ; j &lt;= k ; j++){
+			if(abs((double)a[j][i]-aver)&gt;15.0)
+			{
+				sum-=a[j][i];
+				o--;
+			}
+		}
+		double saver = sum/o*1.0;
+		af[i] = (int)round(saver);
+		
+	}
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		p[i].sorce = (int)round(0.6*p[i].sum+0.4*af[p[i].num] );
+	}
+
+	sort(p+1,p+1+n,cmp);
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		cout&lt;&lt;p[i].sorce&lt;&lt;&quot; &quot;&lt;&lt;p[i].s&lt;&lt;endl;
+	}
+
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Day 14(动态规划)]]></title>
+        <id>https://nzt-yzang.github.io/post/day-14/</id>
+        <link href="https://nzt-yzang.github.io/post/day-14/">
+        </link>
+        <updated>2020-04-11T02:43:20.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Day 13(动态规划)]]></title>
@@ -86,12 +229,5 @@
         <link href="https://nzt-yzang.github.io/post/day-5/">
         </link>
         <updated>2020-03-25T05:44:52.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Day 4,]]></title>
-        <id>https://nzt-yzang.github.io/post/day-4/</id>
-        <link href="https://nzt-yzang.github.io/post/day-4/">
-        </link>
-        <updated>2020-03-23T11:27:25.000Z</updated>
     </entry>
 </feed>
