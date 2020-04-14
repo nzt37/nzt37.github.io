@@ -7,7 +7,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Day 13(动态规划) | Yzang&#39;s Blog</title>
+<title>MySQL学习笔记(一) | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1586839007562">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -28,7 +28,7 @@
 
 
 
-    <meta name="description" content="Day 13(动态规划)" />
+    <meta name="description" content="MySQL学习笔记(一)" />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -210,7 +210,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -292,6 +293,199 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E4%BD%BF%E7%94%A8%E7%BB%88%E7%AB%AF%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93">使用终端系统操作数据库</a>
+<ul>
+<li><a href="#1%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93">1,登录数据库</a></li>
+<li><a href="#2%E6%9F%A5%E8%AF%A2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93">2,查询服务器中数据库</a></li>
+<li><a href="#3%E9%80%89%E4%B8%AD%E6%9F%90%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C">3,选中某一个数据库进行操作</a>
+<ul>
+<li><a href="#a%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93">a,创建一个数据库</a></li>
+<li><a href="#b%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93">b,删除一个数据库</a></li>
+<li><a href="#c%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93">c,使用数据库</a></li>
+</ul>
+</li>
+<li><a href="#4%E6%95%B0%E6%8D%AE%E8%A1%A8">4,数据表</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+      lList.push(elem);
+    }
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+
+(function() {
+  // 处理不是从#一级标题开始目录
+  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+  }
+  addTocNumber(tocContent, '');
+})();
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -379,8 +573,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/">
-      Day 13(动态规划)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/mysql-xue-xi-bi-ji-yi/">
+      MySQL学习笔记(一)
     </a>
   </h1>
   <div class="post-meta">
@@ -388,25 +582,25 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-04-10</span>
+      <span>2020-04-14</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3分钟</span>
+      <span>1分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>424<span class="pc-show">字数</span></span>
+      <span>234<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/day-13dong-tai-gui-hua/" data-flag-title="Day 13(动态规划)" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/mysql-xue-xi-bi-ji-yi/" data-flag-title="MySQL学习笔记(一)" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -416,88 +610,29 @@
 </header>
               <div class="post-body next-md-body" id="post_body">
                 <!-- more -->
+<h1 id="使用终端系统操作数据库">使用终端系统操作数据库</h1>
+<h2 id="1登录数据库">1,登录数据库</h2>
+<p><code>mysql -uroot -p//用来登录数据库,回车可输入密码</code><br>
+<code>mysql&gt; exit 用来退出数据库（命令用大写和小写都可以，）</code></p>
+<h2 id="2查询服务器中数据库">2,查询服务器中数据库</h2>
+<p>输入 <code>mysql&gt; show databases;</code></p>
+<h2 id="3选中某一个数据库进行操作">3,选中某一个数据库进行操作</h2>
+<h3 id="a创建一个数据库">a,创建一个数据库</h3>
+<p><strong>create database +‘数据库名字’ + character set utf8</strong><br>
+<code>mysql&gt; create database 'test' character set utf8;</code></p>
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P1470">P1470 [USACO2.3]最长前缀 Longest Prefix</a><br>
-这道题用记忆化搜索做的,但其实里面还有一点动态规划的思想</li>
+<li>其中的character set utf8 用来设定编码，可以防止数据出现乱码</li>
+<li>注意这里 数据库的名字需要用键盘上Esc下面那个在英文模式下的单引号括起来！！！</li>
 </ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-string l;
-int x,ma,ans;
-map&lt;string,bool&gt;s;
-bool F,vis[2000001];
-void search(int now)
-{
-	if(vis[now]) return;
-	vis[now] = 1;
-	if(now == x) return ;
-	string m = &quot;&quot;;
-	for(int i = now ; i &lt; x ; i++)
-	{
-		if(i-now&gt;=ma) return;
-		m += l[i];
-		if(s[m]){
-			F = 1;
-			ans = max(ans,i);
-			search(i+1);
-		}
-	}
-}
-int main()
-{
-	while(cin&gt;&gt;l)
-	{
-		if(l==&quot;.&quot;) break;
-		s[l] = 1;
-		ma = max(ma,(int)l.size());
-	}
-	string q = &quot;&quot;;
-	while(cin&gt;&gt;l)
-	{
-		q += l;
-	}
-	l = q;
-	x = q.size();
-	search(0);
-	if(!F){
-		cout&lt;&lt;0;
-		return 0;
-	}
-	cout&lt;&lt;ans+1;
-	return 0;
-}
-</code></pre>
-<!-- more -->
+<h3 id="b删除一个数据库">b,删除一个数据库</h3>
+<p><strong>drop databases + 数据库的名字 ;</strong><br>
+<code>mysql&gt; drop databases test; 删除我们刚才创建的表</code></p>
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P2858">P2858 [USACO06FEB]Treats for the Cows G/S</a><br>
-区间dp:先枚举长度,然后左端点,右端点可以求出来<br>
-这道题好像还不是太懂<br>
-转移方程<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo>(</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>+</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo separator="true">,</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>+</mo><mi>a</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">f[i][j]=max(f[i+1][j]+a[i]*(n-l+1),f[i][j-1]+a[j]*(n-l+1))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><br>
-l指的是区间跨度,所以第几天买的即为(n-l+1);</li>
+<li>删除时不需要单引号括起来</li>
 </ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-int n,a[2001],s[20001],f[20001][2002];
-int main()
-{
-	cin&gt;&gt;n;
-	for(int i = 1 ; i &lt;= n ; i++)
-	{
-		cin&gt;&gt;a[i];
-		f[i][i] = a[i]*n;
-		//s[i] += s[i-1]+s[i];
-	}
-	for(int i = 2 ; i &lt;= n ; i++)
-	{
-		for(int j = 1 ; (j+i-1)&lt;= n ; j++)
-		{
-			int r = j+i-1;
-			f[j][r] = max(f[j+1][r]+a[j]*(n-i+1),f[j][r-1]+a[r]*(n-i+1));//有两种情况一种是选开头点的那一个最优,一种是选结束点的那一个最优
-		}
-	}
-	cout&lt;&lt;f[1][n];
-}
-</code></pre>
+<h3 id="c使用数据库">c,使用数据库</h3>
+<p><code>mysql&gt; use test; 我们就选中了这个数据库</code></p>
+<h2 id="4数据表">4,数据表</h2>
 
               </div>
               <div class="post-footer">
@@ -508,7 +643,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/" title="Day 13(动态规划)">Day 13(动态规划)</a>
+      <a href="https://nzt-yzang.github.io/post/mysql-xue-xi-bi-ji-yi/" title="MySQL学习笔记(一)">MySQL学习笔记(一)</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -521,15 +656,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Day 14(动态规划)" href="https://nzt-yzang.github.io/post/day-14/">Day 14(动态规划)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Day 14(动态规划)" href="https://nzt-yzang.github.io/post/day-14/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">顶点间的最短路和单源最短路</a>
-        <a class="nav-mobile-next" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">下一篇</a>
+        <a class="nav-pc-next" title="Day16 (CF#634Div.3)" href="https://nzt-yzang.github.io/post/day16-cf634div3/">Day16 (CF#634Div.3)</a>
+        <a class="nav-mobile-next" title="Day16 (CF#634Div.3)" href="https://nzt-yzang.github.io/post/day16-cf634div3/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
