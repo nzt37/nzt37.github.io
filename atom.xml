@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-04-14T04:41:05.790Z</updated>
+    <updated>2020-04-14T10:39:43.756Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[蓝桥杯省赛模拟赛(4.14)]]></title>
+        <id>https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/</id>
+        <link href="https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/">
+        </link>
+        <updated>2020-04-14T10:06:15.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[MySQL学习笔记(一)]]></title>
         <id>https://nzt-yzang.github.io/post/mysql-xue-xi-bi-ji-yi/</id>
@@ -23,26 +30,6 @@
         <link href="https://nzt-yzang.github.io/post/day16-cf634div3/">
         </link>
         <updated>2020-04-13T03:42:20.000Z</updated>
-        <summary type="html"><![CDATA[<p>开始补补cfdiv.3的题</p>
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/CF1338A">CF1338A Powered Addition</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338B">CF1338B Edge Weight Assignment</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338C">CF1338C Perfect Triples</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338D">CF1338D Nested Rubber Bands</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338E">CF1338E JYPnation</a><br>
-<strong>Apr/12/2020 22:05</strong></li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<p>开始补补cfdiv.3的题</p>
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/CF1338A">CF1338A Powered Addition</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338B">CF1338B Edge Weight Assignment</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338C">CF1338C Perfect Triples</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338D">CF1338D Nested Rubber Bands</a></li>
-<li><a href="https://www.luogu.com.cn/problem/CF1338E">CF1338E JYPnation</a><br>
-<strong>Apr/12/2020 22:05</strong></li>
-</ul>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Day 15(传智杯)]]></title>
@@ -106,12 +93,5 @@
         <link href="https://nzt-yzang.github.io/post/day-8/">
         </link>
         <updated>2020-04-03T03:07:19.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Day 7(数论)]]></title>
-        <id>https://nzt-yzang.github.io/post/day-7/</id>
-        <link href="https://nzt-yzang.github.io/post/day-7/">
-        </link>
-        <updated>2020-04-02T04:18:06.000Z</updated>
     </entry>
 </feed>
