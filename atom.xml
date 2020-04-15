@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-04-15T00:45:35.717Z</updated>
+    <updated>2020-04-15T01:58:22.473Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[卡特兰数]]></title>
+        <id>https://nzt-yzang.github.io/post/qia-te-lan-shu/</id>
+        <link href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">
+        </link>
+        <updated>2020-04-15T01:11:14.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[蓝桥杯省赛模拟赛(4.14)]]></title>
         <id>https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/</id>
@@ -86,12 +93,5 @@
         <link href="https://nzt-yzang.github.io/post/day-9/">
         </link>
         <updated>2020-04-04T03:19:31.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Day 8(数论)]]></title>
-        <id>https://nzt-yzang.github.io/post/day-8/</id>
-        <link href="https://nzt-yzang.github.io/post/day-8/">
-        </link>
-        <updated>2020-04-03T03:07:19.000Z</updated>
     </entry>
 </feed>
