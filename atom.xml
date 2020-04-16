@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-04-15T02:02:02.241Z</updated>
+    <updated>2020-04-16T12:25:20.728Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[<无标题>]]></title>
+        <id>https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/</id>
+        <link href="https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/">
+        </link>
+        <updated>2020-04-16T11:36:59.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[卡特兰数]]></title>
         <id>https://nzt-yzang.github.io/post/qia-te-lan-shu/</id>
@@ -86,12 +93,5 @@
         <link href="https://nzt-yzang.github.io/post/day-10/">
         </link>
         <updated>2020-04-05T03:03:24.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Day 9(数论)]]></title>
-        <id>https://nzt-yzang.github.io/post/day-9/</id>
-        <link href="https://nzt-yzang.github.io/post/day-9/">
-        </link>
-        <updated>2020-04-04T03:19:31.000Z</updated>
     </entry>
 </feed>

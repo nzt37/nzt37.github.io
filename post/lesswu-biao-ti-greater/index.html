@@ -7,7 +7,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Day 12(动态规划) | Yzang&#39;s Blog</title>
+<title>&lt;无标题&gt; | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1587039858561">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,7 +27,7 @@
 
 
 
-    <meta name="description" content="Day 12(动态规划)" />
+    <meta name="description" content="<无标题>" />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -367,8 +367,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-12/">
-      Day 12(动态规划)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/">
+      &lt;无标题&gt;
     </a>
   </h1>
   <div class="post-meta">
@@ -376,25 +376,25 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-04-09</span>
+      <span>2020-04-16</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>5分钟</span>
+      <span>1分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>850<span class="pc-show">字数</span></span>
+      <span>77<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/day-12/" data-flag-title="Day 12(动态规划)" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/lesswu-biao-ti-greater/" data-flag-title="&lt;无标题&gt;" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -404,150 +404,10 @@
 </header>
               <div class="post-body next-md-body" id="post_body">
                 <!-- more -->
-<!-- more -->
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P1359">P1359 租用游艇</a><br>
-看到题目就应该想到这是求DAG(有向无环图)求最短路,可以考虑Floyd来做,但是好长时间没有看过图论,所以换个方法;<br>
-<strong>DP转移方程</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo separator="true">,</mo><mi>f</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>+</mo><mi>f</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo></mrow></mrow><annotation encoding="application/x-tex">f[i]=min{f[i],f[j]+f[j][i]}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></span>;</li>
-</ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-const int INF = 1e9;
-int f[10001],n,a[1001][1001];
-int main()
-{
-//	memset(f,INF,sizeof(f));
-	cin&gt;&gt;n;
-	for(int i = 1 ; i &lt;= n ; i++){
-		for(int j = i+1 ; j &lt;= n ; j++){
-			cin&gt;&gt;a[i][j];
-		}
-	}
-	for(int i=1;i&lt;=n;++i)
-    {
-        f[i]=1000001;//初始化为一个大数
-    }
-	f[1] = 0;
-	for(int i = 2 ; i &lt;= n ; i++){
-		for(int j = 1 ; j &lt;= i ; j++){
-			f[i] = min(f[i],f[j]+a[j][i]);
-		}
-	}
-	cout&lt;&lt;f[n];
-	return 0;
-}
-</code></pre>
-<p>然后我又去复习了一下Floyd</p>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-const int INF = 1e9;
-int n,a[1001][1001];
-int main()
-{
-	memset(a,0x3f,sizeof(a));
-	cin&gt;&gt;n;
-	for(int i = 1 ; i &lt;= n ; i++){
-		for(int j = i ; j &lt;= n ; j++){
-			if(i == j) a[i][j] = 0;
-			else
-			{
-				int x;
-				cin&gt;&gt;x;
-				a[i][j] = x;
-			}
-		}
-	}
-	for(int k = 1 ; k &lt;= n ; k++){//连接点 
-		for(int i = 1 ; i &lt;= n ; i++){//起点 
-			for(int j = 1 ; j &lt;= n ; j++){//终点 
-				a[i][j] = min(a[i][j],a[i][k]+a[k][j]);
-			}
-		}
-	}
-	cout&lt;&lt;a[1][n];
-}
-</code></pre>
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P1757">P1757 通天之分组背包</a><br>
-分组背包,其实也挺水的,就是我太菜了<br>
-比一般的01背包多个分组,所以记录分组信息即可<pre><code class="language-c">for(int i = 1 ; i &lt;= n ; i++)
-  {
-  	int c;
-  	cin&gt;&gt;a[i]&gt;&gt;b[i]&gt;&gt;c;
-  	cnt[c]++;
-  	ma = max(ma,c);
-  	f[c][cnt[c]] = i;//f数组记录第几组第几件物品的序号 
-  }
-</code></pre>
-最后枚举时先枚举组数,然后背包容量,最后枚举物品<br>
-<strong>转移方程</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>−</mo><mi>a</mi><mo>[</mo><mi>f</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>]</mo><mo>]</mo><mo>+</mo><mi>b</mi><mo>[</mo><mi>f</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>]</mo></mrow></mrow><annotation encoding="application/x-tex">dp[i] = max{dp[i],dp[i-a[f[k][i]]]+b[f[k][i]]}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">b</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span></span></span></span></span><br>
-f[k][i]为第k组第i个物品的编号;</li>
-</ul>
-<pre><code class="language-c"> #include &lt;bits/stdc++.h&gt;
-using namespace std;
-int m,n,f[1010][1010],cnt[1001],ma,a[1010],b[1010],dp[1010];
-int main()
-{
-	cin&gt;&gt;m&gt;&gt;n;
-	for(int i = 1 ; i &lt;= n ; i++)
-	{
-		int c;
-		cin&gt;&gt;a[i]&gt;&gt;b[i]&gt;&gt;c;
-		cnt[c]++;
-		ma = max(ma,c);
-		f[c][cnt[c]] = i;//f数组记录第几组第几件物品的序号 
-	}
-	for(int k = 1 ; k &lt;= ma ; k++)
-	{
-		for(int j = m ; j &gt;= 0 ; j--)	{
-			for(int i = 1 ; i &lt;= cnt[k] ; i++)	{
-				if(j &gt;= a[f[k][i]])
-				dp[j] = max(dp[j],dp[j-a[f[k][i]]]+b[f[k][i]]);
-			}
-		}
-	}
-	cout&lt;&lt;dp[m];
-	return 0;
-}
-</code></pre>
-<!-- more -->
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P1832">P1832 A+B Problem（再升级）</a><br>
-完全背包,已经忘得差不多了,但是看了一会发现好像有懂了???<br>
-<strong>PS</strong> : <strong>01背包物品只能用一次而完全背包物品可以一直使用.</strong><br>
-这道题把n以内的所有素数看作物品.<br>
-<strong>转移方程</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>f</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>+</mo><mi>f</mi><mo>[</mo><mi>j</mi><mo>−</mo><mi>p</mi><mi>r</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[j]=f[j]+f[j-prime[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><br>
-**  f[j]是从f[j-i]（i为任意素数）转移来的，所以f[j]=f[j]+f[j-i]。 **</li>
-</ul>
-<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-long long prime[1005],cnt,f[1080];
-bool isprime(int n)
-{
-   for(int i = 2 ; i &lt;=sqrt(n) ; i++){
-   	if(n%i==0) return false;
-   }
-   return true;
-}
-int main()
-{
-   int n;
-   cin&gt;&gt;n;
-   for(int i = 2 ; i &lt;= n ; i++)
-   {
-   	if(isprime(i))
-   	prime[++cnt] = i;
-   }
-   f[0] = 1;
-   for(int i = 1 ; i &lt;= cnt ; i++){
-   	for(int j = prime[i] ; j &lt;= n ; j++){
-   		f[j] = f[j] + f[j-prime[i]];
-   	}
-   }
-   cout&lt;&lt;f[n];
-   return 0;
-} 
-</code></pre>
+<p>莫名的感到烦躁,最近这些天我都干了些啥???<br>
+算法题也没怎么刷,还有c语言和Java一堆事情,其他网课也压根就没听过,<br>
+这几个月活动的次数寥寥无几,<br>
+明明18岁的年纪,缺活成了老年人的生活,</p>
 
               </div>
               <div class="post-footer">
@@ -558,7 +418,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/day-12/" title="Day 12(动态规划)">Day 12(动态规划)</a>
+      <a href="https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/" title="&lt;无标题&gt;">&lt;无标题&gt;</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -571,15 +431,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">顶点间的最短路和单源最短路</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Day 11(动态规划)" href="https://nzt-yzang.github.io/post/day-11/">Day 11(动态规划)</a>
-        <a class="nav-mobile-next" title="Day 11(动态规划)" href="https://nzt-yzang.github.io/post/day-11/">下一篇</a>
+        <a class="nav-pc-next" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">卡特兰数</a>
+        <a class="nav-mobile-next" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
