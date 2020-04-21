@@ -8,7 +8,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>模板 | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1587039858561">
+<link rel="shortcut icon" href="/favicon.ico?v=1587442312293">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -197,7 +197,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">26</span>
+        <span class="site-item-stat-count">29</span>
         <span class="site-item-stat-name">文章</span>
       </a>
     </div>
@@ -289,6 +289,17 @@
 <li><a href="#%E5%B9%B3%E5%B8%B8%E7%94%A8">平常用</a>
 <ul>
 <li><a href="#io%E4%BC%98%E5%8C%96">IO优化</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF">一些算法模板</a>
+<ul>
+<li><a href="#%E7%AD%9B%E7%B4%A0%E6%95%B0">筛素数</a>
+<ul>
+<li><a href="#%E6%AC%A7%E6%8B%89%E7%AD%9B">欧拉筛</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B9%B6%E6%9F%A5%E9%9B%86">并查集</a></li>
+<li></li>
 </ul>
 </li>
 </ul>
@@ -570,12 +581,12 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>256<span class="pc-show">字数</span></span>
+      <span>350<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -597,8 +608,7 @@ window.addEventListener('load', function() {
 <!-- more -->
 <h1 id="平常用">平常用</h1>
 <h2 id="io优化">IO优化</h2>
-<pre><code class="language-c">//Author:xht37
-#include &lt;bits/stdc++.h&gt;
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
 
 #define ui unsigned int
 #define ll long long
@@ -663,8 +673,42 @@ int main()
 
     return 0;
 }
-
 </code></pre>
+<!-- more -->
+<h1 id="一些算法模板">一些算法模板</h1>
+<h2 id="筛素数">筛素数</h2>
+<h3 id="欧拉筛">欧拉筛</h3>
+<pre><code class="language-c">bool isprime[maxn];
+int prime[maxn];
+void get_prime(int n)
+{
+	memset(isprime, 1, sizeof(isprime));
+	isprime[1] = 0;
+	for(int i=2 ; i&lt;=n ; i++)
+	{
+		if(isprime[i])
+		{
+			prime[++cnt] = i;
+		}
+		for(int j=1 ; j&lt;=cnt &amp;&amp; i*prime[j]&lt;=n ; j++)
+		{
+			isprime[i*prime[j]] = 0;
+			if(i%prime[j] == 0)
+			break;
+		}
+	}
+}
+</code></pre>
+<!-- more -->
+<h2 id="并查集">并查集</h2>
+<pre><code class="language-c">int f[maxn];
+int find(int x)
+{
+    if(x == f[x]) return x;
+    return f[x] = find(f[x]);//路径压缩
+}
+</code></pre>
+<h2 id=""></h2>
 
               </div>
               <div class="post-footer">
@@ -724,7 +768,7 @@ new Valine({
       Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | © 2019-2020 Theme By <a href="https://github.com/hsxyhao/gridea-theme-next" target="_blank">HsxyHao</a>
     </div>
     <div class="poweredby">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Nzt</a>
     </div>
   </footer>
   

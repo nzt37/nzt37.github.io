@@ -7,7 +7,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Day 13(动态规划) | Yzang&#39;s Blog</title>
+<title>关于二叉查找树(BST) | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1587442312293">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -27,7 +27,7 @@
 
 
 
-    <meta name="description" content="Day 13(动态规划)" />
+    <meta name="description" content="关于二叉查找树(BST)" />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -185,7 +185,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -280,6 +281,203 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E7%9A%84%E7%89%B9%E6%80%A7">二叉查找树的特性</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4">删除</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2">查询</a>
+<ul>
+<li><a href="#%E6%89%BE%E5%89%8D%E9%A9%B1">找前驱</a></li>
+<li><a href="#%E6%89%BE%E5%90%8E%E7%BB%A7">找后继</a></li>
+<li><a href="#%E6%8C%89%E5%80%BC%E6%89%BE%E6%8E%92%E5%90%8D">按值找排名</a></li>
+<li><a href="#%E6%8C%89%E6%8E%92%E5%90%8D%E6%89%BE%E5%80%BC">按排名找值</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+      lList.push(elem);
+    }
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+
+(function() {
+  // 处理不是从#一级标题开始目录
+  if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+    let con = tocContent.children[0].children[0];
+    tocContent.innerHTML = con.innerHTML;
+  }
+  let markdownItTOC = document.querySelector('.markdownIt-TOC');
+  let innerHeight = window.innerHeight;
+  markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+  addTocNumber(tocContent, '');
+})();
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -367,8 +565,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/">
-      Day 13(动态规划)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/">
+      关于二叉查找树(BST)
     </a>
   </h1>
   <div class="post-meta">
@@ -376,25 +574,25 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-04-10</span>
+      <span>2020-04-18</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3分钟</span>
+      <span>9分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>424<span class="pc-show">字数</span></span>
+      <span>1886<span class="pc-show">字数</span></span>
     </span>
     
       
       
         
       
-      <span id="/post/day-13dong-tai-gui-hua/" data-flag-title="Day 13(动态规划)" class="meta-item pc-show leancloud_visitors">
+      <span id="/post/guan-yu-er-cha-cha-zhao-shu-bst/" data-flag-title="关于二叉查找树(BST)" class="meta-item pc-show leancloud_visitors">
         <span class="post-meta-divider">|</span>
         <i class="fa fa-eye"></i>
         <span>浏览量：<span class="leancloud-visitors-count" ></span></span>
@@ -404,86 +602,306 @@
 </header>
               <div class="post-body next-md-body" id="post_body">
                 <!-- more -->
+<p>平衡树是一种数据结构，可以处理数据的增、删、查、改。说到平衡树，就不得不从基础说起，而基础，正是二叉查找树（Binary Search Tree, BST）。<br>
+二叉查找树也就是用树来维护一个有序序列,可以增、删、查、改</p>
+<h2 id="二叉查找树的特性">二叉查找树的特性</h2>
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P1470">P1470 [USACO2.3]最长前缀 Longest Prefix</a><br>
-这道题用记忆化搜索做的,但其实里面还有一点动态规划的思想</li>
+<li>若左子树不空，则左子树上所有结点的值均小于它的根结点的值</li>
+<li>若右子树不空，则右子树上所有结点的值均大于它的根结点的值</li>
+<li>左、右子树也分别为二叉排序树</li>
+<li>没有权值相等的结点。<br>
+<strong>所以我们节点包含一下信息</strong></li>
+<li>当前节点的权值，也就是序列里的数</li>
+<li>左孩子的下标和右孩子的下标，如果没有则为0</li>
+<li>计数器，代表当前的值出现了几遍</li>
+<li>子树大小和自己的大小的和</li>
 </ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-string l;
-int x,ma,ans;
-map&lt;string,bool&gt;s;
-bool F,vis[2000001];
-void search(int now)
+<pre><code class="language-c">struct node{
+    int val,ls,rs,cnt,siz;
+}tree[500010];
+</code></pre>
+<p>其中val是权值，ls/rs是左/右 孩子的下标，cnt是当前的权值出现了几次，siz是子树大小和自己的大小的和</p>
+<h2 id="插入">插入</h2>
+<pre><code class="language-c">void add(int x,int v)
 {
-	if(vis[now]) return;
-	vis[now] = 1;
-	if(now == x) return ;
-	string m = &quot;&quot;;
-	for(int i = now ; i &lt; x ; i++)
-	{
-		if(i-now&gt;=ma) return;
-		m += l[i];
-		if(s[m]){
-			F = 1;
-			ans = max(ans,i);
-			search(i+1);
-		}
-	}
+    tree[x].siz++;
+    //如果查到这个节点，说明这个节点的子树里面肯定是有v的，所以siz++
+    if(tree[x].val==v){
+        //如果恰好有重复的数，就把cnt++，退出即可，因为我们要满足第四条性质
+        tree[x].cnt++;
+        return ;
+    }
+    if(tree[x].val&gt;v){//如果v&lt;tree[x].val，说明v实在x的左子树里
+        if(tree[x].ls!=0)
+          add(tree[x].ls,v);//如果x有左子树，就去x的左子树
+        else{//如果不是，v就是x的左子树的权值
+            cont++;//cont是目前BST一共有几个节点
+            tree[cont].val=v;
+            tree[cont].siz=tree[cont].cnt=1;
+            tree[x].ls=cont;
+        }
+    }
+    else{//右子树同理
+        if(tree[x].rs!=0)
+          add(tree[x].rs,v);
+        else{
+            cont++;
+            tree[cont].val=v;
+            tree[cont].siz=tree[cont].cnt=1;
+            tree[x].rs=cont;
+        }
+    }
 }
-int main()
+</code></pre>
+<h2 id="删除">删除</h2>
+<p>删除其实可以通过改变该数字连的边来做到，这个图的删除可以利用cnt标记，找到这个数后cnt--即可，如果为cnt=0，就表示此时已经没有这个数；<br>
+同时，cnt的改变不会影响大小关系，所以这棵树还是一定满足bst的性质的</p>
+<h2 id="查询">查询</h2>
+<h3 id="找前驱">找前驱</h3>
+<pre><code class="language-c">int queryfr(int x, int val, int ans) {
+    if (tree[x].val&gt;=val)
+    {//如果当前值大于val，就说明查的数大了，所以要往左子树找
+        if (tree[x].ls==0)//如果没有左子树就直接返回找到的ans
+            return ans;
+        else//如果不是的话，去查左子树
+            return queryfr(tree[x].ls,val,ans);
+    }
+    else
+    {//如果当前值小于val，就说明我们找比val小的了
+        if (tree[x].rs==0)//如果没有右孩子，就返回tree[x].val，因为走到这一步时，我们后找到的一定比先找到的大(参考第二条性质)
+            return (tree[x].val&lt;val) ? tree[x].val : ans
+        //如果有右孩子，，我们还要找这个节点的右子树，因为万一右子树有比当前节点还大并且小于要找的val的话，ans需要更新
+        if (tree[x].cnt!=0)//如果当前节数的个数不为0(即未被删除)，ans就可以更新为tree[x].val
+            return queryfr(tree[x].rs,val,tree[x].val);
+        else//反之ans不需要更新
+            return queryfr(tree[x].rs,val,ans);
+    }
+}
+</code></pre>
+<h3 id="找后继">找后继</h3>
+<p>同上</p>
+<pre><code class="language-c">int queryne(int x, int val, int ans) {
+    if (tree[x].val&lt;=val)
+    {
+        if (tree[x].rs==0)
+            return ans;
+        else
+            return queryne(tree[x].rs,val,ans);
+    }
+    else
+    {
+        if (tree[x].ls==0)
+            return (tree[x].val&gt;val)? tree[x].val : ans;
+        if (tree[x].cnt!=0)
+            return queryne(tree[x].ls,val,tree[x].val);
+        else
+            return queryne(tree[x].ls,val,ans);
+    }
+}
+</code></pre>
+<h3 id="按值找排名">按值找排名</h3>
+<pre><code class="language-c">int queryval(int x,int val)
 {
-	while(cin&gt;&gt;l)
-	{
-		if(l==&quot;.&quot;) break;
-		s[l] = 1;
-		ma = max(ma,(int)l.size());
-	}
-	string q = &quot;&quot;;
-	while(cin&gt;&gt;l)
-	{
-		q += l;
-	}
-	l = q;
-	x = q.size();
-	search(0);
-	if(!F){
-		cout&lt;&lt;0;
-		return 0;
-	}
-	cout&lt;&lt;ans+1;
-	return 0;
+    if(x==0) return 0;//没有排名 
+    if(val==tree[x].val) return tree[tree[x].ls].siz+1;
+    //如果当前节点值=val，则我们加上现在比val小的数的个数，也就是它左子树的大小 
+    if(val&lt;tree[x].val) return queryval(tree[x].ls,val);
+    //如果当前节点值比val大了，我们就去它的左子树找val，因为左子树的节点值一定是小的 
+    return queryval(tree[x].rs,val)+tree[tree[x].ls].siz+tree[x].cnt;
+    //如果当前节点值比val小了，我们就去它的右子树找val，同时加上左子树的大小和这个节点的值出现次数 
+    //因为这个节点的值小于val，这个节点的左子树的各个节点的值一定也小于val 
+}
+//注:这里最终返回的是排名-1，也就是比val小的数的个数，在输出的时候记得+1
+</code></pre>
+<h3 id="按排名找值">按排名找值</h3>
+<pre><code class="language-c">int queryrk(int x,int rk)
+{
+    if(x==0) return INF; 
+    if(tree[tree[x].ls].siz&gt;=rk)//如果左子树大小&gt;=rk了，就说明答案在左子树里 
+        return queryrk(tree[x].ls,rk);//查左子树 
+    if(tree[tree[x].ls].siz+tree[x].cnt&gt;=rk)//如果左子树大小加上当前的数的多少恰好&gt;=k，说明我们找到答案了 
+        return tree[x].val;//直接返回权值 
+    return queryrk(tree[x].rs,rk-tree[tree[x].ls].siz-tree[x].cnt);
+    //否则就查右子树，同时减去当前节点的次数与左子树的大小 
 }
 </code></pre>
 <!-- more -->
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P2858">P2858 [USACO06FEB]Treats for the Cows G/S</a><br>
-区间dp:先枚举长度,然后左端点,右端点可以求出来<br>
-这道题好像还不是太懂<br>
-转移方程<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo>(</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>+</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo separator="true">,</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>+</mo><mi>a</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">f[i][j]=max(f[i+1][j]+a[i]*(n-l+1),f[i][j-1]+a[j]*(n-l+1))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><br>
-l指的是区间跨度,所以第几天买的即为(n-l+1);</li>
+<li><a href="https://www.luogu.com.cn/problem/P5076">P5076 【深基16.例7】普通二叉树（简化版）</a><br>
+<strong>code</strong>:</li>
 </ul>
 <pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
 using namespace std;
-int n,a[2001],s[20001],f[20001][2002];
-int main()
+int n,x,y,cont;
+const int INF=0x7fffffff;;
+struct node{
+	int val,ls,rs,cnt,siz;
+}tree[100005];
+inline int read()
 {
-	cin&gt;&gt;n;
-	for(int i = 1 ; i &lt;= n ; i++)
-	{
-		cin&gt;&gt;a[i];
-		f[i][i] = a[i]*n;
-		//s[i] += s[i-1]+s[i];
-	}
-	for(int i = 2 ; i &lt;= n ; i++)
-	{
-		for(int j = 1 ; (j+i-1)&lt;= n ; j++)
+    int r=0,w=1;
+    char ch=getchar();
+    while(ch&lt;'0'||ch&gt;'9'){
+        if(ch=='-') w=-1;
+        ch=getchar();
+    }
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9'){
+        r=(r&lt;&lt;3)+(r&lt;&lt;1)+(ch^48);
+        ch=getchar();
+    }
+    return r*w;
+}
+void add(int x,int v)//插入 
+{
+	tree[x].siz++;
+	if(tree[x].val == v){
+		tree[x].cnt++;
+		return;
+	} 
+	if(v &lt; tree[x].val){
+		if(tree[x].ls != 0)
+			add(tree[x].ls,v);
+		else
 		{
-			int r = j+i-1;
-			f[j][r] = max(f[j+1][r]+a[j]*(n-i+1),f[j][r-1]+a[r]*(n-i+1));//有两种情况一种是选开头点的那一个最优,一种是选结束点的那一个最优
+			cont++;
+			tree[cont].cnt = 1;
+			tree[cont].siz = 1;
+			tree[cont].val = v;
+			tree[x].ls = cont;
 		}
 	}
-	cout&lt;&lt;f[1][n];
+	if(v &gt; tree[x].val){
+		if(tree[x].rs != 0)
+			add(tree[x].rs,v);
+		else
+		{
+				cont++;
+			tree[cont].cnt = 1;
+			tree[cont].siz = 1;
+			tree[cont].val = v;
+			tree[x].rs = cont;
+		}
+	} 
+}
+//找前驱; 
+int queryfr(int x,int val,int ans)//x是当前的节点的下标，val是要找前驱的值，ans是目前找到的比val小的数的最大值。
+{
+	if(tree[x].val &gt;= val){///如果当前值大于val，就说明查的数大了，所以要往左子树找, 
+		if(tree[x].ls == 0)
+		{
+			return ans;
+		}
+		else
+		return queryfr(tree[x].ls,val,ans);
+	}
+	else//否则去右子树找, 
+	{
+		if(tree[x].rs == 0)
+		{
+			if(tree[x].val &lt; val){
+				return tree[x].val;
+			}
+			else
+			return ans; 
+		}
+		if(tree[x].cnt != 0)
+		{
+			return queryfr(tree[x].rs,val,tree[x].val);//这里考虑到该节点是否被删除; 
+		}
+		else
+		return queryfr(tree[x].rs,val,ans);
+	} 
+	
+}
+//找后继
+int querysu(int x,int val,int ans)
+{
+	if(tree[x].val &lt;= val )
+	{
+		if(tree[x].rs == 0)
+		return ans;
+		else
+		{
+			return querysu(tree[x].rs,val,ans);
+		}
+	}
+	else
+	{
+		if(tree[x].ls == 0)
+		{
+			if(tree[x].val &gt; val)
+			return tree[x].val;
+			else
+			return ans;	
+		}
+		else
+		{
+			if(tree[x].cnt != 0)
+			return querysu(tree[x].ls,val,tree[x].val);
+			else
+			return querysu(tree[x].ls,val,ans);	
+		}	
+	}	
+} 
+//按值找排名
+int queryval(int x,int val)
+{
+	if(x == 0) return 0;
+	if(val &lt; tree[x].val) 
+	{
+		return queryval(tree[x].ls,val);
+	}
+	if(val == tree[x].val) 
+		return tree[tree[x].ls].siz+1;
+	return queryval(tree[x].rs,val) + tree[tree[x].ls].siz + tree[x].cnt;
+ } 
+//按排名找值
+int queryrk(int x,int rk)
+{
+	if(x == 0) return INF;
+	if(rk &lt;= tree[tree[x].ls].siz)
+	{
+		return queryrk(tree[x].ls,rk);	
+	}
+	if(tree[tree[x].ls].siz+tree[x].cnt &gt;= rk)
+	{
+		return tree[x].val;
+	}
+	return queryrk(tree[x].rs,rk-tree[tree[x].ls].siz-tree[x].cnt);	
+} 
+int main()
+{
+	n = read();
+	while(n--)
+	{
+		x = read(),y = read();
+		if(x == 1){
+			printf(&quot;%d\n&quot;,queryval(1,y)+1); 
+		}
+		else if(x == 2){
+			printf(&quot;%d\n&quot;,queryrk(1,y));
+		} 
+		else if(x == 3){
+			printf(&quot;%d\n&quot;,queryfr(1,y,-INF));
+		}
+		else if(x == 4){
+			printf(&quot;%d\n&quot;,querysu(1,y,INF));
+		}
+		else
+		{
+			if(cont == 0)
+			{
+				cont++;
+				tree[cont].val = y;
+				tree[cont].siz = tree[cont].cnt = 1;
+			}
+			else
+			{
+				add(1,y);
+			}
+		}
+	}
+	return 0;
 }
 </code></pre>
 
@@ -496,7 +914,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/" title="Day 13(动态规划)">Day 13(动态规划)</a>
+      <a href="https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/" title="关于二叉查找树(BST)">关于二叉查找树(BST)</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -510,14 +928,14 @@ int main()
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Day 14(动态规划)" href="https://nzt-yzang.github.io/post/day-14/">Day 14(动态规划)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Day 14(动态规划)" href="https://nzt-yzang.github.io/post/day-14/">上一篇</a>
+        <a class="nav-pc-next" title="【模板】线性筛素数" href="https://nzt-yzang.github.io/post/mo-ban-xian-xing-shai-su-shu/">【模板】线性筛素数</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="【模板】线性筛素数" href="https://nzt-yzang.github.io/post/mo-ban-xian-xing-shai-su-shu/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">顶点间的最短路和单源最短路</a>
-        <a class="nav-mobile-next" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">下一篇</a>
+        <a class="nav-pc-next" title="&lt;无标题&gt;" href="https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/">&lt;无标题&gt;</a>
+        <a class="nav-mobile-next" title="&lt;无标题&gt;" href="https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
