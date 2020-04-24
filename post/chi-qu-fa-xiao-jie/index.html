@@ -8,7 +8,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>尺取法小结 | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1587442312293">
+<link rel="shortcut icon" href="/favicon.ico?v=1587688797133">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
 
@@ -28,7 +28,7 @@
 
 
     <meta name="description" content="尺取法小结" />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="算法" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -289,6 +289,13 @@
 <li>
 <ul>
 <li><a href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0">算法描述</a></li>
+<li><a href="#%E4%BE%8B%E9%A2%98">例题</a>
+<ul>
+<li><a href="#poj-3061subsequence">poj 3061Subsequence</a></li>
+<li><a href="#-p1638-%E9%80%9B%E7%94%BB%E5%B1%95">- P1638 逛画展</a></li>
+<li><a href="#-uva11572-%E5%94%AF%E4%B8%80%E7%9A%84%E9%9B%AA%E8%8A%B1-unique-snowflakes">- UVA11572 唯一的雪花 Unique Snowflakes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -568,14 +575,27 @@ window.addEventListener('load', function() {
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
+              <span>算法</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>343<span class="pc-show">字数</span></span>
+      <span>593<span class="pc-show">字数</span></span>
     </span>
     
       
@@ -594,8 +614,9 @@ window.addEventListener('load', function() {
                 <!-- more -->
 <h2 id="算法描述">算法描述</h2>
 <p>尺取法也就是双指针</p>
-<p><a href="http://poj.org/problem?id=3061">poj 3061Subsequence</a><br>
-<code>给出一个序列,求区间和大于或者等于S的最短区间长度.</code><br>
+<h2 id="例题">例题</h2>
+<h3 id="poj-3061subsequence"><a href="http://poj.org/problem?id=3061">poj 3061Subsequence</a></h3>
+<p><code>给出一个序列,求区间和大于或者等于S的最短区间长度.</code><br>
 先想暴力.枚举每一个区间起点 ll ,往右去找位置 rr ,直到 [l,r][l,r] 的区间和大于或者等于 rr 为止.<br>
 这时我们注意到一个性质.给出的所有数都是正整数,即它们的前缀和是单调递增的.<br>
 因此可以运用二分优化暴力.<br>
@@ -613,6 +634,57 @@ window.addEventListener('load', function() {
 		sum -= a[l++];	// 这里就是先执行sum-=a[l],然后再执行l+=1.
 		}
  }
+</code></pre>
+<!-- more -->
+<h3 id="-p1638-逛画展">- <a href="https://www.luogu.com.cn/problem/P1638">P1638 逛画展</a></h3>
+<p>这一题和上面一题本质上是一样的,<br>
+开一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi><mi>i</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">vis</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span></span></span></span>数组储存画出现的次数.k表示一共出现了多少画家</p>
+<pre><code class="language-c">while(l&lt;=r&amp;&amp;r&lt;=n)
+	{
+		if(k == m)
+		{
+			if(res&gt;r-l+1)
+			{
+				res = r-l+1;
+				p = r;
+				q = l;
+			}
+			vis[a[l]]--;
+			if(vis[a[l]]==0) k--;
+			l++;
+		}
+		else
+		{
+			r++;
+			vis[a[r]]++;
+			if(vis[a[r]]==1)
+			k++;
+		}
+	}
+</code></pre>
+<!-- more -->
+<h3 id="-uva11572-唯一的雪花-unique-snowflakes">- <a href="https://www.luogu.com.cn/problem/UVA11572">UVA11572 唯一的雪花 Unique Snowflakes</a></h3>
+<p><code>求没有重复数字的最长区间.</code><br>
+可以用map来判断数字的个数,(因为数据范围太大<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mi>w</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">qwq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>)<br>
+再区间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>中,将r向右扩展,如果有一个数出现的次数大于1,则将l向右扩展,直到没有重复数字;</p>
+<pre><code class="language-c">map&lt;int,int&gt;cnt;
+	while(t--)
+	{
+		rd(n);
+		for(int i = 1 ; i &lt;= n ; i++)
+		rd(a[i]);
+		cnt.clear();
+		int l = 1,r = 2,ans = 0;
+		cnt[a[1]]++,cnt[a[2]]++;
+		for(;r&lt;=n;)
+		{
+			while(cnt[a[r]]&gt;1) cnt[a[l++]]--;
+			ans = max(ans,r&gt;n?r-l:r-l+1);
+			cnt[a[++r]]++;
+		}
+		cout&lt;&lt;ans&lt;&lt;endl;
+	}
+    ```
 </code></pre>
 
               </div>
@@ -633,15 +705,21 @@ window.addEventListener('load', function() {
   </ul>
   <div class="tags">
     
+      <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="Day 17(Codeforces Round #634 Div 3)" href="https://nzt-yzang.github.io/post/day-17codeforces-round-634-div-3/">Day 17(Codeforces Round #634 Div 3)</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="Day 17(Codeforces Round #634 Div 3)" href="https://nzt-yzang.github.io/post/day-17codeforces-round-634-div-3/">上一篇</a>
+      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="【模板】线性筛素数" href="https://nzt-yzang.github.io/post/mo-ban-xian-xing-shai-su-shu/">【模板】线性筛素数</a>
-        <a class="nav-mobile-next" title="【模板】线性筛素数" href="https://nzt-yzang.github.io/post/mo-ban-xian-xing-shai-su-shu/">下一篇</a>
+        <a class="nav-pc-next" title="关于二叉查找树(BST)" href="https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/">关于二叉查找树(BST)</a>
+        <a class="nav-mobile-next" title="关于二叉查找树(BST)" href="https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
