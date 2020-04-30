@@ -197,6 +197,10 @@ pre > span.copy-code {
 pre > span.copy-code:hover {
   color: #FFF;
 }
+.nav-item .fa {
+  width: 16px;
+  text-align: center;
+}
 .head-top-line {
   height: 3px;
   background: #222;
@@ -2090,7 +2094,7 @@ pre > span.copy-code:hover {
       border-bottom-color: #555;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #eeeeeee5;
+      background: #eeeeeef2;
     }h1, h2, h3, h4, h5, h6 {
       color: #555;
     }
@@ -2134,11 +2138,11 @@ pre > span.copy-code:hover {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #dee2e6e5;
+      background: #dee2e6f2;
     }
 
     .nav-item:hover {
-      background: #dee2e6e5;
+      background: #dee2e6f2;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2174,13 +2178,13 @@ pre > span.copy-code:hover {
       color: #c92a2a;
       border-bottom-color: #c92a2a;
     }.bg-color {
-      background-color: #ffffffe5;
+      background-color: #fffffff2;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
-      border-radius: 20px;
+      border-radius: 10px;
     }
     .pisces .blog-header, .pisces .sidebar-wrapper, .pisces .article-wrapper, .pisces .section, .pisces .sidebar-box, .pisces .friends-section {
-      border-radius: 20px;
+      border-radius: 10px;
     }
       .site-meta {
         background: #000 !important;
@@ -2189,7 +2193,7 @@ pre > span.copy-code:hover {
         background: #000 !important;
       }
     .brand {
-      background: #000000e5;
+      background: #000000f2;
     }
     
       .brand {
@@ -2199,7 +2203,7 @@ pre > span.copy-code:hover {
       color: #FFF !important;
     }
     .mist .site-title i {
-      background: #FFFFFFe5;
+      background: #FFFFFFf2;
     }body {
       cursor: default;
     }a {
