@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Day 13(动态规划) | Yzang&#39;s Blog</title>
+<title>Day 18(DFS and 高精) | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1589631181235">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="Day 13(动态规划)" />
+  <meta name="description" content="Day 18(DFS and 高精)" />
   <meta name="keywords" content="" />
 </head>
 
@@ -390,8 +390,8 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/">
-      Day 13(动态规划)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-18dfs-and-di-gui/">
+      Day 18(DFS and 高精)
     </a>
   </h1>
   <div class="post-meta">
@@ -399,23 +399,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span>2020-04-10</span>
+      <span>2020-05-16</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>2<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>424<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>421<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/day-13dong-tai-gui-hua/" data-flag-title="Day 13(动态规划)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/day-18dfs-and-di-gui/" data-flag-title="Day 18(DFS and 高精)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -426,85 +426,70 @@
             <div class="post-body next-md-body" id="post_body">
               <!-- more -->
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P1470">P1470 [USACO2.3]最长前缀 Longest Prefix</a><br>
-这道题用记忆化搜索做的,但其实里面还有一点动态规划的思想</li>
+<li><a href="https://www.luogu.com.cn/problem/P1928">P1928 外星密码</a><br>
+<strong>明白一个函数的作用并相信它能完成这个任务，千万不要试图跳进细节。 千万不要跳进这个函数里面企图探究更多细节，否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊.</strong>  -- <a href="https://oi-wiki.org/basic/divide-and-conquer/#_3">OI -wiki</a></li>
 </ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
 using namespace std;
-string l;
-int x,ma,ans;
-map&lt;string,bool&gt;s;
-bool F,vis[2000001];
-void search(int now)
-{
-	if(vis[now]) return;
-	vis[now] = 1;
-	if(now == x) return ;
-	string m = &quot;&quot;;
-	for(int i = now ; i &lt; x ; i++)
-	{
-		if(i-now&gt;=ma) return;
-		m += l[i];
-		if(s[m]){
-			F = 1;
-			ans = max(ans,i);
-			search(i+1);
+string yunqian(){
+    int k;//压缩的次数
+    char ch;//输入的字符
+    string s=&quot;&quot;,str=&quot;&quot;;//s是最终答案，str是被压缩的字串，别忘了初始化
+    /*注意：ch,s,str应该定义在函数内部，才能在每次递归中初始化*/
+	while(cin&gt;&gt;ch){//不断输入字符
+		if(ch=='['){//如果找到了被压缩的字串
+			cin&gt;&gt;k;//输入压缩次数
+			str=yunqian();//递归调用
+			while(k--){
+				s+=str;//把解压后的字串复制k次后添加到原来的字符串上
+			}
+		}
+		else if(ch==']'){//如果找到了压缩的字串的末尾
+			return s;//结束这一层递归并返回已经被解压的字串
+		}
+		else{//如果没有被压缩
+			s+=ch;//直接在最后添上这个字符。
 		}
 	}
 }
-int main()
-{
-	while(cin&gt;&gt;l)
-	{
-		if(l==&quot;.&quot;) break;
-		s[l] = 1;
-		ma = max(ma,(int)l.size());
-	}
-	string q = &quot;&quot;;
-	while(cin&gt;&gt;l)
-	{
-		q += l;
-	}
-	l = q;
-	x = q.size();
-	search(0);
-	if(!F){
-		cout&lt;&lt;0;
-		return 0;
-	}
-	cout&lt;&lt;ans+1;
-	return 0;
+int main(){
+	cout&lt;&lt;yunqian();
+	return 0;//完结撒花～
 }
 </code></pre>
 <!-- more -->
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/P2858">P2858 [USACO06FEB]Treats for the Cows G/S</a><br>
-区间dp:先枚举长度,然后左端点,右端点可以求出来<br>
-这道题好像还不是太懂<br>
-转移方程<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo>(</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>+</mo><mi>a</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo separator="true">,</mo><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>+</mo><mi>a</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">f[i][j]=max(f[i+1][j]+a[i]*(n-l+1),f[i][j-1]+a[j]*(n-l+1))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><br>
-l指的是区间跨度,所以第几天买的即为(n-l+1);</li>
+<li><a href="https://www.luogu.com.cn/problem/P2437">P2437 蜜蜂路线</a><br>
+<strong>高精＋斐波那契</strong></li>
 </ul>
 <pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
 using namespace std;
-int n,a[2001],s[20001],f[20001][2002];
-int main()
+long long f[2001][2001];
+int len = 1;
+void Biginteger(int x)
 {
-	cin&gt;&gt;n;
-	for(int i = 1 ; i &lt;= n ; i++)
+	for(int i = 1 ; i &lt;= len ; i++)
 	{
-		cin&gt;&gt;a[i];
-		f[i][i] = a[i]*n;
-		//s[i] += s[i-1]+s[i];
+		f[x][i] += f[x-1][i] + f[x-2][i];
 	}
-	for(int i = 2 ; i &lt;= n ; i++)
+	for(int i = 1 ; i &lt;= len ; i++)
 	{
-		for(int j = 1 ; (j+i-1)&lt;= n ; j++)
+		if(f[x][i]&gt;=10)
 		{
-			int r = j+i-1;
-			f[j][r] = max(f[j+1][r]+a[j]*(n-i+1),f[j][r-1]+a[r]*(n-i+1));//有两种情况一种是选开头点的那一个最优,一种是选结束点的那一个最优
+			f[x][i+1]+=f[x][i]/10;
+			f[x][i]%=10; 
 		}
 	}
-	cout&lt;&lt;f[1][n];
+	if(f[x][len+1]) len++;
+}
+int main()
+{
+	int m,n;
+	cin&gt;&gt;n&gt;&gt;m;
+	f[1][1] = 1,f[2][1] = 2;
+	for(int i = 3 ; i &lt;= m-n ; i++) Biginteger(i);
+	for(int i = len ; i ; i--) cout&lt;&lt;f[m-n][i];
+	return 0;
 }
 </code></pre>
 
@@ -518,7 +503,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/" title="Day 13(动态规划)">https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/</a>
+      <a href="https://nzt-yzang.github.io/post/day-18dfs-and-di-gui/" title="Day 18(DFS and 高精)">https://nzt-yzang.github.io/post/day-18dfs-and-di-gui/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -531,15 +516,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Day 14(动态规划)" href="https://nzt-yzang.github.io/post/day-14/">Day 14(动态规划)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Day 14(动态规划)" href="https://nzt-yzang.github.io/post/day-14/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">顶点间的最短路和单源最短路</a>
-        <a class="nav-mobile-next" title="顶点间的最短路和单源最短路" href="https://nzt-yzang.github.io/post/ding-dian-jian-de-zui-duan-lu-he-dan-yuan-zui-duan-lu/">下一篇</a>
+        <a class="nav-pc-next" title="Day 17(Codeforces Round #634 Div 3)" href="https://nzt-yzang.github.io/post/day-17codeforces-round-634-div-3/">Day 17(Codeforces Round #634 Div 3)</a>
+        <a class="nav-mobile-next" title="Day 17(Codeforces Round #634 Div 3)" href="https://nzt-yzang.github.io/post/day-17codeforces-round-634-div-3/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
