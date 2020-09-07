@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-09-07T02:39:35.311Z</updated>
+    <updated>2020-09-07T02:46:36.846Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -10,13 +10,6 @@
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
-    <entry>
-        <title type="html"><![CDATA[<>]]></title>
-        <id>https://nzt-yzang.github.io/post/lessgreater/</id>
-        <link href="https://nzt-yzang.github.io/post/lessgreater/">
-        </link>
-        <updated>2020-07-26T06:53:28.000Z</updated>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Day 19(前缀和)]]></title>
         <id>https://nzt-yzang.github.io/post/day-19qian-zhui-he/</id>
@@ -46,18 +39,11 @@
         <updated>2020-04-21T03:57:11.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[关于二叉查找树(BST)]]></title>
+        <title type="html"><![CDATA[二叉查找树(BST)]]></title>
         <id>https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/</id>
         <link href="https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/">
         </link>
         <updated>2020-04-18T03:10:02.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[<无标题>]]></title>
-        <id>https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/</id>
-        <link href="https://nzt-yzang.github.io/post/lesswu-biao-ti-greater/">
-        </link>
-        <updated>2020-04-16T11:36:59.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[卡特兰数]]></title>
@@ -93,5 +79,19 @@
         <link href="https://nzt-yzang.github.io/post/day-15/">
         </link>
         <updated>2020-04-12T01:53:31.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Day 14(动态规划)]]></title>
+        <id>https://nzt-yzang.github.io/post/day-14/</id>
+        <link href="https://nzt-yzang.github.io/post/day-14/">
+        </link>
+        <updated>2020-04-11T02:43:20.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Day 13(动态规划)]]></title>
+        <id>https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/</id>
+        <link href="https://nzt-yzang.github.io/post/day-13dong-tai-gui-hua/">
+        </link>
+        <updated>2020-04-10T01:03:51.000Z</updated>
     </entry>
 </feed>
