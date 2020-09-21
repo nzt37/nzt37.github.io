@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>二叉查找树(BST) | Yzang&#39;s Blog</title>
+<title>Suibi | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600670090033">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="二叉查找树(BST)" />
+  <meta name="description" content="Suibi" />
   <meta name="keywords" content="" />
 </head>
 
@@ -335,15 +335,9 @@
     <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E7%9A%84%E7%89%B9%E6%80%A7">二叉查找树的特性</a></li>
-<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
-<li><a href="#%E5%88%A0%E9%99%A4">删除</a></li>
-<li><a href="#%E6%9F%A5%E8%AF%A2">查询</a>
+<li><a href="#%E5%85%B3%E4%BA%8Egithubio%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98">关于Github.io无法打开的问题</a>
 <ul>
-<li><a href="#%E6%89%BE%E5%89%8D%E9%A9%B1">找前驱</a></li>
-<li><a href="#%E6%89%BE%E5%90%8E%E7%BB%A7">找后继</a></li>
-<li><a href="#%E6%8C%89%E5%80%BC%E6%89%BE%E6%8E%92%E5%90%8D">按值找排名</a></li>
-<li><a href="#%E6%8C%89%E6%8E%92%E5%90%8D%E6%89%BE%E5%80%BC">按排名找值</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a></li>
 </ul>
 </li>
 </ul>
@@ -613,8 +607,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/">
-      二叉查找树(BST)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/suibi/">
+      Suibi
     </a>
   </h1>
   <div class="post-meta">
@@ -622,23 +616,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-04-18 11:10:02">2020-04-18</span>
+      <span class="publish-time" data-t="2020-09-21 14:27:34">2020-09-21</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>9<span class="language" data-lan="minute">分钟</span></span>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1886<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>50<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/guan-yu-er-cha-cha-zhao-shu-bst/" data-flag-title="二叉查找树(BST)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/suibi/" data-flag-title="Suibi" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -647,309 +641,11 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <!-- more -->
-<p>平衡树是一种数据结构，可以处理数据的增、删、查、改。说到平衡树，就不得不从基础说起，而基础，正是二叉查找树（Binary Search Tree, BST）。<br>
-二叉查找树也就是用树来维护一个有序序列,可以增、删、查、改</p>
-<h2 id="二叉查找树的特性">二叉查找树的特性</h2>
-<ul>
-<li>若左子树不空，则左子树上所有结点的值均小于它的根结点的值</li>
-<li>若右子树不空，则右子树上所有结点的值均大于它的根结点的值</li>
-<li>左、右子树也分别为二叉排序树</li>
-<li>没有权值相等的结点。<br>
-<strong>所以我们节点包含一下信息</strong></li>
-<li>当前节点的权值，也就是序列里的数</li>
-<li>左孩子的下标和右孩子的下标，如果没有则为0</li>
-<li>计数器，代表当前的值出现了几遍</li>
-<li>子树大小和自己的大小的和</li>
-</ul>
-<pre><code class="language-c">struct node{
-    int val,ls,rs,cnt,siz;
-}tree[500010];
-</code></pre>
-<p>其中val是权值，ls/rs是左/右 孩子的下标，cnt是当前的权值出现了几次，siz是子树大小和自己的大小的和</p>
-<h2 id="插入">插入</h2>
-<pre><code class="language-c">void add(int x,int v)
-{
-    tree[x].siz++;
-    //如果查到这个节点，说明这个节点的子树里面肯定是有v的，所以siz++
-    if(tree[x].val==v){
-        //如果恰好有重复的数，就把cnt++，退出即可，因为我们要满足第四条性质
-        tree[x].cnt++;
-        return ;
-    }
-    if(tree[x].val&gt;v){//如果v&lt;tree[x].val，说明v实在x的左子树里
-        if(tree[x].ls!=0)
-          add(tree[x].ls,v);//如果x有左子树，就去x的左子树
-        else{//如果不是，v就是x的左子树的权值
-            cont++;//cont是目前BST一共有几个节点
-            tree[cont].val=v;
-            tree[cont].siz=tree[cont].cnt=1;
-            tree[x].ls=cont;
-        }
-    }
-    else{//右子树同理
-        if(tree[x].rs!=0)
-          add(tree[x].rs,v);
-        else{
-            cont++;
-            tree[cont].val=v;
-            tree[cont].siz=tree[cont].cnt=1;
-            tree[x].rs=cont;
-        }
-    }
-}
-</code></pre>
-<h2 id="删除">删除</h2>
-<p>删除其实可以通过改变该数字连的边来做到，这个图的删除可以利用cnt标记，找到这个数后cnt--即可，如果为cnt=0，就表示此时已经没有这个数；<br>
-同时，cnt的改变不会影响大小关系，所以这棵树还是一定满足bst的性质的</p>
-<h2 id="查询">查询</h2>
-<h3 id="找前驱">找前驱</h3>
-<pre><code class="language-c">int queryfr(int x, int val, int ans) {
-    if (tree[x].val&gt;=val)
-    {//如果当前值大于val，就说明查的数大了，所以要往左子树找
-        if (tree[x].ls==0)//如果没有左子树就直接返回找到的ans
-            return ans;
-        else//如果不是的话，去查左子树
-            return queryfr(tree[x].ls,val,ans);
-    }
-    else
-    {//如果当前值小于val，就说明我们找比val小的了
-        if (tree[x].rs==0)//如果没有右孩子，就返回tree[x].val，因为走到这一步时，我们后找到的一定比先找到的大(参考第二条性质)
-            return (tree[x].val&lt;val) ? tree[x].val : ans
-        //如果有右孩子，，我们还要找这个节点的右子树，因为万一右子树有比当前节点还大并且小于要找的val的话，ans需要更新
-        if (tree[x].cnt!=0)//如果当前节数的个数不为0(即未被删除)，ans就可以更新为tree[x].val
-            return queryfr(tree[x].rs,val,tree[x].val);
-        else//反之ans不需要更新
-            return queryfr(tree[x].rs,val,ans);
-    }
-}
-</code></pre>
-<h3 id="找后继">找后继</h3>
-<p>同上</p>
-<pre><code class="language-c">int queryne(int x, int val, int ans) {
-    if (tree[x].val&lt;=val)
-    {
-        if (tree[x].rs==0)
-            return ans;
-        else
-            return queryne(tree[x].rs,val,ans);
-    }
-    else
-    {
-        if (tree[x].ls==0)
-            return (tree[x].val&gt;val)? tree[x].val : ans;
-        if (tree[x].cnt!=0)
-            return queryne(tree[x].ls,val,tree[x].val);
-        else
-            return queryne(tree[x].ls,val,ans);
-    }
-}
-</code></pre>
-<h3 id="按值找排名">按值找排名</h3>
-<pre><code class="language-c">int queryval(int x,int val)
-{
-    if(x==0) return 0;//没有排名 
-    if(val==tree[x].val) return tree[tree[x].ls].siz+1;
-    //如果当前节点值=val，则我们加上现在比val小的数的个数，也就是它左子树的大小 
-    if(val&lt;tree[x].val) return queryval(tree[x].ls,val);
-    //如果当前节点值比val大了，我们就去它的左子树找val，因为左子树的节点值一定是小的 
-    return queryval(tree[x].rs,val)+tree[tree[x].ls].siz+tree[x].cnt;
-    //如果当前节点值比val小了，我们就去它的右子树找val，同时加上左子树的大小和这个节点的值出现次数 
-    //因为这个节点的值小于val，这个节点的左子树的各个节点的值一定也小于val 
-}
-//注:这里最终返回的是排名-1，也就是比val小的数的个数，在输出的时候记得+1
-</code></pre>
-<h3 id="按排名找值">按排名找值</h3>
-<pre><code class="language-c">int queryrk(int x,int rk)
-{
-    if(x==0) return INF; 
-    if(tree[tree[x].ls].siz&gt;=rk)//如果左子树大小&gt;=rk了，就说明答案在左子树里 
-        return queryrk(tree[x].ls,rk);//查左子树 
-    if(tree[tree[x].ls].siz+tree[x].cnt&gt;=rk)//如果左子树大小加上当前的数的多少恰好&gt;=k，说明我们找到答案了 
-        return tree[x].val;//直接返回权值 
-    return queryrk(tree[x].rs,rk-tree[tree[x].ls].siz-tree[x].cnt);
-    //否则就查右子树，同时减去当前节点的次数与左子树的大小 
-}
-</code></pre>
-<!-- more -->
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P5076">P5076 【深基16.例7】普通二叉树（简化版）</a><br>
-<strong>code</strong>:</li>
-</ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-int n,x,y,cont;
-const int INF=0x7fffffff;;
-struct node{
-	int val,ls,rs,cnt,siz;
-}tree[100005];
-inline int read()
-{
-    int r=0,w=1;
-    char ch=getchar();
-    while(ch&lt;'0'||ch&gt;'9'){
-        if(ch=='-') w=-1;
-        ch=getchar();
-    }
-    while(ch&gt;='0'&amp;&amp;ch&lt;='9'){
-        r=(r&lt;&lt;3)+(r&lt;&lt;1)+(ch^48);
-        ch=getchar();
-    }
-    return r*w;
-}
-void add(int x,int v)//插入 
-{
-	tree[x].siz++;
-	if(tree[x].val == v){
-		tree[x].cnt++;
-		return;
-	} 
-	if(v &lt; tree[x].val){
-		if(tree[x].ls != 0)
-			add(tree[x].ls,v);
-		else
-		{
-			cont++;
-			tree[cont].cnt = 1;
-			tree[cont].siz = 1;
-			tree[cont].val = v;
-			tree[x].ls = cont;
-		}
-	}
-	if(v &gt; tree[x].val){
-		if(tree[x].rs != 0)
-			add(tree[x].rs,v);
-		else
-		{
-				cont++;
-			tree[cont].cnt = 1;
-			tree[cont].siz = 1;
-			tree[cont].val = v;
-			tree[x].rs = cont;
-		}
-	} 
-}
-//找前驱; 
-int queryfr(int x,int val,int ans)//x是当前的节点的下标，val是要找前驱的值，ans是目前找到的比val小的数的最大值。
-{
-	if(tree[x].val &gt;= val){///如果当前值大于val，就说明查的数大了，所以要往左子树找, 
-		if(tree[x].ls == 0)
-		{
-			return ans;
-		}
-		else
-		return queryfr(tree[x].ls,val,ans);
-	}
-	else//否则去右子树找, 
-	{
-		if(tree[x].rs == 0)
-		{
-			if(tree[x].val &lt; val){
-				return tree[x].val;
-			}
-			else
-			return ans; 
-		}
-		if(tree[x].cnt != 0)
-		{
-			return queryfr(tree[x].rs,val,tree[x].val);//这里考虑到该节点是否被删除; 
-		}
-		else
-		return queryfr(tree[x].rs,val,ans);
-	} 
-	
-}
-//找后继
-int querysu(int x,int val,int ans)
-{
-	if(tree[x].val &lt;= val )
-	{
-		if(tree[x].rs == 0)
-		return ans;
-		else
-		{
-			return querysu(tree[x].rs,val,ans);
-		}
-	}
-	else
-	{
-		if(tree[x].ls == 0)
-		{
-			if(tree[x].val &gt; val)
-			return tree[x].val;
-			else
-			return ans;	
-		}
-		else
-		{
-			if(tree[x].cnt != 0)
-			return querysu(tree[x].ls,val,tree[x].val);
-			else
-			return querysu(tree[x].ls,val,ans);	
-		}	
-	}	
-} 
-//按值找排名
-int queryval(int x,int val)
-{
-	if(x == 0) return 0;
-	if(val &lt; tree[x].val) 
-	{
-		return queryval(tree[x].ls,val);
-	}
-	if(val == tree[x].val) 
-		return tree[tree[x].ls].siz+1;
-	return queryval(tree[x].rs,val) + tree[tree[x].ls].siz + tree[x].cnt;
- } 
-//按排名找值
-int queryrk(int x,int rk)
-{
-	if(x == 0) return INF;
-	if(rk &lt;= tree[tree[x].ls].siz)
-	{
-		return queryrk(tree[x].ls,rk);	
-	}
-	if(tree[tree[x].ls].siz+tree[x].cnt &gt;= rk)
-	{
-		return tree[x].val;
-	}
-	return queryrk(tree[x].rs,rk-tree[tree[x].ls].siz-tree[x].cnt);	
-} 
-int main()
-{
-	n = read();
-	while(n--)
-	{
-		x = read(),y = read();
-		if(x == 1){
-			printf(&quot;%d\n&quot;,queryval(1,y)+1); 
-		}
-		else if(x == 2){
-			printf(&quot;%d\n&quot;,queryrk(1,y));
-		} 
-		else if(x == 3){
-			printf(&quot;%d\n&quot;,queryfr(1,y,-INF));
-		}
-		else if(x == 4){
-			printf(&quot;%d\n&quot;,querysu(1,y,INF));
-		}
-		else
-		{
-			if(cont == 0)
-			{
-				cont++;
-				tree[cont].val = y;
-				tree[cont].siz = tree[cont].cnt = 1;
-			}
-			else
-			{
-				add(1,y);
-			}
-		}
-	}
-	return 0;
-}
-</code></pre>
+              <h2 id="关于githubio无法打开的问题">关于Github.io无法打开的问题</h2>
+<h3 id="解决方法">解决方法</h3>
+<p>1 打开网络和共享中心<br>
+2,活动-&gt;属性-&gt;internet协议4<br>
+3,DNS首选改为223.5.5.5,备用223.6.6.0</p>
 
             </div>
             
@@ -962,7 +658,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/" title="二叉查找树(BST)">https://nzt-yzang.github.io/post/guan-yu-er-cha-cha-zhao-shu-bst/</a>
+      <a href="https://nzt-yzang.github.io/post/suibi/" title="Suibi">https://nzt-yzang.github.io/post/suibi/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -975,15 +671,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="尺取法小结" href="https://nzt-yzang.github.io/post/chi-qu-fa-xiao-jie/">尺取法小结</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="尺取法小结" href="https://nzt-yzang.github.io/post/chi-qu-fa-xiao-jie/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">卡特兰数</a>
-        <a class="nav-mobile-next" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">下一篇</a>
+        <a class="nav-pc-next" title="Day 19(前缀和)" href="https://nzt-yzang.github.io/post/day-19qian-zhui-he/">Day 19(前缀和)</a>
+        <a class="nav-mobile-next" title="Day 19(前缀和)" href="https://nzt-yzang.github.io/post/day-19qian-zhui-he/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
