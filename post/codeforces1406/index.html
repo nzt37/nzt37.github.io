@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>存图的三种方式 | Yzang&#39;s Blog</title>
+<title>Codeforces1406 | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600672606749">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,8 +58,8 @@
 </script>
 
 
-  <meta name="description" content="存图的三种方式" />
-  <meta name="keywords" content="图论,数据结构,算法,c++" />
+  <meta name="description" content="Codeforces1406" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -333,14 +333,13 @@
   <div class="toc-wrapper auto-number auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#1%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%AD%98%E5%9B%BE">1,邻接矩阵存图</a></li>
-<li><a href="#2%E9%82%BB%E6%8E%A5%E8%A1%A8">2,邻接表</a><br>
-*
+<li><a href="#a">A</a>
 <ul>
-<li><a href="#%E5%AD%98%E5%9B%BE%E5%B8%A6%E6%9D%83">存图(带权)</a></li>
+<li><a href="#%E9%A2%98%E6%84%8F"><strong>题意</strong>:</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解:</a></li>
 </ul>
 </li>
-<li><a href="#3%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F">3,链式前向星</a></li>
+<li><a href="#code"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></a></li>
 </ul>
 
   </div>
@@ -606,8 +605,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">
-      存图的三种方式
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/codeforces1406/">
+      Codeforces1406
     </a>
   </h1>
   <div class="post-meta">
@@ -615,40 +614,9 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-03-20 19:31:01">2020-03-20</span>
+      <span class="publish-time" data-t="2020-09-21 14:58:04">2020-09-21</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://nzt-yzang.github.io/tag/RZTfhx_GD/">
-        <span>图论</span>
-      </a>、
-      
-      
-      
-      <a href="https://nzt-yzang.github.io/tag/SpmpUQHui/">
-        <span>数据结构</span>
-      </a>、
-      
-      
-      
-      <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
-        <span>算法</span>
-      </a>、
-      
-      
-      
-      <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/">
-        <span>c++</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
@@ -657,12 +625,12 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>255<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>282<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/cun-tu-de-san-chong-fang-shi/" data-flag-title="存图的三种方式" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/codeforces1406/" data-flag-title="Codeforces1406" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -671,55 +639,54 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <h1 id="1邻接矩阵存图">1,邻接矩阵存图</h1>
-<!-- more -->
-<pre><code class="language-c">int main()
+              <!-- more -->
+<h1 id="a">A</h1>
+<p><a href="https://codeforces.ml/contest/1406">CF1406A</a></p>
+<h2 id="题意"><strong>题意</strong>:</h2>
+<p>给出一个数列,分成两个子序列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi mathvariant="normal">和</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">A和B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord cjk_fallback">和</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>,并求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">.</mi><mi>m</mi><mi>e</mi><mi>x</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>+</mo><mi>m</mi><mi>e</mi><mi>x</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">.mex(A)+mex(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">.</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span>的最小值<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>e</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">mex</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span></span></span></span>:<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>e</mi><mi>x</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">mex(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span>在集合A中没有出现过的最小的非负整数的值</p>
+<h2 id="题解">题解:</h2>
+<p>用桶的思想,将每个数出现的次数记录下来,先找出第一条子序列的断点,,即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>e</mi><mi>x</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">mex(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span>的值,再找的过程中如果存在这个数的话就减<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>,找到断点,即下一个数出现的次数为0,将值记录下来,并停止,开始找出第二条子序列的断点,.从0到100找,这样可保证找到的第一个断点即为最小值.</p>
+<h1 id="code"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></h1>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+map&lt;int,int&gt; M;
+int t,n,p;
+int main()
 {
-    for(int i = 0 ; i &lt; m ; i++)
-    {
-        int u,v,w;
-        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;
-        G[u][v] = d;//有向图
-        G[u][v] = G[v][u] = d;//有向图
-    }
+	cin&gt;&gt;t;
+	while(t--)
+	{
+		cin&gt;&gt;n;
+		M.clear();
+		for(int i = 0 ; i &lt; n ; i++)
+		{
+			cin&gt;&gt;p;
+			M[p]++;
+		}
+		int a,b;
+		for(int i = 0 ; i &lt;= 101 ; i++)
+		{
+			if(M[i] == 0) 
+			{
+				a = i; break;
+			}
+			else
+			M[i]--;
+		}
+		for(int i = 0 ; i &lt;= 100 ; i++)
+		{
+			if(M[i] == 0) {
+			    b = i; break;
+			}
+			else
+			M[i]--;
+		}
+		cout&lt;&lt;a+b&lt;&lt;endl;
+	}
+	return 0;
 }
 </code></pre>
-<!-- more -->
-<h1 id="2邻接表">2,邻接表</h1>
-<!-- more -->
-<pre><code class="language-c">vector&lt;int&gt;v[maxn];
-struct node{
-    int v,w;
-}
-</code></pre>
-<h3 id="存图带权">存图(带权)</h3>
-<pre><code class="language-c">while(cin&gt;&gt;n&gt;&gt;m,n!=0||m!=0)
-   {
-       for(int i=0; i&lt;=n; i++)
-           v[i].clear();//将vecort数组清空
-       for(int i=1; i&lt;=m; i++) //用vector存储邻接表
-       {
-           node nd;
-           scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);
-           nd.v=b,nd.w=c;//将入度的点和权值赋值给结构体
-           v[a].push_back(nd);//将每一个从a出发能直接到达的点都压到下标为a的vector数组中，以后遍历从a能到达的点就可以直接遍历v[a]
-      //    nd.v=a,nd.w=c;//无向图的双向存边
-     //     v[b].push_back(nd);
-       }
-</code></pre>
-<!-- more -->
-<h1 id="3链式前向星">3,链式前向星</h1>
-<pre><code class="language-c">int head[maxn&lt;&lt;1];
-struct Edge{
-    int v,w,next;
-}edge[maxn];
-void _addedge(int u , int v , int w)
-{
-    edge[++cnt].next = head[u];
-    edge[cnt].v = v;
-    edge[cnt].w = w;
-    head[u] = cnt;
-}</code></pre>
 
             </div>
             
@@ -732,7 +699,7 @@ void _addedge(int u , int v , int w)
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/" title="存图的三种方式">https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/</a>
+      <a href="https://nzt-yzang.github.io/post/codeforces1406/" title="Codeforces1406">https://nzt-yzang.github.io/post/codeforces1406/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -741,27 +708,15 @@ void _addedge(int u , int v , int w)
   </ul>
   <div class="tags">
     
-      <a href="https://nzt-yzang.github.io/tag/RZTfhx_GD/"># 图论</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/SpmpUQHui/"># 数据结构</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
-    
-      <a href="https://nzt-yzang.github.io/tag/OawVBSFMH/"># c++</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="C++ STL和一些常见函数" href="https://nzt-yzang.github.io/post/c-stl/">C++ STL和一些常见函数</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="C++ STL和一些常见函数" href="https://nzt-yzang.github.io/post/c-stl/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Day 2" href="https://nzt-yzang.github.io/post/day-2/">Day 2</a>
-        <a class="nav-mobile-next" title="Day 2" href="https://nzt-yzang.github.io/post/day-2/">下一篇</a>
+        <a class="nav-pc-next" title="Suibi" href="https://nzt-yzang.github.io/post/suibi/">Suibi</a>
+        <a class="nav-mobile-next" title="Suibi" href="https://nzt-yzang.github.io/post/suibi/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

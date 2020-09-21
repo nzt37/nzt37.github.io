@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-09-21T06:35:03.989Z</updated>
+    <updated>2020-09-21T07:17:00.344Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -11,6 +11,13 @@
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
     <entry>
+        <title type="html"><![CDATA[Codeforces1406]]></title>
+        <id>https://nzt-yzang.github.io/post/codeforces1406/</id>
+        <link href="https://nzt-yzang.github.io/post/codeforces1406/">
+        </link>
+        <updated>2020-09-21T06:58:04.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Suibi]]></title>
         <id>https://nzt-yzang.github.io/post/suibi/</id>
         <link href="https://nzt-yzang.github.io/post/suibi/">
@@ -18,7 +25,7 @@
         <updated>2020-09-21T06:27:34.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Day 19(前缀和)]]></title>
+        <title type="html"><![CDATA[前缀和(P1719 最大加权矩形)]]></title>
         <id>https://nzt-yzang.github.io/post/day-19qian-zhui-he/</id>
         <link href="https://nzt-yzang.github.io/post/day-19qian-zhui-he/">
         </link>
@@ -32,7 +39,7 @@
         <updated>2020-05-16T00:53:08.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Day 17(Codeforces Round #634 Div 3)]]></title>
+        <title type="html"><![CDATA[Codeforces Round #634 ]]></title>
         <id>https://nzt-yzang.github.io/post/day-17codeforces-round-634-div-3/</id>
         <link href="https://nzt-yzang.github.io/post/day-17codeforces-round-634-div-3/">
         </link>
@@ -81,17 +88,10 @@
         <updated>2020-04-13T03:42:20.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Day 15(传智杯)]]></title>
+        <title type="html"><![CDATA[传智杯]]></title>
         <id>https://nzt-yzang.github.io/post/day-15/</id>
         <link href="https://nzt-yzang.github.io/post/day-15/">
         </link>
         <updated>2020-04-12T01:53:31.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Day 14(动态规划)]]></title>
-        <id>https://nzt-yzang.github.io/post/day-14/</id>
-        <link href="https://nzt-yzang.github.io/post/day-14/">
-        </link>
-        <updated>2020-04-11T02:43:20.000Z</updated>
     </entry>
 </feed>
