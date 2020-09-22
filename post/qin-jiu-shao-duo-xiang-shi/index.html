@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>About me | Yzang&#39;s Blog</title>
+<title>秦九韶(多项式) | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600753403339">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="About me" />
+  <meta name="description" content="秦九韶(多项式)" />
   <meta name="keywords" content="" />
 </head>
 
@@ -413,22 +413,16 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/about-myself/">
-      About me
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/qin-jiu-shao-duo-xiang-shi/">
+      秦九韶(多项式)
     </a>
   </h1>
   <div class="post-meta">
     
-    <span class="meta-item">
-      <i class="fa fa-thumb-tack"></i>
-      <span class="language" data-lan="top">置顶</span>
-      <span class="post-meta-divider">|</span>
-    </span>
-    
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-03-29 11:23:38">2020-03-29</span>
+      <span class="publish-time" data-t="2020-09-21 18:24:41">2020-09-21</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -439,12 +433,12 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>33<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>88<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/about-myself/" data-flag-title="About me" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/qin-jiu-shao-duo-xiang-shi/" data-flag-title="秦九韶(多项式)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -453,12 +447,60 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <!-- more -->
-<p>As sitting in front of the dim screen, my heart is like taking the fastest rocket touching the edge of the galaxy. And I am sure that I shall make great feats here!</p>
-<!-- more -->
+              <p>多项式<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></p>
+<pre><code>bool calc(ll x)
+{
+        sum=0;//一定要清零
+        for(ll i=n;i&gt;=1;i--)
+    {
+            sum=((A[i]+sum)*x)%p;
+            //这里套用秦九韶算法求多项式的值 注意A[0]并不需要乘x！
+    }
+        sum=(sum+A[0])%p;//这里再算上A[0]
+        return !sum;//如果答案是0说明x值为该多项式的解，返回1(true) 
+}
+
+</code></pre>
 
             </div>
             
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      yzang
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://nzt-yzang.github.io/post/qin-jiu-shao-duo-xiang-shi/" title="秦九韶(多项式)">https://nzt-yzang.github.io/post/qin-jiu-shao-duo-xiang-shi/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="P2678 跳石头(二分答案)" href="https://nzt-yzang.github.io/post/p2678-tiao-shi-tou-er-fen-da-an/">P2678 跳石头(二分答案)</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="P2678 跳石头(二分答案)" href="https://nzt-yzang.github.io/post/p2678-tiao-shi-tou-er-fen-da-an/">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="Codeforces Round #670 (Div. 2)" href="https://nzt-yzang.github.io/post/codeforces1406/">Codeforces Round #670 (Div. 2)</a>
+        <a class="nav-mobile-next" title="Codeforces Round #670 (Div. 2)" href="https://nzt-yzang.github.io/post/codeforces1406/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
             
             
   <script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
