@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>About me | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600753403339">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600782011350">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -261,7 +261,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">34</span>
+        <span class="site-item-stat-count">37</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1803,6 +1803,159 @@
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/codeforces-round-671-div-2/"" data-c="
+          &lt;!-- more --&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1419/problem/A&#34;&gt;CF1419A Digit Game&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;题意&#34;&gt;&lt;strong&gt;题意&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;有一个由n位数字组成的字符串,A只能标记奇位上的,B只能标记偶数位上的,A先开始标记,剩下的最后一位是奇数则A获胜,反之亦然;&lt;/p&gt;
+&lt;h3 id=&#34;题解&#34;&gt;&lt;strong&gt;题解&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;如果N为奇数,则剩下的最后一个数一定是奇数上的,如果N为偶数,则剩下的最后一位一定是偶数上的,因为A标记的奇数,B标记的偶数,所以只需统计奇数位上的奇数S1,偶数上的偶数S2.&lt;br&gt;
+如果N为奇数,则判断S1是否大于1,若是有,则A必胜,&lt;br&gt;
+如果N为偶数,则判断S2是否大于1,若大于1,则B必胜.&lt;/p&gt;
+&lt;h3 id=&#34;code&#34;&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Code&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.07153em;&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+int t,n;
+string s;
+int main()
+{
+	cin&amp;gt;&amp;gt;t;
+	while(t--)
+	{
+		cin&amp;gt;&amp;gt;n;
+		cin&amp;gt;&amp;gt;s;
+		int s1=0,s2=0;
+		for(int i = 0 ; i &amp;lt; s.size() ; i++)
+		{
+			if((i)%2==0)
+			{
+				if((int)(s[i]-&#39;0&#39;)%2==1) s1++;  //奇数位 
+			}
+			if((i)%2==1)
+			{
+				if((int)(s[i]-&#39;0&#39;)%2==0) s2++;//偶数位 
+			}
+		}
+		if(n%2==0)
+		{
+			if(s2&amp;gt;=1) cout&amp;lt;&amp;lt;2&amp;lt;&amp;lt;endl;
+			else
+			cout&amp;lt;&amp;lt;1&amp;lt;&amp;lt;endl; 
+		}
+		else{
+			if(s1&amp;gt;=1) cout&amp;lt;&amp;lt;1&amp;lt;&amp;lt;endl;
+			else
+			cout&amp;lt;&amp;lt;2&amp;lt;&amp;lt;endl;
+		} 
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">Codeforces Round #671 (Div. 2)</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/zui-xiao-sheng-cheng-shu/"" data-c="
+          &lt;h1 id=&#34;kruskal和prim&#34;&gt;Kruskal和Prim&lt;/h1&gt;
+&lt;p&gt;区别:在稠密图中Prim更优,在稀疏图中kruskal更优,Prim在节点的连边中找最小值,Kruskal是将边排序,后者需要并查集来判断是否有环.&lt;/p&gt;
+&lt;h2 id=&#34;kruskal&#34;&gt;Kruskal&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+struct Edge
+{
+	int u,v,w;
+}edge[200005];
+int f[5005],n,m,ans,cnt;
+bool cmp(Edge a,Edge b)
+{
+    return a.w&amp;lt;b.w;
+}
+int find(int x)
+{
+    if(f[x]==x)
+    return x;
+    else return f[x] = find(f[x]);
+}
+//并查集循环实现模板，及路径压缩，不懂并查集的同学可以戳一戳代码上方的“并查集详解”
+void kruskal()
+{
+     //将边的权值排序
+    for(int i = 1 ; i &amp;lt;= m ; i++)
+    {
+    	if(find(edge[i].u) != find(edge[i].v))
+    	{
+    		cnt++;
+    		ans += edge[i].w;
+    		f[find(edge[i].u)] = find(edge[i].v);
+		}
+		if(cnt == n-1)
+		break;
+	}
+}
+int main()
+{
+    cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m;
+    for( int i = 1 ; i &amp;lt;= n ; i++)
+    {
+        f[i]=i;
+    }
+    //初始化并查集
+    for( int i = 1 ; i &amp;lt;= m ; i++)
+    {
+        cin&amp;gt;&amp;gt;edge[i].u&amp;gt;&amp;gt;edge[i].v&amp;gt;&amp;gt;edge[i].w;
+    }
+    sort(edge+1,edge+m+1,cmp); 
+    kruskal();	
+    printf(&amp;quot;%d&amp;quot;,ans);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">最小生成树</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/zi-fu-chuan-ha-xi/"" data-c="
+          &lt;!-- more --&gt;
+&lt;p&gt;&lt;strong&gt;给定n个字符串,求出有多少相同的字符串&lt;/strong&gt;&lt;br&gt;
+可以通过哈希数组来判断几个字符串数组是否相同,就是通过一个固定的转换方式将其转换为另一种数组,相同的串转换之后的值一定相同,不同的串转换的值尽量不同.&lt;br&gt;
+&lt;a href=&#34;https://www.luogu.com.cn/problem/P3370&#34;&gt;P3370 【模板】字符串哈希&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;code&#34;&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Code&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.07153em;&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+#define ull unsigned long long//这里运用了ull 可以自动溢出,也可以找一个很大的素数取mod
+ull base = 133,b[20001],cnt=1;
+string a[10001];
+int n;
+ull Hash(string s)//哈希函数
+{
+	ull ans = 0,len  =s.size();
+	for(int i = 0 ; i &amp;lt; len ; i++)
+	{
+		ans = ans*base + (ull)s[i];//转换
+	}
+	return ans;
+}
+int main()
+{
+	cin&amp;gt;&amp;gt;n;
+	for(int i = 0 ; i &amp;lt; n ; i++)
+	{
+		cin&amp;gt;&amp;gt;a[i];
+		b[i] = Hash(a[i]);
+	}
+	sort(b,b+n);
+	for(int i = 1 ; i &amp;lt; n ; i++ )
+	{
+		if(b[i]!=b[i-1])
+		cnt++;
+	}
+	cout&amp;lt;&amp;lt;cnt;
+	return 0;
+}&lt;/code&gt;&lt;/pre&gt;
+">字符串哈希</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/p2678-tiao-shi-tou-er-fen-da-an/"" data-c="
           &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P2678&#34;&gt;P2678 跳石头&lt;/a&gt;&lt;/li&gt;
@@ -2648,8 +2801,6 @@ int main(){
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/"" data-c="
           &lt;!-- more --&gt;
-&lt;p&gt;话说我一个没报名蓝桥杯的人为啥要写这个....&lt;br&gt;
-只写了大概一个小时吧,后面两道题都没看,就被朋友拉上TIMI去了.&lt;/p&gt;
 &lt;h2 id=&#34;t1&#34;&gt;T1&lt;/h2&gt;
 &lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
 &lt;p&gt;括号匹配&lt;br&gt;
@@ -3516,7 +3667,7 @@ int main()
         a[i][j]=min(a[i][j],a[i][k]+a[k][j]);
     }
 &lt;/code&gt;&lt;/pre&gt;
-">顶点间的最短路和单源最短路</a>
+">Floyd多源最短路</a>
       </div>
       
       <div class="item">
@@ -5258,7 +5409,6 @@ inline LL C(LL n,LL m)
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/gu-ge-fang-wen-zhu-shou-po-jie/"" data-c="
           &lt;!-- more --&gt;
 &lt;!-- more --&gt;
-&lt;p&gt;这里收集了我平常可能会用到的一些小工具.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;1 ,&lt;a href=&#34;https://www.lanzous.com/iahf42d&#34;&gt;谷歌访问助手&lt;/a&gt;&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -5279,44 +5429,12 @@ inline LL C(LL n,LL m)
       </div>
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/suan-fa-ri-chang-updating/"" data-c="
-          &lt;!-- more --&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;&lt;strong&gt;常用的内置函数&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;isalnum() : 判断一个字符是否为字符或者数字&lt;br&gt;
-isalpha() : 判断一个字符是否为字母&lt;br&gt;
-isupper() : 判断一个字母是否为大写&lt;br&gt;
-islower() : 判断一个字母是否为小写&lt;br&gt;
-tolower() : 返回一个字母的小写形式&lt;br&gt;
-toupper() : 返回一个字母的大写形式&lt;br&gt;
-isdigit() : 判断一个字符是否为数字&lt;br&gt;
-string.substr(起始位置,截取字串的长度);&lt;br&gt;
-string.find(字符串) 成功返回位置索引 失败返回string::npos&lt;br&gt;
-string.append(追加长度,追加字符必须是char类型)&lt;br&gt;
-a.compare(字符串b) : 比较两个字符串的大小 a &amp;gt; b 返回 1 ,a &amp;lt; b 返回 -1 相等返回 0&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;快读板子&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;     inline int read(register int x=0,register char ch=getchar(),register int f=0) {
-	     for(;!isdigit(ch);ch=getchar()) f=ch==&#39;-&#39;;
-	     for(; isdigit(ch);ch=getchar()) x=(x&amp;lt;&amp;lt;1)+(x&amp;lt;&amp;lt;3)+(ch^48);
-	     return f?-x:x;
-     }
-     ```    
-&amp;lt;!-- more --&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-">算法日常(updating!)</a>
-      </div>
-      
-      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/317/"" data-c="
           &lt;blockquote&gt;
 &lt;p&gt;牛&lt;br&gt;
 泽&lt;br&gt;
 同&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;啥也不是&lt;/strong&gt;&lt;/p&gt;
 ">yzang</a>
       </div>
       
