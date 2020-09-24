@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600924767777">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600951405540">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -243,7 +243,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">38</span>
+        <span class="site-item-stat-count">39</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -327,6 +327,53 @@
         <div class="section-box gemini">
           <section class="section  posts-expand slide-down-in">
             
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-19qian-zhui-he/">
+      前缀和(P1719 最大加权矩形)
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-05-18 18:19:06">2020-05-18</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>2<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>170<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+      <div class="post-body">
+        
+        
+          
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://nzt-yzang.github.io/post/day-19qian-zhui-he/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
   <article class="post-list-box  post box-shadow-wrapper">
     <div class="article-wrapper bg-color">
       <section class="post-header">
@@ -754,53 +801,6 @@
         
         <div class="post-button text-center">
           <a class="btn language" data-lan="read-more" href="https://nzt-yzang.github.io/post/day-15/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-14/">
-      Day 14(动态规划)
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-04-11 10:43:20">2020-04-11</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>1<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>151<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://nzt-yzang.github.io/post/day-14/" rel="contents">
             阅读全文 »
           </a>
         </div>
@@ -1642,6 +1642,144 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/"" data-c="
+          &lt;h1 id=&#34;1&#34;&gt;1&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://poj.org/problem?id=1321&#34;&gt;POJ 1321 棋盘问题&lt;/a&gt; (9.24)&lt;/p&gt;
+&lt;h2 id=&#34;题解&#34;&gt;题解:&lt;/h2&gt;
+&lt;p&gt;DFS参数中传入第几行和当前用掉几个棋子,然后枚举每一列是否合法,如果合法,则标记棋子位置后dfs到下一行.&lt;/p&gt;
+&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+int n,m,cnt;
+string mp[2001];
+bool vis[2001];
+void dfs(int x,int k)
+{
+	if(k == m) {
+		cnt++;
+		return;
+	}
+	for(int i = x ; i &amp;lt; n ; i++){
+		for(int j = 0 ; j &amp;lt; n ; j++){
+			if(mp[i][j]==&#39;#&#39;&amp;amp;&amp;amp;vis[j]==0){
+				vis[j] = true;
+				dfs(i+1,k+1);
+				vis[j] = 0;
+			}
+		}
+				
+	}	
+	
+}
+int main()
+{
+	while(cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m)
+	{
+		if(n==-1&amp;amp;&amp;amp;m==-1) break;
+		cnt = 0;
+		for(int i = 0 ; i &amp;lt; n ; i++){
+			for(int j = 0 ; j &amp;lt; n ; j++){
+				cin&amp;gt;&amp;gt;mp[i][j];
+				}
+			}
+		dfs(0,0);
+		cout&amp;lt;&amp;lt;cnt&amp;lt;&amp;lt;endl;
+	}
+	return 0;	
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;2&#34;&gt;2&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://poj.org/problem?id=2251&#34;&gt;POJ - 2251 Dungeon Master &lt;/a&gt; (9.24)&lt;/p&gt;
+&lt;h2 id=&#34;题意&#34;&gt;题意:&lt;/h2&gt;
+&lt;p&gt;三维空间的迷宫问题，在一个三维空间中通过上下左右前后六个方向移动，寻找从S走到E的最短路径，找到则输出最少时间，否则输出Trapped!&lt;/p&gt;
+&lt;h2 id=&#34;题解-2&#34;&gt;题解:&lt;/h2&gt;
+&lt;p&gt;套用BFS模板即可&lt;br&gt;
+&lt;strong&gt;PS:&lt;/strong&gt;&lt;br&gt;
+RE了好几发,在这里卡了快一个小时,最后发现将string三维数组换成char就过了???&lt;/p&gt;
+&lt;h3 id=&#34;code-2&#34;&gt;code&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;string&amp;gt;
+#include&amp;lt;queue&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#include&amp;lt;cstdlib&amp;gt;
+using namespace std;
+
+int l,r,c,si,sj,sk,xi,yj,ki;
+char mp[35][35][35];
+int dis[35][35][35];
+bool vis[30][30][30];
+const int INF = 423445344;
+int dx[6] = {0,1,-1,0,0,0};
+int dy[6] = {1,0,0,0,-1,0};
+int dk[6] = {0,0,0,1,0,-1};
+struct node{
+	int x,y,k;
+	node(int l,int m,int n){
+		x = l,y = m,k = n;
+	}
+};
+void bfs()
+{
+	queue&amp;lt;node&amp;gt; q;
+	q.push(node(si,sj,sk));
+//	vis[si][sj][sk] = 1;
+	while(!q.empty())
+	{
+		node p = q.front();
+		q.pop();
+		int x = p.x;
+		int y = p.y;
+		int k = p.k;
+		if(x==xi&amp;amp;&amp;amp;y==yj&amp;amp;&amp;amp;k==ki) break;
+		for(int i = 0 ; i &amp;lt; 6 ; i++){
+			int xx=x+dx[i];
+			int yy=y+dy[i];
+			int kk=k+dk[i];
+			if(mp[xx][yy][kk]!=&#39;#&#39;&amp;amp;&amp;amp;xx&amp;gt;=0&amp;amp;&amp;amp;yy&amp;gt;=0&amp;amp;&amp;amp;kk&amp;gt;=0&amp;amp;&amp;amp;xx&amp;lt;l&amp;amp;&amp;amp;yy&amp;lt;r&amp;amp;&amp;amp;kk&amp;lt;c&amp;amp;&amp;amp;dis[xx][yy][kk]==INF){
+				dis[xx][yy][kk]=dis[x][y][k]+1;
+				q.push(node(xx,yy,kk));
+			}
+		}
+		
+	}
+}
+int main()
+{
+	while (cin&amp;gt;&amp;gt;l&amp;gt;&amp;gt;r&amp;gt;&amp;gt;c)
+	{
+		if(!l&amp;amp;&amp;amp;!r&amp;amp;&amp;amp;!c) break;
+		for(int i = 0 ; i &amp;lt; l ; i++){
+			for(int j = 0 ; j &amp;lt; r ; j++){
+				string s;
+				cin&amp;gt;&amp;gt;s;
+				for(int k = 0 ; k &amp;lt; c ; k++){
+					dis[i][j][k] = INF;
+					if(s[k]==&#39;.&#39;) mp[i][j][k]=&#39;.&#39;;
+					if(s[k]==&#39;#&#39;) mp[i][j][k]=&#39;#&#39;;
+					if(s[k]==&#39;S&#39;){
+						mp[i][j][k]=&#39;S&#39;;
+						dis[i][j][k]=0;
+						si = i,sj = j,sk = k;	
+					}
+					if(s[k]==&#39;E&#39;){
+						mp[i][j][k]=&#39;E&#39;;
+						xi = i,yj = j,ki = k;			
+					}		
+				}
+			}
+		}
+		bfs();
+		if (dis[xi][yj][ki] != INF)
+		printf(&amp;quot;Escaped in %d minute(s).\n&amp;quot;, dis[xi][yj][ki]);
+		else cout&amp;lt;&amp;lt;&amp;quot;Trapped!&amp;quot;&amp;lt;&amp;lt;endl;
+	}	
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">Kuangbin 专题一 简单搜索</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/p1451-qiu-xi-bao-shu-liang-sou-suo/"" data-c="

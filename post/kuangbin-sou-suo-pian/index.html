@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Day 2 | Yzang&#39;s Blog</title>
+<title>Kuangbin 专题一 简单搜索 | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1600951405540">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,8 +58,8 @@
 </script>
 
 
-  <meta name="description" content="Day 2" />
-  <meta name="keywords" content="算法" />
+  <meta name="description" content="Kuangbin 专题一 简单搜索" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -333,9 +333,23 @@
   <div class="toc-wrapper auto-number auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li>
+<li><a href="#1">1</a>
 <ul>
-<li><a href="#%E5%B9%B3%E9%9D%A2%E4%B8%8A%E6%9C%89n%E6%9D%A1%E7%9B%B4%E7%BA%BF%E4%B8%94%E6%97%A0%E4%B8%89%E7%BA%BF%E5%85%B1%E7%82%B9%E9%82%A3%E4%B9%88%E8%BF%99%E4%BA%9B%E7%9B%B4%E7%BA%BF%E8%83%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%A4%E7%82%B9%E6%95%B0">平面上有N条直线，且无三线共点，那么这些直线能有多少不同的交点数？</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解:</a>
+<ul>
+<li><a href="#code">Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2">2</a>
+<ul>
+<li><a href="#%E9%A2%98%E6%84%8F">题意:</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3-2">题解:</a>
+<ul>
+<li><a href="#code-2">code</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -603,8 +617,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/day-2/">
-      Day 2
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/">
+      Kuangbin 专题一 简单搜索
     </a>
   </h1>
   <div class="post-meta">
@@ -612,36 +626,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-03-20 13:22:55">2020-03-20</span>
+      <span class="publish-time" data-t="2020-09-24 15:44:37">2020-09-24</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://nzt-yzang.github.io/tag/LnFenECij/">
-        <span>算法</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>511<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>651<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/day-2/" data-flag-title="Day 2" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/kuangbin-sou-suo-pian/" data-flag-title="Kuangbin 专题一 简单搜索" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -650,127 +651,138 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <ul>
-<li><a href="https://www.luogu.com.cn/problem/P2789">P2789 直线交点数</a></li>
-<li></li>
-</ul>
-<!-- more -->
-<h2 id="平面上有n条直线且无三线共点那么这些直线能有多少不同的交点数">平面上有N条直线，且无三线共点，那么这些直线能有多少不同的交点数？</h2>
-<p>这道题是对N条直线分别讨论平行线的条数,(<strong>最低有一条平行线</strong>)<br>
-已知有n条直线,r条平行线时,交点个数为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">r*(n-r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>在加上这<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(n-r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>个交点的个数,</p>
+              <h1 id="1">1</h1>
+<p><a href="http://poj.org/problem?id=1321">POJ 1321 棋盘问题</a> (9.24)</p>
+<h2 id="题解">题解:</h2>
+<p>DFS参数中传入第几行和当前用掉几个棋子,然后枚举每一列是否合法,如果合法,则标记棋子位置后dfs到下一行.</p>
+<h3 id="code">Code</h3>
 <pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
 using namespace std;
-bool f[10001];
-int MAX = -1;
-int n;
-int ans;
-void work(int n , int k)
+int n,m,cnt;
+string mp[2001];
+bool vis[2001];
+void dfs(int x,int k)
 {
-	if(n == 0)
-	{
-		f[k] = true;
-		MAX = max(k,MAX);
-		return ;
+	if(k == m) {
+		cnt++;
+		return;
 	}
-	for(int r = n ; i &gt;= 1 ; i--)
-		work(n-r,r * (n-r) + k);
+	for(int i = x ; i &lt; n ; i++){
+		for(int j = 0 ; j &lt; n ; j++){
+			if(mp[i][j]=='#'&amp;&amp;vis[j]==0){
+				vis[j] = true;
+				dfs(i+1,k+1);
+				vis[j] = 0;
+			}
+		}
+				
+	}	
+	
 }
 int main()
 {
-	cin &gt;&gt; n;
-	work(n,0);
-	for(int i = 0 ;  i &lt;= MAX ; i++)
+	while(cin&gt;&gt;n&gt;&gt;m)
 	{
-		if(f[i]) ans++;
+		if(n==-1&amp;&amp;m==-1) break;
+		cnt = 0;
+		for(int i = 0 ; i &lt; n ; i++){
+			for(int j = 0 ; j &lt; n ; j++){
+				cin&gt;&gt;mp[i][j];
+				}
+			}
+		dfs(0,0);
+		cout&lt;&lt;cnt&lt;&lt;endl;
 	}
-	cout&lt;&lt;ans;
-	return 0;
+	return 0;	
 }
 </code></pre>
-<!-- more -->
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P5318">P5318 【深基18.例3】查找文献</a></li>
-<li><strong>图的bfs和dfs</strong></li>
-</ul>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+<h1 id="2">2</h1>
+<p><a href="http://poj.org/problem?id=2251">POJ - 2251 Dungeon Master </a> (9.24)</p>
+<h2 id="题意">题意:</h2>
+<p>三维空间的迷宫问题，在一个三维空间中通过上下左右前后六个方向移动，寻找从S走到E的最短路径，找到则输出最少时间，否则输出Trapped!</p>
+<h2 id="题解-2">题解:</h2>
+<p>套用BFS模板即可<br>
+<strong>PS:</strong><br>
+RE了好几发,在这里卡了快一个小时,最后发现将string三维数组换成char就过了???</p>
+<h3 id="code-2">code</h3>
+<pre><code class="language-c">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;queue&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdlib&gt;
 using namespace std;
-const int maxn = 1e5;
-int n,m,head[maxn&lt;&lt;1],cnt;
-bool vis[maxn];
-struct Edge{
-	int u,v;
-};
-	queue&lt;int&gt;q;
-vector &lt;int&gt; edge[maxn];
-void dfs(int x,int num)
-{
-	vis[x] = 1;
-	cout&lt;&lt;x&lt;&lt;&quot; &quot;;
-	if(num == n) return ;
-	for(int i = 0 ; i &lt; edge[x].size() ; i++)
-	{
-		if(!vis[edge[x][i]])
-		dfs(edge[x][i],num+1);
+
+int l,r,c,si,sj,sk,xi,yj,ki;
+char mp[35][35][35];
+int dis[35][35][35];
+bool vis[30][30][30];
+const int INF = 423445344;
+int dx[6] = {0,1,-1,0,0,0};
+int dy[6] = {1,0,0,0,-1,0};
+int dk[6] = {0,0,0,1,0,-1};
+struct node{
+	int x,y,k;
+	node(int l,int m,int n){
+		x = l,y = m,k = n;
 	}
-	
-}
-void bfs(int x)
+};
+void bfs()
 {
-	memset(vis,false,sizeof(vis));
-	q.push(x);
-	vis[x] = 1;
+	queue&lt;node&gt; q;
+	q.push(node(si,sj,sk));
+//	vis[si][sj][sk] = 1;
 	while(!q.empty())
 	{
-		int v = q.front();
+		node p = q.front();
 		q.pop();
-		cout&lt;&lt;v&lt;&lt;&quot; &quot;;
-		for(int i = 0 ; i &lt; edge[v].size() ; i++){
-			if(!vis[edge[v][i]])
-			{
-				vis[edge[v][i]] = 1;
-				q.push(edge[v][i]);
+		int x = p.x;
+		int y = p.y;
+		int k = p.k;
+		if(x==xi&amp;&amp;y==yj&amp;&amp;k==ki) break;
+		for(int i = 0 ; i &lt; 6 ; i++){
+			int xx=x+dx[i];
+			int yy=y+dy[i];
+			int kk=k+dk[i];
+			if(mp[xx][yy][kk]!='#'&amp;&amp;xx&gt;=0&amp;&amp;yy&gt;=0&amp;&amp;kk&gt;=0&amp;&amp;xx&lt;l&amp;&amp;yy&lt;r&amp;&amp;kk&lt;c&amp;&amp;dis[xx][yy][kk]==INF){
+				dis[xx][yy][kk]=dis[x][y][k]+1;
+				q.push(node(xx,yy,kk));
 			}
-			
 		}
+		
 	}
-	
 }
 int main()
 {
-	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-	for(int i = 0 ; i &lt; m ; i++){
-		int u,v;
-		cin&gt;&gt;u&gt;&gt;v;
-		edge[u].push_back(v);//邻接表建有向图 
-	}
-	for (int i=1; i&lt;=n; i++) 
-	sort(edge[i].begin(), edge[i].end());
-	dfs(1,0);
-	printf(&quot;\n&quot;);
-	bfs(1);
+	while (cin&gt;&gt;l&gt;&gt;r&gt;&gt;c)
+	{
+		if(!l&amp;&amp;!r&amp;&amp;!c) break;
+		for(int i = 0 ; i &lt; l ; i++){
+			for(int j = 0 ; j &lt; r ; j++){
+				string s;
+				cin&gt;&gt;s;
+				for(int k = 0 ; k &lt; c ; k++){
+					dis[i][j][k] = INF;
+					if(s[k]=='.') mp[i][j][k]='.';
+					if(s[k]=='#') mp[i][j][k]='#';
+					if(s[k]=='S'){
+						mp[i][j][k]='S';
+						dis[i][j][k]=0;
+						si = i,sj = j,sk = k;	
+					}
+					if(s[k]=='E'){
+						mp[i][j][k]='E';
+						xi = i,yj = j,ki = k;			
+					}		
+				}
+			}
+		}
+		bfs();
+		if (dis[xi][yj][ki] != INF)
+		printf(&quot;Escaped in %d minute(s).\n&quot;, dis[xi][yj][ki]);
+		else cout&lt;&lt;&quot;Trapped!&quot;&lt;&lt;endl;
+	}	
 	return 0;
 }
-</code></pre>
-<!-- more -->
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P6195">P6195 [EER1]迫害</a><br>
-一道数学推论题,要用到快速幂(<strong>这两天就去学快速幂</strong>)</li>
-</ul>
-<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-#define ll long long
-#define mo 1000000007
-int main(){
-    ll n,m,k=1,i,yu;
-    scanf(&quot;%lld%lld&quot;,&amp;n,&amp;m);
-    yu=m%15;m/=15;
-    for(i=1;i&lt;=m;i++)
-    k*=32768,k%=mo;//算(2^15)^m
-    for(i=1;i&lt;=yu;i++)
-    k*=2,k%=mo;//算2^yu
-    printf(&quot;%lld\n&quot;,((n+1)*(k%mo)-1)%mo);
-    return 0;
-} 
 </code></pre>
 
             </div>
@@ -784,7 +796,7 @@ int main(){
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/day-2/" title="Day 2">https://nzt-yzang.github.io/post/day-2/</a>
+      <a href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/" title="Kuangbin 专题一 简单搜索">https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -793,21 +805,15 @@ int main(){
   </ul>
   <div class="tags">
     
-      <a href="https://nzt-yzang.github.io/tag/LnFenECij/"># 算法</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="存图的三种方式" href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">存图的三种方式</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="存图的三种方式" href="https://nzt-yzang.github.io/post/cun-tu-de-san-chong-fang-shi/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">Day 1.</a>
-        <a class="nav-mobile-next" title="Day 1." href="https://nzt-yzang.github.io/post/day-1/">下一篇</a>
+        <a class="nav-pc-next" title="P1451 求细胞数量(搜索)" href="https://nzt-yzang.github.io/post/p1451-qiu-xi-bao-shu-liang-sou-suo/">P1451 求细胞数量(搜索)</a>
+        <a class="nav-mobile-next" title="P1451 求细胞数量(搜索)" href="https://nzt-yzang.github.io/post/p1451-qiu-xi-bao-shu-liang-sou-suo/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
