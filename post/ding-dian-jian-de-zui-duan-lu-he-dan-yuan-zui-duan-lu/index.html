@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>Floyd多源最短路 | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601102180997">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601114089608">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -301,7 +301,7 @@
               <i class="fa fa-gg" title="洛谷"></i>
             </a>
           
-            <a href="https://codeforces.ml/profile/yzang">
+            <a href="https://codeforces.ml/profile/ztns">
               <i class="fa fa-battery-4" title="Codeforces"></i>
             </a>
           
@@ -2131,6 +2131,44 @@ int main()
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;7&#34;&gt;7&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://poj.org/problem?id=3087&#34;&gt;POJ 3087 Shuffle&#39;m Up&lt;/a&gt; &lt;strong&gt;(9.26)&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意-2&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;给两个字符串,合并成一个新的,合并顺序位先s2后s1,合并成一个后再拆分成s1和s2,左半边s1,后半边s2,求多少步后可以合成指定的字符串&lt;/p&gt;
+&lt;h2 id=&#34;题解-5&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;暴力模拟,话说这题怎么会在搜索专栏里&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt; 
+using namespace std;
+int main()
+{
+	int t;
+	cin&amp;gt;&amp;gt;t;
+	for(int i = 1 ; i &amp;lt;= t ; i++){
+		string s1,s2,s3;
+		int n;
+		cin&amp;gt;&amp;gt;n;
+		cin&amp;gt;&amp;gt;s1&amp;gt;&amp;gt;s2&amp;gt;&amp;gt;s3;
+		int cnt = 0;
+		while(cnt &amp;lt; 999){
+			if(s1 + s2 == s3){
+				cout&amp;lt;&amp;lt;i&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;cnt&amp;lt;&amp;lt;endl; 
+				break;
+			}
+			string temp = &amp;quot;&amp;quot;;
+			for(int j = 0 ; j &amp;lt; n; j++){
+				temp = temp + s2[j] + s1[j]; 
+			}
+			s1 = temp.substr(0,n),s2 = temp.substr(n);
+			cnt++;
+			
+		}
+		if(cnt&amp;gt;=999){
+			cout&amp;lt;&amp;lt;i&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;&amp;quot;-1&amp;quot;&amp;lt;&amp;lt;endl;
+		}	
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;8&#34;&gt;8&lt;/h1&gt;
 &lt;h1 id=&#34;9&#34;&gt;9&lt;/h1&gt;
 &lt;h1 id=&#34;10&#34;&gt;10&lt;/h1&gt;
@@ -2138,7 +2176,7 @@ int main()
 &lt;h1 id=&#34;12&#34;&gt;12&lt;/h1&gt;
 &lt;h1 id=&#34;13&#34;&gt;13&lt;/h1&gt;
 &lt;h1 id=&#34;14&#34;&gt;14&lt;/h1&gt;
-">Kuangbin 专题一 简单搜索</a>
+">Kuangbin 专题一 简单搜索(14-5)</a>
       </div>
       
       <div class="item">

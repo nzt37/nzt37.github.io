@@ -8,8 +8,8 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Kuangbin 专题一 简单搜索 | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601102180997">
+<title>Kuangbin 专题一 简单搜索(14-5) | Yzang&#39;s Blog</title>
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601114089608">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="Kuangbin 专题一 简单搜索" />
+  <meta name="description" content="Kuangbin 专题一 简单搜索(14-5)" />
   <meta name="keywords" content="" />
 </head>
 
@@ -301,7 +301,7 @@
               <i class="fa fa-gg" title="洛谷"></i>
             </a>
           
-            <a href="https://codeforces.ml/profile/yzang">
+            <a href="https://codeforces.ml/profile/ztns">
               <i class="fa fa-battery-4" title="Codeforces"></i>
             </a>
           
@@ -369,7 +369,12 @@
 </li>
 </ul>
 </li>
-<li><a href="#7">7</a></li>
+<li><a href="#7">7</a>
+<ul>
+<li><a href="#%E9%A2%98%E6%84%8F-2">题意</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3-5">题解</a></li>
+</ul>
+</li>
 <li><a href="#8">8</a></li>
 <li><a href="#9">9</a></li>
 <li><a href="#10">10</a></li>
@@ -643,7 +648,7 @@
             <section class="post-header">
   <h1 class="post-title">
     <a class="post-title-link" href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/">
-      Kuangbin 专题一 简单搜索
+      Kuangbin 专题一 简单搜索(14-5)
     </a>
   </h1>
   <div class="post-meta">
@@ -663,17 +668,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>8<span class="language" data-lan="minute">分钟</span></span>
+      <span>9<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1276<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>1483<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/kuangbin-sou-suo-pian/" data-flag-title="Kuangbin 专题一 简单搜索" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/kuangbin-sou-suo-pian/" data-flag-title="Kuangbin 专题一 简单搜索(14-5)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -954,6 +959,44 @@ int main()
 }
 </code></pre>
 <h1 id="7">7</h1>
+<p><a href="http://poj.org/problem?id=3087">POJ 3087 Shuffle'm Up</a> <strong>(9.26)</strong></p>
+<h2 id="题意-2">题意</h2>
+<p>给两个字符串,合并成一个新的,合并顺序位先s2后s1,合并成一个后再拆分成s1和s2,左半边s1,后半边s2,求多少步后可以合成指定的字符串</p>
+<h2 id="题解-5">题解</h2>
+<p>暴力模拟,话说这题怎么会在搜索专栏里</p>
+<pre><code class="language-c">#include &lt;iostream&gt;
+#include &lt;string&gt; 
+using namespace std;
+int main()
+{
+	int t;
+	cin&gt;&gt;t;
+	for(int i = 1 ; i &lt;= t ; i++){
+		string s1,s2,s3;
+		int n;
+		cin&gt;&gt;n;
+		cin&gt;&gt;s1&gt;&gt;s2&gt;&gt;s3;
+		int cnt = 0;
+		while(cnt &lt; 999){
+			if(s1 + s2 == s3){
+				cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;cnt&lt;&lt;endl; 
+				break;
+			}
+			string temp = &quot;&quot;;
+			for(int j = 0 ; j &lt; n; j++){
+				temp = temp + s2[j] + s1[j]; 
+			}
+			s1 = temp.substr(0,n),s2 = temp.substr(n);
+			cnt++;
+			
+		}
+		if(cnt&gt;=999){
+			cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;&quot;-1&quot;&lt;&lt;endl;
+		}	
+	}
+	return 0;
+}
+</code></pre>
 <h1 id="8">8</h1>
 <h1 id="9">9</h1>
 <h1 id="10">10</h1>
@@ -973,7 +1016,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/" title="Kuangbin 专题一 简单搜索">https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/</a>
+      <a href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/" title="Kuangbin 专题一 简单搜索(14-5)">https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -2416,6 +2459,44 @@ int main()
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;7&#34;&gt;7&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://poj.org/problem?id=3087&#34;&gt;POJ 3087 Shuffle&#39;m Up&lt;/a&gt; &lt;strong&gt;(9.26)&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意-2&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;给两个字符串,合并成一个新的,合并顺序位先s2后s1,合并成一个后再拆分成s1和s2,左半边s1,后半边s2,求多少步后可以合成指定的字符串&lt;/p&gt;
+&lt;h2 id=&#34;题解-5&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;暴力模拟,话说这题怎么会在搜索专栏里&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt; 
+using namespace std;
+int main()
+{
+	int t;
+	cin&amp;gt;&amp;gt;t;
+	for(int i = 1 ; i &amp;lt;= t ; i++){
+		string s1,s2,s3;
+		int n;
+		cin&amp;gt;&amp;gt;n;
+		cin&amp;gt;&amp;gt;s1&amp;gt;&amp;gt;s2&amp;gt;&amp;gt;s3;
+		int cnt = 0;
+		while(cnt &amp;lt; 999){
+			if(s1 + s2 == s3){
+				cout&amp;lt;&amp;lt;i&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;cnt&amp;lt;&amp;lt;endl; 
+				break;
+			}
+			string temp = &amp;quot;&amp;quot;;
+			for(int j = 0 ; j &amp;lt; n; j++){
+				temp = temp + s2[j] + s1[j]; 
+			}
+			s1 = temp.substr(0,n),s2 = temp.substr(n);
+			cnt++;
+			
+		}
+		if(cnt&amp;gt;=999){
+			cout&amp;lt;&amp;lt;i&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;&amp;quot;-1&amp;quot;&amp;lt;&amp;lt;endl;
+		}	
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;8&#34;&gt;8&lt;/h1&gt;
 &lt;h1 id=&#34;9&#34;&gt;9&lt;/h1&gt;
 &lt;h1 id=&#34;10&#34;&gt;10&lt;/h1&gt;
@@ -2423,7 +2504,7 @@ int main()
 &lt;h1 id=&#34;12&#34;&gt;12&lt;/h1&gt;
 &lt;h1 id=&#34;13&#34;&gt;13&lt;/h1&gt;
 &lt;h1 id=&#34;14&#34;&gt;14&lt;/h1&gt;
-">Kuangbin 专题一 简单搜索</a>
+">Kuangbin 专题一 简单搜索(14-5)</a>
       </div>
       
       <div class="item">
