@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>P2678 跳石头(二分答案) | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601360094664">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601383160911">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -267,7 +267,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">43</span>
+        <span class="site-item-stat-count">44</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1809,6 +1809,115 @@ int main()
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/acl-beginner-contest/"" data-c="
+          &lt;h1 id=&#34;a-repeat-acl&#34;&gt;A - Repeat ACL&lt;/h1&gt;
+&lt;p&gt;模拟就行&lt;/p&gt;
+&lt;h1 id=&#34;b-integer-preference&#34;&gt;B - Integer Preference&lt;/h1&gt;
+&lt;p&gt;判断相交关系即可&lt;/p&gt;
+&lt;h1 id=&#34;c-connect-cities&#34;&gt;C - Connect Cities&lt;/h1&gt;
+&lt;h2 id=&#34;题意&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;n个点 ,已经建了b条边,求还需要建的边数&lt;/p&gt;
+&lt;h2 id=&#34;题解&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;用并查集判断有效边的个数即可,最后需要建边的总数应该是n-1条边减去建了的b条边然后加上其中的无效边&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+const int maxn = 1e5+6;
+int f[maxn],ans;
+int find(int x)
+{
+	if(f[x] == x)
+	return x;
+	else return f[x] = find(f[x]);
+}
+int main()
+{
+	int a,b;
+	cin&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b;
+	for(int i = 0 ; i &amp;lt; a ; i++){
+		f[i] = i;
+	}
+	for(int i = 0 ; i &amp;lt; b ; i++){
+		int u,v;
+		cin&amp;gt;&amp;gt;u&amp;gt;&amp;gt;v;
+		if(find(u)==find(v)) ans++;
+		else{
+			f[find(f[u])] = find(v);
+		}
+	}
+	cout&amp;lt;&amp;lt;a-1-b+ans;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;d-flat-subsequence&#34;&gt;D - Flat Subsequence&lt;/h1&gt;
+&lt;h2 id=&#34;题意-2&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;给你n个数， 让你选择一个最长的子序列a 且&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;a[i + 1] - a[i]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;−&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;的绝对值小于等于k问最长的子序列长度为多少？&lt;/p&gt;
+&lt;h2 id=&#34;题解-2&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;首先可以看出可以用dp来做,dp[i][j]指处理到第i个元素,以j值结尾的子序列最大长度,第一维可以滚动数组省去;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;for (int i = 1; i &amp;lt;= n; i++) {
+	for (int j = 1; j &amp;lt; i; j++) {
+		if (abs(a[i] - a[j]) &amp;lt;= k) {
+			dp[i] = max(dp[i], dp[j] + 1);
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后可以发现每一次i循环找的都是区间最大值,所以用线段树维护dp即可&lt;/p&gt;
+&lt;h2 id=&#34;code-2&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+const int maxn = 1e5+1;
+const int N = 6e5 + 7;
+inline int ls(int p){return p&amp;lt;&amp;lt;1;}
+inline int rs(int p){return p&amp;lt;&amp;lt;1|1;}
+int n,k,a[N];
+struct node{
+	int l,r,pre;
+}t[4*N];
+
+void update(int pos,int v,int l,int r,int p)
+{
+	if(l == r){
+		t[p].pre = v; 
+		return;
+	}
+	int mid = l+r&amp;gt;&amp;gt;1;
+	if(pos &amp;lt;= mid) update(pos,v,l,mid,ls(p));
+	else update(pos,v,mid+1,r,rs(p));
+	t[p].pre = max(t[ls(p)].pre,t[rs(p)].pre); 
+	
+}
+int query(int x,int y,int l,int r,int p)
+{
+	if(x&amp;lt;=l&amp;amp;&amp;amp;y&amp;gt;=r){
+		return t[p].pre;
+	}
+	int mid = l+r&amp;gt;&amp;gt;1;
+	int ans = 0;
+	if(x&amp;lt;=mid) ans = max(ans,query(x,y,l,mid,ls(p)));
+	if(y&amp;gt;mid) ans = max(ans,query(x,y,mid+1,r,rs(p)));
+	return ans;
+}
+int main()
+{
+	scanf(&amp;quot;%d %d&amp;quot;, &amp;amp;n, &amp;amp;k);
+    for (int i = 1; i &amp;lt;= n; i++) {
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;a[i]);
+    }
+    int ans = 0;
+    for (int i = 1; i &amp;lt;= n; i++) {
+        int res = query(max(a[i] - k, 0), a[i] + k,0 , N, 1) + 1;
+        ans = max(ans, res);
+        update(a[i], res, 0, N, 1);
+    }
+    cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+	return 0;	
+} 
+&lt;/code&gt;&lt;/pre&gt;
+">	◉ ACL Beginner Contest</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/codeforces-round-674-div-3/"" data-c="
