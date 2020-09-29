@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>   Codeforces Round #673 (Div. 2) | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601304193504">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601360094664">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -4050,73 +4050,6 @@ int main() {
     return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;io优化&#34;&gt;IO优化&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
-
-#define ui unsigned int
-#define ll long long
-#define ul unsigned ll
-#define ld long double
-
-#define pi pair &amp;lt;int, int&amp;gt;
-#define fi first
-#define se second
-#define mp make_pair
-
-#define ls (p &amp;lt;&amp;lt; 1)
-#define rs (ls | 1)
-#define md ((t[p].l + t[p].r) &amp;gt;&amp;gt; 1)
-
-#define vi vector &amp;lt;int&amp;gt;
-#define pb push_back
-#define pq priority_queue
-
-#define dbg(x) cerr &amp;lt;&amp;lt; #x&amp;quot; = &amp;quot; &amp;lt;&amp;lt; x &amp;lt;&amp;lt; endl
-#define debug(...) fprintf(stderr, __VA_ARGS__)
-
-#define fl(x) freopen(x&amp;quot;.in&amp;quot;, &amp;quot;r&amp;quot;, stdin), freopen(x&amp;quot;.out&amp;quot;, &amp;quot;w&amp;quot;, stdout)
-
-using namespace std;
-
-namespace io {
-    int f;
-    char c;
-    #define gc getchar
-    template &amp;lt;class I&amp;gt;
-    inline void rd(I &amp;amp;x) {
-        for (f = 1, c = gc(); c &amp;lt; &#39;0&#39; || c &amp;gt; &#39;9&#39;; c = gc())
-            if (c == &#39;-&#39;) f = -1;
-        for (x = 0; c &amp;gt;= &#39;0&#39; &amp;amp;&amp;amp; c &amp;lt;= &#39;9&#39;; c = gc())
-            x = (x &amp;lt;&amp;lt; 3) + (x &amp;lt;&amp;lt; 1) + (c &amp;amp; 15);
-        x *= f;
-    }
-}
-using io::rd;
-
-int main() {
-
-    return 0;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- more --&gt;
-&lt;p&gt;快读&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
-using namespace std;
-
-inline int read(){
-   int s=0,w=1;
-   char ch=getchar();
-   while(ch&amp;lt;&#39;0&#39;||ch&amp;gt;&#39;9&#39;){if(ch==&#39;-&#39;)w=-1;ch=getchar();}
-   while(ch&amp;gt;=&#39;0&#39;&amp;amp;&amp;amp;ch&amp;lt;=&#39;9&#39;) s=s*10+ch-&#39;0&#39;,ch=getchar();
-   return s*w;
-}
-
-int main()
-{
-
-    return 0;
-}
-&lt;/code&gt;&lt;/pre&gt;
 &lt;!-- more --&gt;
 &lt;h1 id=&#34;一些算法模板&#34;&gt;一些算法模板&lt;/h1&gt;
 &lt;h2 id=&#34;筛素数&#34;&gt;筛素数&lt;/h2&gt;
@@ -4154,17 +4087,98 @@ int find(int x)
 &lt;h2 id=&#34;组合数&#34;&gt;组合数&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void yhsj(int n)
 {
-    for (int i = 0; i &amp;lt;= n; ++i)
-    {
+    for (int i = 0; i &amp;lt;= n; ++i){
         z[i][0] = z[i][i] = 1;//杨辉三角形侧边初始值
     }
-        for (int i = 2; i &amp;lt;= n; ++i)
-        {
-            for (int j = 1; j &amp;lt;= i; j++)
-            {
+        for (int i = 2; i &amp;lt;= n; ++i) {
+            for (int j = 1; j &amp;lt;= i; j++) {
                 z[i][j] = z[i - 1][j] + z[i - 1][j - 1];
             }
         }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;线段树&#34;&gt;线段树&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P3372&#34;&gt;P3372 【模板】线段树 1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+const int maxn = 1e5+6;
+inline int ls(int p){return p&amp;lt;&amp;lt;1;}//左儿子 
+inline int rs(int p){return p&amp;lt;&amp;lt;1|1;}//右儿子
+struct node{
+	int l,r;//该节点维护的区间 
+	long long pre,laze;//pre为该点维护的值,laze为懒标记 
+}t[maxn*4];
+int a[maxn+2];
+void build(int p,int l,int r)
+{
+	t[p].l=l;t[p].r=r;//以p为编号的节点维护由l到r的区间; 
+	if(l == r){
+		t[p].pre = a[l];
+		return ;
+	}
+	int mid = l+r&amp;gt;&amp;gt;1;
+	build(ls(p),l,mid);
+	build(rs(p),mid+1,r);
+	t[p].pre = t[ls(p)].pre + t[rs(p)].pre;//上传区间和 ; 
+}
+void pushdown(int p) //下传laze标记;
+{
+	if(t[p].laze){//如果懒标记不为零,就下传,并更新左右儿子值; 
+		t[ls(p)].pre += t[p].laze*(t[ls(p)].r-t[ls(p)].l+1); 
+		t[rs(p)].pre += t[p].laze*(t[rs(p)].r-t[rs(p)].l+1);
+		t[ls(p)].laze += t[p].laze;
+		t[rs(p)].laze += t[p].laze;
+		t[p].laze = 0;
+	}
+} 
+void change(int p,int x,int y,int z  ) 
+{
+	if(x &amp;lt;= t[p].l  &amp;amp;&amp;amp; y &amp;gt;= t[p].r ){//被覆盖的话，就对其进行修改
+		t[p].pre += (long long) z*(t[p].r-t[p].l+1);
+		t[p].laze += z;//打上懒标记
+		return;
+	} 
+	pushdown(p);//如果发现没有被覆盖，那就需要继续向下找，考虑儿子所维护的区间可能因为懒标记的存在而没有修改，因此将懒标记下放
+	int mid = t[p].l + t[p].r &amp;gt;&amp;gt;1;
+	if(x &amp;lt;= mid) change(ls(p),x,y,z);//如果要修改的区间覆盖了左儿子，就修改左儿子
+	if(y &amp;gt; mid) change(rs(p),x,y,z);
+	t[p].pre = t[ls(p)].pre + t[rs(p)].pre;//上传区间和 ; 
+}
+long long query(int p,int x,int y)
+{
+	if(x &amp;lt;= t[p].l  &amp;amp;&amp;amp; y &amp;gt;= t[p].r){//如果被覆盖，就返回维护的值
+		 return t[p].pre;//下传懒标记，并查询左右儿子
+	}
+	pushdown(p);
+	int mid = t[p].l+t[p].r&amp;gt;&amp;gt;1;
+	long long ans = 0;
+	if(x &amp;lt;= mid) ans += query(ls(p),x,y);
+	if(y&amp;gt;mid) ans+= query(rs(p),x,y);//累加答案，返回左右儿子的和
+	return ans;
+}
+int main()
+{
+	int n,m;
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m;
+	for(int i = 1 ; i &amp;lt;= n ; i++){
+		scanf(&amp;quot;%d&amp;quot;,&amp;amp;a[i]);
+	}
+	build(1,1,n);
+	for(int i=1;i&amp;lt;=m;i++){
+        int q,x,y,z;
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;q);
+        if(q==1){//区间改变操作 
+            scanf(&amp;quot;%d%d%d&amp;quot;,&amp;amp;x,&amp;amp;y,&amp;amp;z);
+            change(1,x,y,z);
+        }
+        else {//查询操作 
+            scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;x,&amp;amp;y);
+            cout&amp;lt;&amp;lt;query(1,x,y)&amp;lt;&amp;lt;endl;
+        }
+	}
+	return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
 ">模板</a>
