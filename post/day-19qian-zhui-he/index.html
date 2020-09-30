@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>前缀和(P1719 最大加权矩形) | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601423657659">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601474988369">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -266,7 +266,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">44</span>
+        <span class="site-item-stat-count">45</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1582,6 +1582,116 @@ int main()
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/lis-he-lcs-wen-ti/"" data-c="
+          &lt;p&gt;首先声明两个名词&lt;br&gt;
+&lt;strong&gt;LIS：Longest Increasing Subsequence，最长递增子序列&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;LCS：Longest Common Subsequence，最长公共子序列&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;序列中的最长上升子序列lis&#34;&gt;序列中的最长上升子序列(LIS)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1020&#34;&gt;P1020 导弹拦截&lt;/a&gt;&lt;br&gt;
+eg : 有6个数,分别是 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;273546&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;2 7 3 5 4 6&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; ,求最长上升子序列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dp解法&#34;&gt;dp解法:&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;for(int i = 1; i &amp;lt;= n; i++){
+    f[i] = 1;
+        for(int j = 1; j &amp;lt; i; j++)
+            if(a[j] &amp;lt; a[i]) f[i] = max(f[i],f[j]+1);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;nlogn解法&#34;&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;nlogn&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;解法&lt;/h3&gt;
+&lt;p&gt;运用了贪心的思想,&lt;br&gt;
+用一个数组f[i]来表示**,上升序列长度为i的上升子序列,并且使末尾值尽可能的小**,&lt;strong&gt;这样后面的元素可以添加的值也就更多&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;for(int i = 1 ; i &amp;lt;= n ; i++){
+		cin&amp;gt;&amp;gt;a[i];
+	}
+int len = 0;
+	f[1] = 1;
+	for(int i = 1 ; i &amp;lt;= n ; i++){
+		if(a[i] &amp;gt; f[len]) f[++len] = a[i];
+		else{
+			int p = lower_bound(f,f+len,a[i])- f;
+			f[p] = a[i];
+		}
+	}
+	cout&amp;lt;&amp;lt;len;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;两个序列中的最长公共子序列lcslcs&#34;&gt;两个序列中的最长公共子序列（LCSLCS）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1439&#34;&gt;P1439 【模板】最长公共子序列&lt;/a&gt;&lt;br&gt;
+如给定2个序列：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;1 2 3 4 5
+3 2 1 4 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;求出最长的公共子序列&lt;/p&gt;
+&lt;h3 id=&#34;dp解法-2&#34;&gt;dp解法&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include&amp;lt;iostream&amp;gt;
+using namespace std;
+int dp[1001][1001],a1[2001],a2[2001],n,m;
+int main()
+{
+  //dp[i][j]表示两个串从头开始，直到第一个串的第i位 
+  //和第二个串的第j位最多有多少个公共子元素 
+  cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m;
+  for(int i=1;i&amp;lt;=n;i++)scanf(&amp;quot;%d&amp;quot;,&amp;amp;a1[i]);
+  for(int i=1;i&amp;lt;=m;i++)scanf(&amp;quot;%d&amp;quot;,&amp;amp;a2[i]);
+  for(int i=1;i&amp;lt;=n;i++)
+   for(int j=1;j&amp;lt;=m;j++)
+    {
+    	dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+    	if(a1[i]==a2[j])
+    	dp[i][j]=max(dp[i][j],dp[i-1][j-1]+1);
+    	//因为更新，所以++； 
+    }
+  cout&amp;lt;&amp;lt;dp[n][m];
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;nlogn解法-2&#34;&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;nlogn&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;解法&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;A: 1 2 3 4 5
+B: 3 2 1 4 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为两个序列都是1~n1 n的全排列，那么两个序列元素互异且相同,&lt;br&gt;
+考虑建立一个map数组使a序列的值单调递增&lt;br&gt;
+即&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;	for(int i = 1 ; i &amp;lt;= n ; i++){
+   	cin&amp;gt;&amp;gt;a[i];
+   	mp[a[i]] = i;
+   }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;将a看成一个主序列,那么只要b序列的值相对于a序列单调递增就是两个序列的公共子序列&lt;br&gt;
+&lt;strong&gt;这时，就是在mp[b[i]]的数组中求个最长上升子序列了,&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define h d2
+#define w d1 
+using namespace std;
+const int maxn = 1e6+7; 
+int n, a[maxn],h[maxn],w[maxn];
+int main()
+{
+	while(cin&amp;gt;&amp;gt;a[++n]); n--;
+	int len1 = 1,len2 = 1;
+	w[1] = a[1] , h[1] = a[1];
+	for(int i=2 ; i&amp;lt;=n ; i++)
+	{
+		if(w[len1] &amp;gt;= a[i]) w[++len1] = a[i];
+		else{
+			int p1 = upper_bound(w+1,w+1+len1,a[i],greater&amp;lt;int&amp;gt;()) - w;
+			w[p1] = a[i]; 
+		}
+		if(h[len2] &amp;lt; a[i]) h[++len2] = a[i];
+		else{
+			int p2 = lower_bound(h+1,h+1+len2,a[i]) - h;
+			h[p2] = a[i];
+		}	
+	}
+	cout&amp;lt;&amp;lt;len1&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;len2;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">LIS和LCS问题</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/acl-beginner-contest/"" data-c="
           &lt;h1 id=&#34;a-repeat-acl&#34;&gt;A - Repeat ACL&lt;/h1&gt;
 &lt;p&gt;模拟就行&lt;/p&gt;
@@ -1790,6 +1900,40 @@ int main()
 	}
 	return 0;
  } 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;d-前缀和map&#34;&gt;D (前缀和+map)&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1426&#34;&gt;D	Non-zero Segments&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意-4&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;给一个序列,求问插入多少数可以使此序列任意子段和不为零&lt;/p&gt;
+&lt;h2 id=&#34;题解-4&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;用&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;sum[i]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;表示前缀和,只要出现&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;sum[i]-sum[j]==0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;−&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.05724em;&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.36687em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;即&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;sum[i]==sum[j]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.36687em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.05724em;&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;时.就会出现一个和为0的子段,而此时在倒数第二个位置添加一个极大的数,那么子段和就必不为零.而前半部分也就不用管了,&lt;br&gt;
+所以只需用map维护一个前缀和即可,当一个前缀和出现第二次,就答案加一,然后下一个序列的判定从此开始&lt;/p&gt;
+&lt;p&gt;记得开&lt;code&gt;long long&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+#define int long long
+const int maxn = 1e6+7;
+map&amp;lt;int,int&amp;gt; q;
+int a[maxn],ans,sum;
+signed main()
+{
+   int n;
+   cin&amp;gt;&amp;gt;n;
+   q[0] = 1;
+   for(int i = 1 ; i &amp;lt;= n ; i++){
+   	cin&amp;gt;&amp;gt;a[i];
+   	sum += a[i];
+   	if(q[sum]){
+   		ans++;
+   		q.clear();
+   		q[0] = 1;
+   		sum = a[i];
+   	}
+   	q[sum]++;
+   }
+   cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
+   return 0;
+}
 &lt;/code&gt;&lt;/pre&gt;
 ">  Codeforces Round #674 (Div. 3)</a>
       </div>

@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>  Codeforces Round #674 (Div. 3) | Yzang&#39;s Blog</title>
+<title>LIS和LCS问题 | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601474988369">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="  Codeforces Round #674 (Div. 3)" />
+  <meta name="description" content="LIS和LCS问题" />
   <meta name="keywords" content="" />
 </head>
 
@@ -339,30 +339,20 @@
   <div class="toc-wrapper auto-number auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#a%E6%B0%B4%E9%A2%98">A(水题)</a>
+<li>
 <ul>
-<li><a href="#%E9%A2%98%E6%84%8F">题意</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+<li><a href="#%E5%BA%8F%E5%88%97%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97lis">序列中的最长上升子序列(LIS)</a>
+<ul>
+<li><a href="#dp%E8%A7%A3%E6%B3%95">dp解法:</a></li>
+<li><a href="#nlogn%E8%A7%A3%E6%B3%95"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">nlogn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span></span></span></span>解法</a></li>
 </ul>
 </li>
-<li><a href="#b">B</a>
+<li><a href="#%E4%B8%A4%E4%B8%AA%E5%BA%8F%E5%88%97%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97lcslcs">两个序列中的最长公共子序列（LCSLCS）</a>
 <ul>
-<li><a href="#%E9%A2%98%E6%84%8F-2">题意</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3-2">题解</a></li>
-<li><a href="#code">code</a></li>
+<li><a href="#dp%E8%A7%A3%E6%B3%95-2">dp解法</a></li>
+<li><a href="#nlogn%E8%A7%A3%E6%B3%95-2"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">nlogn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span></span></span></span>解法</a></li>
 </ul>
 </li>
-<li><a href="#c%E8%B4%AA%E5%BF%83">C(贪心)</a>
-<ul>
-<li><a href="#%E9%A2%98%E6%84%8F-3">题意</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3-3">题解</a></li>
-<li><a href="#code-2">code</a></li>
-</ul>
-</li>
-<li><a href="#d-%E5%89%8D%E7%BC%80%E5%92%8Cmap">D (前缀和+map)</a>
-<ul>
-<li><a href="#%E9%A2%98%E6%84%8F-4">题意</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3-4">题解</a></li>
 </ul>
 </li>
 </ul>
@@ -630,8 +620,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/codeforces-round-674-div-3/">
-        Codeforces Round #674 (Div. 3)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/lis-he-lcs-wen-ti/">
+      LIS和LCS问题
     </a>
   </h1>
   <div class="post-meta">
@@ -639,23 +629,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-09-28 22:04:00">2020-09-28</span>
+      <span class="publish-time" data-t="2020-09-30 21:19:24">2020-09-30</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>5<span class="language" data-lan="minute">分钟</span></span>
+      <span>4<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>884<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>699<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/codeforces-round-674-div-3/" data-flag-title="  Codeforces Round #674 (Div. 3)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/lis-he-lcs-wen-ti/" data-flag-title="LIS和LCS问题" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -664,137 +654,109 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <h1 id="a水题">A(水题)</h1>
-<p><a href="https://codeforces.ml/contest/1426/problem/A">A. Floor Number</a></p>
-<h2 id="题意">题意</h2>
-<p>一个楼房房间号由<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>递增，一楼仅2个房间。给定一位用户的房间号和 2楼以上每层的房间数x<br>
-求出用户所在楼层</p>
-<h2 id="题解">题解</h2>
-<p>特判一下n&lt;=2即可  其余层利用除法即可解决</p>
-<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-int main() {
-	//freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);
-	ios_base::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-	int _; cin &gt;&gt; _; while (_--) {
-		ll n, x;
-		cin &gt;&gt; n &gt;&gt; x;
-		if (n &lt;= 2)cout &lt;&lt; 1 &lt;&lt; endl;
-		else cout &lt;&lt; (n - 3) / x + 2 &lt;&lt; endl;
-	}
+              <p>首先声明两个名词<br>
+<strong>LIS：Longest Increasing Subsequence，最长递增子序列</strong><br>
+<strong>LCS：Longest Common Subsequence，最长公共子序列</strong></p>
+<h2 id="序列中的最长上升子序列lis">序列中的最长上升子序列(LIS)</h2>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1020">P1020 导弹拦截</a><br>
+eg : 有6个数,分别是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>273546</mn></mrow><annotation encoding="application/x-tex">2 7 3 5 4 6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">7</span><span class="mord">3</span><span class="mord">5</span><span class="mord">4</span><span class="mord">6</span></span></span></span> ,求最长上升子序列</li>
+</ul>
+<h3 id="dp解法">dp解法:</h3>
+<pre><code class="language-c">for(int i = 1; i &lt;= n; i++){
+    f[i] = 1;
+        for(int j = 1; j &lt; i; j++)
+            if(a[j] &lt; a[i]) f[i] = max(f[i],f[j]+1);
 }
 </code></pre>
-<h1 id="b">B</h1>
-<p><a href="https://codeforces.ml/contest/1426">B	Symmetric Matrix</a></p>
-<h2 id="题意-2">题意</h2>
-<p>给定n个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>∗</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2*2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>的瓷砖，然后给出m,看你是否可以通过这n种瓷砖来（不互相覆盖的）拼成边长为m的地板，使地板能沿对角线对称（左上到右下的对角线）<br>
-ps:每种瓷砖不限量</p>
-<h2 id="题解-2">题解</h2>
-<p>首先如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>是奇数,那么肯定不行<br>
-可以注意到,每种瓷砖是不限量的,所以只要有一个符合条件就够了<br>
-而根据样例图可以知道只要小矩阵的右上和左下两快瓷砖相等,那么就可以保证拼成一个大矩阵</p>
-<h2 id="code">code</h2>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+<h3 id="nlogn解法"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">nlogn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span></span></span></span>解法</h3>
+<p>运用了贪心的思想,<br>
+用一个数组f[i]来表示**,上升序列长度为i的上升子序列,并且使末尾值尽可能的小**,<strong>这样后面的元素可以添加的值也就更多</strong></p>
+<pre><code class="language-c">for(int i = 1 ; i &lt;= n ; i++){
+		cin&gt;&gt;a[i];
+	}
+int len = 0;
+	f[1] = 1;
+	for(int i = 1 ; i &lt;= n ; i++){
+		if(a[i] &gt; f[len]) f[++len] = a[i];
+		else{
+			int p = lower_bound(f,f+len,a[i])- f;
+			f[p] = a[i];
+		}
+	}
+	cout&lt;&lt;len;
+</code></pre>
+<h2 id="两个序列中的最长公共子序列lcslcs">两个序列中的最长公共子序列（LCSLCS）</h2>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P1439">P1439 【模板】最长公共子序列</a><br>
+如给定2个序列：</li>
+</ul>
+<pre><code class="language-c">1 2 3 4 5
+3 2 1 4 5
+</code></pre>
+<p>求出最长的公共子序列</p>
+<h3 id="dp解法-2">dp解法</h3>
+<pre><code class="language-c">#include&lt;iostream&gt;
 using namespace std;
-bool vis;
+int dp[1001][1001],a1[2001],a2[2001],n,m;
 int main()
 {
-	int t;
-	cin&gt;&gt;t;
-	while(t--){
-		int n,m;
-		cin&gt;&gt;n&gt;&gt;m;
-		vis = false;
-		for(int i = 1 ; i &lt;= n ; i++){
-			int x1,x2,y1,y2;
-			cin&gt;&gt;x1&gt;&gt;x2&gt;&gt;y1&gt;&gt;y2;
-			if(x2 == y1){
-				vis = true;
-			}
-		}	
-		if(m%2){
-			vis = false;
-		}
-		if(vis){
-			cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl;
-		}
-		else
-		cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;
-	}
-	return 0;
+  //dp[i][j]表示两个串从头开始，直到第一个串的第i位 
+  //和第二个串的第j位最多有多少个公共子元素 
+  cin&gt;&gt;n&gt;&gt;m;
+  for(int i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;a1[i]);
+  for(int i=1;i&lt;=m;i++)scanf(&quot;%d&quot;,&amp;a2[i]);
+  for(int i=1;i&lt;=n;i++)
+   for(int j=1;j&lt;=m;j++)
+    {
+    	dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+    	if(a1[i]==a2[j])
+    	dp[i][j]=max(dp[i][j],dp[i-1][j-1]+1);
+    	//因为更新，所以++； 
+    }
+  cout&lt;&lt;dp[n][m];
 }
 </code></pre>
-<h1 id="c贪心">C(贪心)</h1>
-<h2 id="题意-3">题意</h2>
-<p>给一个数组,初始值为1<br>
-可以进行两种操作,<br>
-<code>选择其中一个元素进行加1操作</code><br>
-<code>选择其中某个元素进行复制,添加到数组末尾</code></p>
-<h2 id="题解-3">题解</h2>
-<p>贪心,把第一个元素加到一定的值后在进行复制操作,如何确定第一个元素加的次数呢,其实我们完全可以把到达n时需要的步数表达出来,当第一个元素在某次加1后到达n需要的次数大于上一次的,就可以退出了,</p>
-<h2 id="code-2">code</h2>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-int t;
-const int inf = 0x3f3f3f3f;
-int main()
-{
-	cin&gt;&gt;t;
-	while(t--){
-		int n;
-		cin&gt;&gt;n;
-		int cnt,minn = inf;
-		for(int i = 1 ; i &lt;= n ; i++){
-			cnt = i-1;
-			cnt += (n-i)/i;
-			if(n%i){
-				cnt++;
-			}
-			if(cnt &lt;= minn){
-				minn = cnt;
-			}
-			else{
-				break;
-			}
-		}
-		cout&lt;&lt;minn&lt;&lt;endl;
-	}
-	return 0;
- } 
+<h3 id="nlogn解法-2"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">nlogn</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span></span></span></span>解法</h3>
+<pre><code class="language-c">A: 1 2 3 4 5
+B: 3 2 1 4 5
 </code></pre>
-<h1 id="d-前缀和map">D (前缀和+map)</h1>
-<p><a href="https://codeforces.ml/contest/1426">D	Non-zero Segments</a></p>
-<h2 id="题意-4">题意</h2>
-<p>给一个序列,求问插入多少数可以使此序列任意子段和不为零</p>
-<h2 id="题解-4">题解</h2>
-<p>用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">sum[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>表示前缀和,只要出现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>−</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">sum[i]-sum[j]==0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><mo>=</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">sum[i]==sum[j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>时.就会出现一个和为0的子段,而此时在倒数第二个位置添加一个极大的数,那么子段和就必不为零.而前半部分也就不用管了,<br>
-所以只需用map维护一个前缀和即可,当一个前缀和出现第二次,就答案加一,然后下一个序列的判定从此开始</p>
-<p>记得开<code>long long</code></p>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-#define int long long
-const int maxn = 1e6+7;
-map&lt;int,int&gt; q;
-int a[maxn],ans,sum;
-signed main()
-{
-   int n;
-   cin&gt;&gt;n;
-   q[0] = 1;
-   for(int i = 1 ; i &lt;= n ; i++){
+<p>因为两个序列都是1~n1 n的全排列，那么两个序列元素互异且相同,<br>
+考虑建立一个map数组使a序列的值单调递增<br>
+即</p>
+<pre><code class="language-c">	for(int i = 1 ; i &lt;= n ; i++){
    	cin&gt;&gt;a[i];
-   	sum += a[i];
-   	if(q[sum]){
-   		ans++;
-   		q.clear();
-   		q[0] = 1;
-   		sum = a[i];
-   	}
-   	q[sum]++;
+   	mp[a[i]] = i;
    }
-   cout&lt;&lt;ans&lt;&lt;endl;
-   return 0;
+</code></pre>
+<p>将a看成一个主序列,那么只要b序列的值相对于a序列单调递增就是两个序列的公共子序列<br>
+<strong>这时，就是在mp[b[i]]的数组中求个最长上升子序列了,</strong></p>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+#define h d2
+#define w d1 
+using namespace std;
+const int maxn = 1e6+7; 
+int n, a[maxn],h[maxn],w[maxn];
+int main()
+{
+	while(cin&gt;&gt;a[++n]); n--;
+	int len1 = 1,len2 = 1;
+	w[1] = a[1] , h[1] = a[1];
+	for(int i=2 ; i&lt;=n ; i++)
+	{
+		if(w[len1] &gt;= a[i]) w[++len1] = a[i];
+		else{
+			int p1 = upper_bound(w+1,w+1+len1,a[i],greater&lt;int&gt;()) - w;
+			w[p1] = a[i]; 
+		}
+		if(h[len2] &lt; a[i]) h[++len2] = a[i];
+		else{
+			int p2 = lower_bound(h+1,h+1+len2,a[i]) - h;
+			h[p2] = a[i];
+		}	
+	}
+	cout&lt;&lt;len1&lt;&lt;endl&lt;&lt;len2;
+	return 0;
 }
 </code></pre>
 
@@ -809,7 +771,7 @@ signed main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/codeforces-round-674-div-3/" title="  Codeforces Round #674 (Div. 3)">https://nzt-yzang.github.io/post/codeforces-round-674-div-3/</a>
+      <a href="https://nzt-yzang.github.io/post/lis-he-lcs-wen-ti/" title="LIS和LCS问题">https://nzt-yzang.github.io/post/lis-he-lcs-wen-ti/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -822,15 +784,11 @@ signed main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="	◉ ACL Beginner Contest" href="https://nzt-yzang.github.io/post/acl-beginner-contest/">	◉ ACL Beginner Contest</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="	◉ ACL Beginner Contest" href="https://nzt-yzang.github.io/post/acl-beginner-contest/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="   Codeforces Round #673 (Div. 2)" href="https://nzt-yzang.github.io/post/codeforces-round-673-div-2/">   Codeforces Round #673 (Div. 2)</a>
-        <a class="nav-mobile-next" title="   Codeforces Round #673 (Div. 2)" href="https://nzt-yzang.github.io/post/codeforces-round-673-div-2/">下一篇</a>
+        <a class="nav-pc-next" title="	◉ ACL Beginner Contest" href="https://nzt-yzang.github.io/post/acl-beginner-contest/">	◉ ACL Beginner Contest</a>
+        <a class="nav-mobile-next" title="	◉ ACL Beginner Contest" href="https://nzt-yzang.github.io/post/acl-beginner-contest/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
