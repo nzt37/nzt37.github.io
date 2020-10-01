@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>Day 1. | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601521792919">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601560110943">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -241,7 +241,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">48</span>
+        <span class="site-item-stat-count">49</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1785,6 +1785,111 @@ inline LL C(LL n,LL m)
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/manacher-algorithm-ma-la-che-suan-fa/"" data-c="
+          &lt;h2 id=&#34;马拉车解决的问题&#34;&gt;马拉车解决的问题&lt;/h2&gt;
+&lt;p&gt;给定一个字符串,求&lt;strong&gt;最长回文子串&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;vector&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+using namespace std;
+string Mannacher(string s)
+{
+    //插入&amp;quot;#&amp;quot;
+    string t=&amp;quot;$#&amp;quot;;
+    for(int i=0;i&amp;lt;s.size();++i)
+    {
+        t+=s[i];
+        t+=&amp;quot;#&amp;quot;;
+    }
+    vector&amp;lt;int&amp;gt; p(t.size(),0);
+    //mx表示某个回文串延伸在最右端半径的下标，id表示这个回文子串最中间位置下标
+    //resLen表示对应在s中的最大子回文串的半径，resCenter表示最大子回文串的中间位置
+    int mx=0,id=0,resLen=0,resCenter=0;
+     //建立p数组
+    for(int i=1;i&amp;lt;t.size();++i)
+    {
+        p[i]=mx&amp;gt;i?min(p[2*id-i],mx-i):1;
+        //遇到三种特殊的情况，需要利用中心扩展法
+        while(t[i+p[i]]==t[i-p[i]])++p[i];
+        //半径下标i+p[i]超过边界mx，需要更新
+        if(mx&amp;lt;i+p[i]){
+            mx=i+p[i];
+            id=i;
+        }
+        //更新最大回文子串的信息，半径及中间位置
+        if(resLen&amp;lt;p[i]){
+            resLen=p[i];
+            resCenter=i;
+        }
+    }
+    //最长回文子串长度为半径-1，起始位置为中间位置减去半径再除以2
+    return s.substr((resCenter-resLen)/2,resLen-1);
+}
+int main()
+{
+    cout&amp;lt;&amp;lt;Mannacher(&amp;quot;12212&amp;quot;)&amp;lt;&amp;lt;endl;
+    cout&amp;lt;&amp;lt;Mannacher(&amp;quot;122122&amp;quot;)&amp;lt;&amp;lt;endl;
+    cout&amp;lt;&amp;lt;Mannacher(&amp;quot;noon&amp;quot;)&amp;lt;&amp;lt;endl;
+    system(&amp;quot;pause&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;牛客国庆day1中的签到题是找最末端的回文子串并求其长度,我们会发现，如果我们用马拉车找到的最长回文串的最右端不是字符串最右端，那此情况就相当于作废,&lt;br&gt;
+我们直接在manacher的基础上改就可以，原本式子中的ans，我们每查找完一次清零，也就是如果找到的回文串不是带尾的不要，如果带尾保留最大值&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;vector&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+int ans = -1,sum = -1;
+using namespace std;
+string s1;
+int Manacher(string s) {
+    string t = &amp;quot;$#&amp;quot;;
+    for (int i = 0; i &amp;lt; s.size(); ++i) {
+        t += s[i];
+        t += &amp;quot;#&amp;quot;;
+    }
+    int len = t.size();
+    string m,m1;
+    vector&amp;lt;int&amp;gt; p(t.size(), 0);
+    int mx = 0, id = 0, resLen = 0, resCenter = 0;
+    for (int i = 1; i &amp;lt; t.size(); ++i) {
+        p[i] = mx &amp;gt; i ? min(p[2 * id - i], mx - i) : 1;
+        while (t[i + p[i]] == t[i - p[i]]) ++p[i];
+        if (mx &amp;lt; i + p[i]) {
+            mx = i + p[i];
+            id = i;
+        }
+		ans = max(ans,p[i]-1);
+		if(mx == len) sum = max(sum,ans);
+        if (resLen &amp;lt; p[i]) {
+            resLen = p[i];
+            resCenter = i;
+        } 
+		ans = 0;
+    }
+	return sum;
+}
+int main() {
+	int n;
+	cin&amp;gt;&amp;gt;n;
+	string s;
+	cin&amp;gt;&amp;gt;s;
+//	string s1 = Manacher(s);
+	bool flag = true;
+	int x = s.length();
+	int y = s1.length();
+	string m = s.substr(x-y);
+	if(sum!=0){
+		cout&amp;lt;&amp;lt;n-Manacher(s)&amp;lt;&amp;lt;endl;
+	}else
+	{
+		cout&amp;lt;&amp;lt;n-1&amp;lt;&amp;lt;endl;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+">Manacher Algorithm (马拉车算法)</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/poj-2342-anniversary-party/"" data-c="
           &lt;p&gt;&lt;a href=&#34;http://poj.org/problem?id=2342&#34;&gt;poj 2342&lt;/a&gt; (没有上司的舞会)&lt;/p&gt;
 &lt;h2 id=&#34;题意&#34;&gt;题意&lt;/h2&gt;
@@ -1864,7 +1969,7 @@ int main()
 	return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
-">Poj 2342 Anniversary party</a>
+">Poj 2342 Anniversary party(树形dp)</a>
       </div>
       
       <div class="item">
