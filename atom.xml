@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-09-30T14:45:45.410Z</updated>
+    <updated>2020-10-01T03:10:10.114Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Poj 2342 Anniversary party]]></title>
+        <id>https://nzt-yzang.github.io/post/poj-2342-anniversary-party/</id>
+        <link href="https://nzt-yzang.github.io/post/poj-2342-anniversary-party/">
+        </link>
+        <updated>2020-10-01T02:56:24.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[LIS和LCS问题]]></title>
         <id>https://nzt-yzang.github.io/post/lis-he-lcs-wen-ti/</id>
@@ -86,12 +93,5 @@
         <link href="https://nzt-yzang.github.io/post/zi-fu-chuan-ha-xi/">
         </link>
         <updated>2020-09-22T06:27:20.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[P2678 跳石头(二分答案)]]></title>
-        <id>https://nzt-yzang.github.io/post/p2678-tiao-shi-tou-er-fen-da-an/</id>
-        <link href="https://nzt-yzang.github.io/post/p2678-tiao-shi-tou-er-fen-da-an/">
-        </link>
-        <updated>2020-09-21T11:26:02.000Z</updated>
     </entry>
 </feed>
