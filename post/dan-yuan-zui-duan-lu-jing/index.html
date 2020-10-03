@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>蓝桥杯省赛模拟赛(4.14) | Yzang&#39;s Blog</title>
+<title>单源最短路径 | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601696943210">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="蓝桥杯省赛模拟赛(4.14)" />
+  <meta name="description" content="单源最短路径" />
   <meta name="keywords" content="" />
 </head>
 
@@ -315,46 +315,7 @@
     <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#t1">T1</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-</ul>
-</li>
-<li><a href="#t2">T2</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-2">题目</a></li>
-</ul>
-</li>
-<li><a href="#t3">T3</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-3">题目</a></li>
-</ul>
-</li>
-<li><a href="#t4">T4</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-4">题目</a></li>
-</ul>
-</li>
-<li><a href="#t5">T5</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-5">题目</a></li>
-</ul>
-</li>
-<li><a href="#t6">T6</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-6">题目</a></li>
-</ul>
-</li>
-<li><a href="#t7">T7</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-7">题目</a></li>
-</ul>
-</li>
-<li><a href="#t8">T8</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-8">题目</a></li>
-</ul>
-</li>
+<li><a href="#dijkstra-%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F-%E5%A0%86%E4%BC%98%E5%8C%96">dijkstra + 链式前向星 + 堆优化</a></li>
 </ul>
 </li>
 </ul>
@@ -622,8 +583,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/">
-      蓝桥杯省赛模拟赛(4.14)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/dan-yuan-zui-duan-lu-jing/">
+      单源最短路径
     </a>
   </h1>
   <div class="post-meta">
@@ -631,23 +592,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-04-14 18:06:15">2020-04-14</span>
+      <span class="publish-time" data-t="2020-10-02 20:29:54">2020-10-02</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>7<span class="language" data-lan="minute">分钟</span></span>
+      <span>2<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1639<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>274<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/" data-flag-title="蓝桥杯省赛模拟赛(4.14)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/dan-yuan-zui-duan-lu-jing/" data-flag-title="单源最短路径" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -656,189 +617,68 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <!-- more -->
-<h2 id="t1">T1</h2>
-<h3 id="题目">题目</h3>
-<p>括号匹配<br>
-问题描述:<br>
-　　由1对括号，可以组成一种合法括号序列：()。<br>
-　　由2对括号，可以组成两种合法括号序列：()()、(())。<br>
-　　由4对括号组成的合法括号序列一共有多少种？<br>
-题解:<br>
-<strong>卡特兰数</strong><br>
-所以直接写上14.....<br>
-关于<strong>卡特兰数</strong>另写一篇吧,</p>
-<h2 id="t2">T2</h2>
-<h3 id="题目-2">题目</h3>
-<p>在计算机存储中，12.5MB是多少字节？<br>
-答案提交<br>
-　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br>
-题解:<br>
-$  1MB = 1024KB,1KB = 1024B$<br>
-所以答案为<code>13107200</code>;</p>
-<h2 id="t3">T3</h2>
-<h3 id="题目-3">题目</h3>
-<p>将LANQIAO中的字母重新排列，可以得到不同的单词，如LANQIAO、AAILNOQ等，注意这7个字母都要被用上，单词不一定有具体的英文意义。<br>
-　　请问，总共能排列如多少个不同的单词。<br>
-答案提交<br>
-　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br>
-题解:<br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn><mo>!</mo></mrow><annotation encoding="application/x-tex">7!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mclose">!</span></span></span></span>  但因为有两个A ,所以答案为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5040</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>2520</mn></mrow><annotation encoding="application/x-tex">5040/2=2520</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">4</span><span class="mord">0</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span><span class="mord">2</span><span class="mord">0</span></span></span></span></p>
-<h2 id="t4">T4</h2>
-<h3 id="题目-4">题目</h3>
-<p>一个包含有2019个结点的无向连通图，最少包含多少条边？<br>
-答案提交<br>
-　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br>
-题解:<br>
-一个n个结点的无向连通图最少需要N-1条边,所以答案为<code>2018</code>;</p>
-<h2 id="t5">T5</h2>
-<h3 id="题目-5">题目</h3>
-<p>给定一个单词，请使用凯撒密码将这个单词加密。<br>
-　　凯撒密码是一种替换加密的技术，单词中的所有字母都在字母表上向后偏移3位后被替换成密文。即a变为d，b变为e，...，w变为z，x变为a，y变为b，z变为c。<br>
-　　例如，lanqiao会变成odqtldr。<br>
-输入格式<br>
-　　输入一行，包含一个单词，单词中只包含小写英文字母。<br>
-输出格式<br>
-　　输出一行，表示加密后的密文。<br>
-样例输入<br>
-lanqiao<br>
-样例输出<br>
-odqtldr<br>
-评测用例规模与约定<br>
-　　对于所有评测用例，单词中的字母个数不超过100。<br>
-题解 :模拟,也挺简单;</p>
-<pre><code class="language-c">int main() {
-	string a;
-	string s = &quot;defghijklmnopqrstuvwxyzabc&quot;;
-	string c = &quot;DEFGHIJKLMNOPQRSTUVWXYZABC&quot;;
-	cin&gt;&gt;a;
-	for(int i = 0 ; i &lt; a.size() ; i++ ){
-		if(isupper(a[i])) a[i] = c[(int)a[i]-'A'];
-	    else 
-		a[i] = s[(int)a[i]-'a'];
+              <h2 id="dijkstra-链式前向星-堆优化">dijkstra + 链式前向星 + 堆优化</h2>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P4779">P4779 【模板】单源最短路径（标准版）</a><br>
+给定一个 n 个点，m 条有向边的带非负权图，请你计算从 s 出发，到每个点的距离。</li>
+</ul>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int inf = 0x3f3f3f3f;
+const int maxn = 1e5+6;
+int head[maxn],cnt,n,m,s,dis[maxn];
+bool vis[maxn];
+struct node{
+	int dis,pos;
+	bool operator &lt; (const node &amp; xx)const
+	{
+		return xx.dis &lt; dis;
 	}
-	cout&lt;&lt;a;
-    return 0;
-}
-</code></pre>
-<h2 id="t6">T6</h2>
-<h3 id="题目-6">题目</h3>
-<p>问题描述<br>
-　　给定三个整数 a, b, c，如果一个整数既不是 a 的整数倍也不是 b 的整数倍还不是 c 的整数倍，则这个数称为反倍数。<br>
-　　请问在 1 至 n 中有多少个反倍数。<br>
-输入格式<br>
-　　输入的第一行包含一个整数 n。<br>
-　　第二行包含三个整数 a, b, c，相邻两个数之间用一个空格分隔。<br>
-输出格式<br>
-　　输出一行包含一个整数，表示答案。<br>
-样例输入<br>
-30<br>
-2 3 6<br>
-样例输出<br>
-10<br>
-样例说明<br>
-　　以下这些数满足要求：1, 5, 7, 11, 13, 17, 19, 23, 25, 29。<br>
-评测用例规模与约定<br>
-　　对于 40% 的评测用例，1 &lt;= n &lt;= 10000。<br>
-　　对于 80% 的评测用例，1 &lt;= n &lt;= 100000。<br>
-　　对于所有评测用例，1 &lt;= n &lt;= 1000000，1 &lt;= a &lt;= n，1 &lt;= b &lt;= n，1 &lt;= c &lt;= n。<br>
-题解 :暴力</p>
-<pre><code class="language-c">ll n,a,b,c,ans;
-void f(ll n)
+};
+struct Node{
+	int v,w,next;
+}edge[maxn&lt;&lt;1];
+void addedge(int u,int v,int w)
 {
-	for(ll i = 1 ; i &lt;= n ; i++){
-		if(i%a != 0 &amp;&amp; i%b != 0 &amp;&amp; i%c != 0)
-		ans++;
+	edge[++cnt].next = head[u];
+	edge[cnt].v = v;
+	edge[cnt].w = w;
+	head[u] = cnt;
+}
+priority_queue&lt;node&gt; q;
+void dijkstra()
+{
+	memset(dis,inf,sizeof(dis));
+	dis[s] = 0;//从s点出发 
+	q.push((node){0,s});
+	while(!q.empty()){
+		node m = q.top();
+		int b = m.pos;
+		q.pop();
+		if(vis[b]) continue;
+		vis[b] = 1;
+		for(int i = head[b] ; i ; i = edge[i].next){
+			int v = edge[i].v;
+			if(dis[v] &gt; dis[b] + edge[i].w){
+				dis[v] = dis[b] + edge[i].w;
+				q.push((node){dis[v],v});
+			}
+		}	
+	}	
+}
+int main()
+{
+	cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
+	for(int i = 1 ; i &lt;= m ; i++){
+		int u,v,w;
+		cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;
+		addedge(u,v,w);
 	}
-}
-int main() {
-	rd(n);
-	rd(a),rd(b),rd(c);
-	f(n);
-	cout&lt;&lt;ans;
-    return 0;
-}
-</code></pre>
-<h2 id="t7">T7</h2>
-<h3 id="题目-7">题目</h3>
-<p>如果一个序列的奇数项都比前一项大，偶数项都比前一项小，则称为一个摆动序列。即 a[2i]&lt;a[2i-1], a[2i+1]&gt;a[2i]。<br>
-　　小明想知道，长度为 m，每个数都是 1 到 n 之间的正整数的摆动序列一共有多少个。<br>
-输入格式<br>
-　　输入一行包含两个整数 m，n。<br>
-输出格式<br>
-　　输出一个整数，表示答案。答案可能很大，请输出答案除以10000的余数。<br>
-样例输入<br>
-3 4<br>
-样例输出<br>
-14<br>
-样例说明<br>
-　　以下是符合要求的摆动序列：<br>
-　　2 1 2<br>
-　　2 1 3<br>
-　　2 1 4<br>
-　　3 1 2<br>
-　　3 1 3<br>
-　　3 1 4<br>
-　　3 2 3<br>
-　　3 2 4<br>
-　　4 1 2<br>
-　　4 1 3<br>
-　　4 1 4<br>
-　　4 2 3<br>
-　　4 2 4<br>
-　　4 3 4<br>
-评测用例规模与约定<br>
-　　对于 20% 的评测用例，1 &lt;= n, m &lt;= 5；<br>
-　　对于 50% 的评测用例，1 &lt;= n, m &lt;= 10；<br>
-　　对于 80% 的评测用例，1 &lt;= n, m &lt;= 100；<br>
-　　对于所有评测用例，1 &lt;= n, m &lt;= 1000。<br>
-题解 :dp题<br>
-<code>dp[i][j]</code>表示第i位数时，最大数为m时共有多少个<br>
-初始化 令 d[1][j]为：第1个数选择大于等于 j的数的方案总数</p>
-<h2 id="t8">T8</h2>
-<h3 id="题目-8">题目</h3>
-<p>对于一个 n 行 m 列的表格，我们可以使用螺旋的方式给表格依次填上正整数，我们称填好的表格为一个螺旋矩阵。<br>
-　　例如，一个 4 行 5 列的螺旋矩阵如下：<br>
-　　1 2 3 4 5<br>
-　　14 15 16 17 6<br>
-　　13 20 19 18 7<br>
-　　12 11 10 9 8<br>
-输入格式<br>
-　　输入的第一行包含两个整数 n, m，分别表示螺旋矩阵的行数和列数。<br>
-　　第二行包含两个整数 r, c，表示要求的行号和列号。<br>
-输出格式<br>
-　　输出一个整数，表示螺旋矩阵中第 r 行第 c 列的元素的值。<br>
-样例输入<br>
-4 5<br>
-2 2<br>
-样例输出<br>
-15<br>
-评测用例规模与约定<br>
-　　对于 30% 的评测用例，2 &lt;= n, m &lt;= 20。<br>
-　　对于 70% 的评测用例，2 &lt;= n, m &lt;= 100。<br>
-　　对于所有评测用例，2 &lt;= n, m &lt;= 1000，1 &lt;= r &lt;= n，1 &lt;= c &lt;= m。<br>
-题解</p>
-<pre><code class="language-c">int a[2001][2001];
-int n,m,r,c;
-int d[4][2]={-1,0,0,1,1,0,0,-1};
-int main(){
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;r&gt;&gt;c;
-    int cnt=1,x=1,y=1;
-    memset(a,0,sizeof(a));
-    a[1][1]=1;
-    for(int i=2;i&lt;=n*m;i++) {
-        int tx = x + d[cnt % 4][0];
-        int ty = y + d[cnt % 4][1];
-        if (tx &lt; 1 || tx &gt; n || ty &lt; 1 || ty &gt; m || a[tx][ty]) {
-            cnt++;
-        }
-        x = x + d[cnt % 4][0];
-        y = y + d[cnt % 4][1];
-        a[x][y] = i;
-    }
-    cout&lt;&lt;a[r][c]&lt;&lt;endl;
-    return 0;
-}
+	dijkstra();
+	for( int i = 1; i &lt;= n; i++ )
+        printf( &quot;%d &quot;, dis[i] );
+	return 0;
+} 
 </code></pre>
 
             </div>
@@ -852,7 +692,7 @@ int main(){
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/" title="蓝桥杯省赛模拟赛(4.14)">https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/</a>
+      <a href="https://nzt-yzang.github.io/post/dan-yuan-zui-duan-lu-jing/" title="单源最短路径">https://nzt-yzang.github.io/post/dan-yuan-zui-duan-lu-jing/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -866,14 +706,14 @@ int main(){
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">卡特兰数</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">上一篇</a>
+        <a class="nav-pc-next" title="博弈论（巴什博奕，威佐夫博弈，尼姆博弈，斐波那契博弈）" href="https://nzt-yzang.github.io/post/bo-yi-lun-ba-shi-bo-yi-wei-zuo-fu-bo-yi-ni-mu-bo-yi-fei-bo-na-qi-bo-yi/">博弈论（巴什博奕，威佐夫博弈，尼姆博弈，斐波那契博弈）</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="博弈论（巴什博奕，威佐夫博弈，尼姆博弈，斐波那契博弈）" href="https://nzt-yzang.github.io/post/bo-yi-lun-ba-shi-bo-yi-wei-zuo-fu-bo-yi-ni-mu-bo-yi-fei-bo-na-qi-bo-yi/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="MySQL学习笔记(一)" href="https://nzt-yzang.github.io/post/mysql-xue-xi-bi-ji-yi/">MySQL学习笔记(一)</a>
-        <a class="nav-mobile-next" title="MySQL学习笔记(一)" href="https://nzt-yzang.github.io/post/mysql-xue-xi-bi-ji-yi/">下一篇</a>
+        <a class="nav-pc-next" title="Manacher Algorithm (马拉车算法)" href="https://nzt-yzang.github.io/post/manacher-algorithm-ma-la-che-suan-fa/">Manacher Algorithm (马拉车算法)</a>
+        <a class="nav-mobile-next" title="Manacher Algorithm (马拉车算法)" href="https://nzt-yzang.github.io/post/manacher-algorithm-ma-la-che-suan-fa/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

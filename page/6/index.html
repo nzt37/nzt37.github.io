@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>蓝桥杯省赛模拟赛(4.14) | Yzang&#39;s Blog</title>
+<title>Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601696943210">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,8 +58,6 @@
 </script>
 
 
-  <meta name="description" content="蓝桥杯省赛模拟赛(4.14)" />
-  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -95,7 +93,7 @@
             
               
             
-            <li class="nav-item ">
+            <li class="nav-item nav-item-active">
               
               
                 <a href="/" target="_self">
@@ -207,24 +205,8 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        
-
-<div class="sidebar">
-  
-    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
-      
-        <div class="post-list-sidebar">
-          <div class="sidebar-title">
-            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
-            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
-          </div>
-        </div>
-      
-      <div class="sidebar-body gemini" id="sidebar_body">
-        
-          
-            <div class="post-side-meta" id="post_side_meta">
-              
+        <div id="sidebarMeta" class="sidebar">
+    
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/images/avatar.png"/>
@@ -307,323 +289,30 @@
   </div>
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#t1">T1</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-</ul>
-</li>
-<li><a href="#t2">T2</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-2">题目</a></li>
-</ul>
-</li>
-<li><a href="#t3">T3</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-3">题目</a></li>
-</ul>
-</li>
-<li><a href="#t4">T4</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-4">题目</a></li>
-</ul>
-</li>
-<li><a href="#t5">T5</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-5">题目</a></li>
-</ul>
-</li>
-<li><a href="#t6">T6</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-6">题目</a></li>
-</ul>
-</li>
-<li><a href="#t7">T7</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-7">题目</a></li>
-</ul>
-</li>
-<li><a href="#t8">T8</a>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE-8">题目</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  </div>
 </div>
-
 <script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
       }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
     });
   }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
-          
-        
-      </div>
-    </div>
-  
-</div>
-<script>
-  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
-  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
-  const SLIDE_UP_IN = 'slide-up-in';
-
-  let sidebar = document.querySelector('#sidebar'),
-  tocSideBar = document.querySelector('#tocSideBar'),
-  metaSideBar = document.querySelector('#metaSideBar'),
-  postToc = document.querySelector('#post_toc'),
-  postSiteMeta = document.querySelector('#post_side_meta'),
-  sidebarTitle = document.querySelector('.sidebar-title'),
-  sidebarBody = document.querySelector('#sidebar_body');
-
-  tocSideBar && tocSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  metaSideBar && metaSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  function toggleSidebar(e) {
-    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
-    if (currentTitle == e.srcElement) {
-      return ;
-    }
-    let current, showElement, hideElement;
-    if (e.srcElement == metaSideBar) {
-      showElement = postSiteMeta;
-      hideElement = postToc;
-    } else if (e.srcElement == tocSideBar){
-      showElement = postToc;
-      hideElement = postSiteMeta;
-    }
-    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
-    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
-
-    window.Velocity(hideElement, 'stop');
-    window.Velocity(hideElement, 'transition.slideUpOut', {
-      display: 'none',
-      duration: 200,
-      complete: function () {
-        window.Velocity(showElement, 'transition.slideDownIn', {
-          duration: 200
-        });
-      }
-    })
-    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
-    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
-  }
-
-  postToc && postToc.addEventListener('transitionend', function() {
-    this.classList.remove(SLIDE_UP_IN);
-  });
-
-  if (sidebarBody) {
-    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
-      let hasFix = false;
-      let scrollEl = document.querySelector('.main-continer');
-      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
-      window.addEventListener('scroll', function(e) {
-        if (document.scrollingElement.scrollTop >= limitTop) {
-          if (!hasFix) {
-            sidebar.classList.add('sidebar-fixed');
-            hasFix = true;
-          }
-        } else {
-          if (hasFix) {
-            sidebar.classList.remove('sidebar-fixed');
-            hasFix = false;
-          }
-        }
-      });
-    }
-  }
-  
-</script>
-        <div class="section-box box-shadow-wrapper">
-          <div class="section bg-color post post-page">
-            <section class="post-header">
+  </script>
+        <div class="section-box gemini">
+          <section class="section  posts-expand slide-down-in">
+            
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/">
-      蓝桥杯省赛模拟赛(4.14)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/317/">
+      yzang
     </a>
   </h1>
   <div class="post-meta">
@@ -631,306 +320,86 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-04-14 18:06:15">2020-04-14</span>
+      <span class="publish-time" data-t="2020-03-17 16:08:28">2020-03-17</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>7<span class="language" data-lan="minute">分钟</span></span>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1639<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-    
-    
-    <span id="/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/" data-flag-title="蓝桥杯省赛模拟赛(4.14)" class="meta-item pc-show leancloud_visitors">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-eye"></i>
-      <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
+      <span>3<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
-            <div class="post-body next-md-body" id="post_body">
-              <!-- more -->
-<h2 id="t1">T1</h2>
-<h3 id="题目">题目</h3>
-<p>括号匹配<br>
-问题描述:<br>
-　　由1对括号，可以组成一种合法括号序列：()。<br>
-　　由2对括号，可以组成两种合法括号序列：()()、(())。<br>
-　　由4对括号组成的合法括号序列一共有多少种？<br>
-题解:<br>
-<strong>卡特兰数</strong><br>
-所以直接写上14.....<br>
-关于<strong>卡特兰数</strong>另写一篇吧,</p>
-<h2 id="t2">T2</h2>
-<h3 id="题目-2">题目</h3>
-<p>在计算机存储中，12.5MB是多少字节？<br>
-答案提交<br>
-　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br>
-题解:<br>
-$  1MB = 1024KB,1KB = 1024B$<br>
-所以答案为<code>13107200</code>;</p>
-<h2 id="t3">T3</h2>
-<h3 id="题目-3">题目</h3>
-<p>将LANQIAO中的字母重新排列，可以得到不同的单词，如LANQIAO、AAILNOQ等，注意这7个字母都要被用上，单词不一定有具体的英文意义。<br>
-　　请问，总共能排列如多少个不同的单词。<br>
-答案提交<br>
-　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br>
-题解:<br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>7</mn><mo>!</mo></mrow><annotation encoding="application/x-tex">7!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mclose">!</span></span></span></span>  但因为有两个A ,所以答案为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5040</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>2520</mn></mrow><annotation encoding="application/x-tex">5040/2=2520</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">4</span><span class="mord">0</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span><span class="mord">2</span><span class="mord">0</span></span></span></span></p>
-<h2 id="t4">T4</h2>
-<h3 id="题目-4">题目</h3>
-<p>一个包含有2019个结点的无向连通图，最少包含多少条边？<br>
-答案提交<br>
-　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。<br>
-题解:<br>
-一个n个结点的无向连通图最少需要N-1条边,所以答案为<code>2018</code>;</p>
-<h2 id="t5">T5</h2>
-<h3 id="题目-5">题目</h3>
-<p>给定一个单词，请使用凯撒密码将这个单词加密。<br>
-　　凯撒密码是一种替换加密的技术，单词中的所有字母都在字母表上向后偏移3位后被替换成密文。即a变为d，b变为e，...，w变为z，x变为a，y变为b，z变为c。<br>
-　　例如，lanqiao会变成odqtldr。<br>
-输入格式<br>
-　　输入一行，包含一个单词，单词中只包含小写英文字母。<br>
-输出格式<br>
-　　输出一行，表示加密后的密文。<br>
-样例输入<br>
-lanqiao<br>
-样例输出<br>
-odqtldr<br>
-评测用例规模与约定<br>
-　　对于所有评测用例，单词中的字母个数不超过100。<br>
-题解 :模拟,也挺简单;</p>
-<pre><code class="language-c">int main() {
-	string a;
-	string s = &quot;defghijklmnopqrstuvwxyzabc&quot;;
-	string c = &quot;DEFGHIJKLMNOPQRSTUVWXYZABC&quot;;
-	cin&gt;&gt;a;
-	for(int i = 0 ; i &lt; a.size() ; i++ ){
-		if(isupper(a[i])) a[i] = c[(int)a[i]-'A'];
-	    else 
-		a[i] = s[(int)a[i]-'a'];
-	}
-	cout&lt;&lt;a;
-    return 0;
-}
-</code></pre>
-<h2 id="t6">T6</h2>
-<h3 id="题目-6">题目</h3>
-<p>问题描述<br>
-　　给定三个整数 a, b, c，如果一个整数既不是 a 的整数倍也不是 b 的整数倍还不是 c 的整数倍，则这个数称为反倍数。<br>
-　　请问在 1 至 n 中有多少个反倍数。<br>
-输入格式<br>
-　　输入的第一行包含一个整数 n。<br>
-　　第二行包含三个整数 a, b, c，相邻两个数之间用一个空格分隔。<br>
-输出格式<br>
-　　输出一行包含一个整数，表示答案。<br>
-样例输入<br>
-30<br>
-2 3 6<br>
-样例输出<br>
-10<br>
-样例说明<br>
-　　以下这些数满足要求：1, 5, 7, 11, 13, 17, 19, 23, 25, 29。<br>
-评测用例规模与约定<br>
-　　对于 40% 的评测用例，1 &lt;= n &lt;= 10000。<br>
-　　对于 80% 的评测用例，1 &lt;= n &lt;= 100000。<br>
-　　对于所有评测用例，1 &lt;= n &lt;= 1000000，1 &lt;= a &lt;= n，1 &lt;= b &lt;= n，1 &lt;= c &lt;= n。<br>
-题解 :暴力</p>
-<pre><code class="language-c">ll n,a,b,c,ans;
-void f(ll n)
-{
-	for(ll i = 1 ; i &lt;= n ; i++){
-		if(i%a != 0 &amp;&amp; i%b != 0 &amp;&amp; i%c != 0)
-		ans++;
-	}
-}
-int main() {
-	rd(n);
-	rd(a),rd(b),rd(c);
-	f(n);
-	cout&lt;&lt;ans;
-    return 0;
-}
-</code></pre>
-<h2 id="t7">T7</h2>
-<h3 id="题目-7">题目</h3>
-<p>如果一个序列的奇数项都比前一项大，偶数项都比前一项小，则称为一个摆动序列。即 a[2i]&lt;a[2i-1], a[2i+1]&gt;a[2i]。<br>
-　　小明想知道，长度为 m，每个数都是 1 到 n 之间的正整数的摆动序列一共有多少个。<br>
-输入格式<br>
-　　输入一行包含两个整数 m，n。<br>
-输出格式<br>
-　　输出一个整数，表示答案。答案可能很大，请输出答案除以10000的余数。<br>
-样例输入<br>
-3 4<br>
-样例输出<br>
-14<br>
-样例说明<br>
-　　以下是符合要求的摆动序列：<br>
-　　2 1 2<br>
-　　2 1 3<br>
-　　2 1 4<br>
-　　3 1 2<br>
-　　3 1 3<br>
-　　3 1 4<br>
-　　3 2 3<br>
-　　3 2 4<br>
-　　4 1 2<br>
-　　4 1 3<br>
-　　4 1 4<br>
-　　4 2 3<br>
-　　4 2 4<br>
-　　4 3 4<br>
-评测用例规模与约定<br>
-　　对于 20% 的评测用例，1 &lt;= n, m &lt;= 5；<br>
-　　对于 50% 的评测用例，1 &lt;= n, m &lt;= 10；<br>
-　　对于 80% 的评测用例，1 &lt;= n, m &lt;= 100；<br>
-　　对于所有评测用例，1 &lt;= n, m &lt;= 1000。<br>
-题解 :dp题<br>
-<code>dp[i][j]</code>表示第i位数时，最大数为m时共有多少个<br>
-初始化 令 d[1][j]为：第1个数选择大于等于 j的数的方案总数</p>
-<h2 id="t8">T8</h2>
-<h3 id="题目-8">题目</h3>
-<p>对于一个 n 行 m 列的表格，我们可以使用螺旋的方式给表格依次填上正整数，我们称填好的表格为一个螺旋矩阵。<br>
-　　例如，一个 4 行 5 列的螺旋矩阵如下：<br>
-　　1 2 3 4 5<br>
-　　14 15 16 17 6<br>
-　　13 20 19 18 7<br>
-　　12 11 10 9 8<br>
-输入格式<br>
-　　输入的第一行包含两个整数 n, m，分别表示螺旋矩阵的行数和列数。<br>
-　　第二行包含两个整数 r, c，表示要求的行号和列号。<br>
-输出格式<br>
-　　输出一个整数，表示螺旋矩阵中第 r 行第 c 列的元素的值。<br>
-样例输入<br>
-4 5<br>
-2 2<br>
-样例输出<br>
-15<br>
-评测用例规模与约定<br>
-　　对于 30% 的评测用例，2 &lt;= n, m &lt;= 20。<br>
-　　对于 70% 的评测用例，2 &lt;= n, m &lt;= 100。<br>
-　　对于所有评测用例，2 &lt;= n, m &lt;= 1000，1 &lt;= r &lt;= n，1 &lt;= c &lt;= m。<br>
-题解</p>
-<pre><code class="language-c">int a[2001][2001];
-int n,m,r,c;
-int d[4][2]={-1,0,0,1,1,0,0,-1};
-int main(){
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;r&gt;&gt;c;
-    int cnt=1,x=1,y=1;
-    memset(a,0,sizeof(a));
-    a[1][1]=1;
-    for(int i=2;i&lt;=n*m;i++) {
-        int tx = x + d[cnt % 4][0];
-        int ty = y + d[cnt % 4][1];
-        if (tx &lt; 1 || tx &gt; n || ty &lt; 1 || ty &gt; m || a[tx][ty]) {
-            cnt++;
-        }
-        x = x + d[cnt % 4][0];
-        y = y + d[cnt % 4][1];
-        a[x][y] = i;
-    }
-    cout&lt;&lt;a[r][c]&lt;&lt;endl;
-    return 0;
-}
-</code></pre>
-
-            </div>
+      <div class="post-body">
+        
+        
+          
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://nzt-yzang.github.io/post/317/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+  
             
             
-              <div class="post-footer">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong class="language" data-lan="author">本文作者：</strong>
-      yzang
-    </li>
-    <li class="post-copyright-link">
-      <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/" title="蓝桥杯省赛模拟赛(4.14)">https://nzt-yzang.github.io/post/lan-qiao-bei-sheng-sai-mo-ni-sai-414/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong class="language" data-lan="copyright">版权声明： </strong>
-      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-  <div class="tags">
+<div class="page bg-color">
+  <ul class="pagination-ul">
     
-  </div>
-  <div class="nav">
-    <div class="nav-prev">
+      <li class="pagination-dir">
+        <a href="https://nzt-yzang.github.io/page/5/">
+          <i class="fa fa-angle-left"></i>
+        </a>
+      </li>
+    
+    
+      <!-- 1 2 3 4 ... N -->
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">卡特兰数</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="卡特兰数" href="https://nzt-yzang.github.io/post/qia-te-lan-shu/">上一篇</a>
+        <!-- 1 ... N-2 N-1 N-->
+        <li class="pagination-li">
+          <a href="/">1</a>
+        </li>
+        <li class="pagination-li">
+          …
+        </li>
+        
+          <li class="pagination-li ">
+            <a href="/page/4">
+              4
+            </a>
+          </li>
+        
+          <li class="pagination-li ">
+            <a href="/page/5">
+              5
+            </a>
+          </li>
+        
+          <li class="pagination-li pagination-active">
+            <a href="#">
+              6
+            </a>
+          </li>
+        
       
-    </div>
-    <div class="nav-next">
-      
-        <a class="nav-pc-next" title="MySQL学习笔记(一)" href="https://nzt-yzang.github.io/post/mysql-xue-xi-bi-ji-yi/">MySQL学习笔记(一)</a>
-        <a class="nav-mobile-next" title="MySQL学习笔记(一)" href="https://nzt-yzang.github.io/post/mysql-xue-xi-bi-ji-yi/">下一篇</a>
-        <i class="fa fa-chevron-right"></i>
-      
-    </div>
-  </div>
+    
+    
+  </ul>
 </div>
-            
-            
-  <script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
-<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
-
-<style>
-  .v .veditor {
-    min-height: 10rem;
-    background-image: url('https://upimage.alexhchu.com/2020/04/21/47eda59424daa.gif');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-color: rgba(255, 255, 255, 0);
-    resize: none;
-  }
-
-  .v .vwrap {
-    border: 1px solid #000 !important;
-  }
-
-  .v .vbtn {
-    padding: .4rem 1.2rem !important;
-    border-color: #fff !important;
-    background-color: #49b1f5 !important;
-    color: #fff !important;
-    font-size: .7rem !important;
-  }
-
-  .v .vcards .vcard .vh .vmeta .vat {
-    padding: 0 .8rem !important;
-    border: 1px solid #00c4b6 !important;
-    border-radius: 5px !important;
-    color: #00c4b6 !important;
-  }
-</style>
-<script>
-  new Valine({
-    el: '#vcomments',
-    appId: '9mxN5lrhF6BCeph89omlhWdi-gzGzoHsz',
-    appKey: '4Ohq4QkHL27wgc5wmrbTsVci',
-    avatar: 'hide',
-    placeholder: 'Welcome.',
-    pageSize: '10',
-    lang: 'zh-cn',
-    enableQQ: 'true' === 'true',
-    visitor: 'true' === 'true',
-    highlight: 'true' === 'true',
-    avatarForce: 'true' === 'false',
-  });
-</script>
-
-          </div>
+          </section>
         </div>
       </div>
     </div>
@@ -1698,223 +1167,6 @@ int main(){
     }
   })
 </script>
-    <div class="reward-mask" style="display: none;">
-  <div class="reward-relative">
-    <span class="close" aria-hidden="true">x</span>
-    <div class="reward-body">
-      <h2>感谢您的支持，我会继续努力的!</h2>
-      <div class="reward-img-box">
-        <div style="position: relative; width: 140px; height: 140px;">
-          
-          
-          
-        </div>
-      </div>
-      <p class="reward-word">扫码打赏，你说多少就多少</p>
-      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
-    </div>
-    <div class="bottom">
-      
-      
-    </div>
-  </div>
-</div>
-<style>
-  .reward-mask {
-    position: fixed;
-    z-index: 99999;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #00000054;
-  }
-
-  .reward-relative {
-    position: relative;
-    width: 480px;
-    text-align: center;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: #fff;
-    top: 50%;
-    margin-top: -205px;
-  }
-
-  .reward-relative .close {
-    position: absolute;
-    right: 10px;
-    font-weight: normal;
-    font-size: 16px;
-    color: #929292;
-  }
-
-  .reward-body {
-    padding: 40px 20px 20px;
-  }
-
-  .bottom {
-    display: flex;
-  }
-
-  .reward-btn {
-    text-align: center;
-  }
-
-  .reward-btn-text {
-    display: inline-block;
-    cursor: pointer;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 50%;
-    background-color: #ff9734;
-    color: #FFF;
-    margin-top: 20px;
-  }
-
-  .pay-text {
-    margin-top: 10px;
-    padding: 10px;
-    flex: 1;
-    transition: all .2s linear;
-  }
-
-  .pay-text:hover {
-    background-color: #a5a5a536;
-  }
-
-  .reward-body h2 {
-    padding-top: 10px;
-    text-align: center;
-    color: #a3a3a3;
-    font-size: 16px;
-    font-weight: normal;
-    margin: 0 0 20px;
-  }
-
-  .reward-body h2:after,
-  .reward-body h2:before {
-    font-family: Arial, Helvetica, sans-serif;
-    background: 0 0;
-    width: 0;
-    height: 0;
-    font-style: normal;
-    color: #eee;
-    font-size: 80px;
-    position: absolute;
-    top: 20px;
-  }
-
-  .reward-body h2:before {
-    content: '\201c';
-    left: 50px;
-  }
-
-  .reward-body h2:after {
-    content: '\201d';
-    right: 80px;
-  }
-
-  .reward-img-box {
-    display: inline-block;
-    padding: 10px;
-    border: 6px solid #ea5f00;
-    margin: 0 auto;
-    border-radius: 3px;
-    position: relative;
-  }
-
-  .reward-img {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-  }
-
-  @media (max-width: 767px) {
-    .reward-relative {
-      height: 100%;
-      top: 0px;
-      margin-top: 0;
-      width: auto;
-    }
-
-    .reward-relative .bottom {
-      flex-direction: column;
-    }
-
-    .reward-relative .pay-text {
-      width: 80%;
-      margin: 5px auto;
-      border: 1px solid silver;
-      padding: 6px;
-      border-radius: 4px;
-    }
-
-    .reward-body h2:after {
-      right: 40px;
-    }
-
-    .reward-body h2:after,
-    .reward-body h2:before {
-      font-size: 60px;
-    }
-
-    .reward-body h2:before {
-      left: 20px;
-    }
-  }
-</style>
-<script>
-  !function () {
-    var mask = document.querySelector('.reward-mask');
-    let close = document.querySelector('.reward-relative .close');
-    let rewardBtn = document.querySelector('.reward-btn');
-
-    let zfb = document.querySelector('#zfb'),
-      wx = document.querySelector('#wx'),
-      zfbBtn = document.querySelector('#zfbBtn'),
-      wxBtn = document.querySelector('#wxBtn');
-
-    if (zfbBtn && wxBtn) {
-      zfbBtn.addEventListener('click', () => {
-        window.Velocity(zfb, 'transition.slideLeftIn', {
-          duration: 400
-        });
-        window.Velocity(wx, 'transition.slideRightOut', {
-          display: 'none',
-          duration: 400
-        });
-      });
-
-      wxBtn.addEventListener('click', () => {
-        window.Velocity(wx, 'transition.slideRightIn', {
-          duration: 400
-        });
-        window.Velocity(zfb, 'transition.slideLeftOut', {
-          display: 'none',
-          duration: 400
-        });
-      });
-    }
-
-    rewardBtn.addEventListener('click', (e) => {
-      window.Velocity(mask, 'transition.slideDownIn', {
-        duration: 400
-      })
-    });
-
-    close.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.Velocity(mask, 'transition.slideUpOut', {
-        duration: 400
-      })
-    })
-  }()
-</script>
-
   </div>
 </body>
 
@@ -7539,5 +6791,6 @@ inline LL C(LL n,LL m)
 
 
 <script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>
+
 
 </html>
