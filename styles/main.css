@@ -2064,6 +2064,10 @@ p > code {
         width: 960px;
         margin: 0 auto;
       }
+    
+    .post-body {
+      font-size: 14px !important
+    }
     body {
       color: #555;
     }
@@ -2090,12 +2094,12 @@ p > code {
     .node-title::before {
       background-color: #555;
     }a {
-      color: #555;
+      color: #1c7ed6;
     }
     
     .next-md-body a, .friends-box a  {
-      color: #555;
-      border-bottom: 1px solid #555;
+      color: #1c7ed6;
+      border-bottom: 1px solid #1c7ed6;
     }a:hover {
       color: #1864ab;
     }
