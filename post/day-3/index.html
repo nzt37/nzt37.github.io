@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>Day 3 | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601696943210">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601699937557">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -1723,6 +1723,7 @@ int main()
 &lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P4779&#34;&gt;P4779 【模板】单源最短路径（标准版）&lt;/a&gt;&lt;br&gt;
 给定一个 n 个点，m 条有向边的带非负权图，请你计算从 s 出发，到每个点的距离。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;结构体重载&#34;&gt;结构体重载&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 const int inf = 0x3f3f3f3f;
@@ -1763,6 +1764,58 @@ void dijkstra()
 			if(dis[v] &amp;gt; dis[b] + edge[i].w){
 				dis[v] = dis[b] + edge[i].w;
 				q.push((node){dis[v],v});
+			}
+		}	
+	}	
+}
+int main()
+{
+	cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m&amp;gt;&amp;gt;s;
+	for(int i = 1 ; i &amp;lt;= m ; i++){
+		int u,v,w;
+		cin&amp;gt;&amp;gt;u&amp;gt;&amp;gt;v&amp;gt;&amp;gt;w;
+		addedge(u,v,w);
+	}
+	dijkstra();
+	for( int i = 1; i &amp;lt;= n; i++ )
+        printf( &amp;quot;%d &amp;quot;, dis[i] );
+	return 0;
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;pair&#34;&gt;pair&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+const int inf = 0x3f3f3f3f;
+const int maxn = 1e5+6;
+int head[maxn],cnt,n,m,s,dis[maxn];
+bool vis[maxn];
+struct Node{
+	int v,w,next;
+}edge[maxn&amp;lt;&amp;lt;1];
+void addedge(int u,int v,int w)
+{
+	edge[++cnt].next = head[u];
+	edge[cnt].v = v;
+	edge[cnt].w = w;
+	head[u] = cnt;
+}
+typedef pair&amp;lt;int,int&amp;gt; P;//第一个变量指距离,第二个为节点 
+priority_queue&amp;lt; P, vector&amp;lt;P&amp;gt;, greater&amp;lt;P&amp;gt; &amp;gt; q;//按first从小到大出队
+void dijkstra()
+{
+	memset(dis,inf,sizeof(dis));
+	dis[s] = 0;//从s点出发 
+	q.push(make_pair(0,s));
+	while(!q.empty()){
+		int b = q.top().second;
+		q.pop();
+		if(vis[b]) continue;
+		vis[b] = 1;
+		for(int i = head[b] ; i ; i = edge[i].next){
+			int v = edge[i].v;
+			if(dis[v] &amp;gt; dis[b] + edge[i].w){
+				dis[v] = dis[b] + edge[i].w;
+				q.push(make_pair(dis[v],v));
 			}
 		}	
 	}	
