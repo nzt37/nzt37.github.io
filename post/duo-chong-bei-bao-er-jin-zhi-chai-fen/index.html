@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>二分图最大匹配(匈牙利)[模板] | Yzang&#39;s Blog</title>
+<title>P1833 樱花(混合背包+二进制拆分) | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601801951114">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="二分图最大匹配(匈牙利)[模板]" />
+  <meta name="description" content="P1833 樱花(混合背包+二进制拆分)" />
   <meta name="keywords" content="" />
 </head>
 
@@ -315,9 +315,16 @@
     <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E4%BA%8C%E5%88%86%E5%9B%BE">二分图</a></li>
-<li><a href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E7%9A%84%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95">二分图的最大匹配：匈牙利算法</a></li>
+<li><a href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%8B%86%E5%88%86">二进制拆分</a>
+<ul>
 <li><a href="#code">code</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B7%B7%E5%90%88%E8%83%8C%E5%8C%85">混合背包</a>
+<ul>
+<li><a href="#code-2">code</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -585,8 +592,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/er-fen-tu-zui-da-pi-pei-xiong-ya-li-mo-ban/">
-      二分图最大匹配(匈牙利)[模板]
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/duo-chong-bei-bao-er-jin-zhi-chai-fen/">
+      P1833 樱花(混合背包+二进制拆分)
     </a>
   </h1>
   <div class="post-meta">
@@ -594,23 +601,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-10-03 18:20:07">2020-10-03</span>
+      <span class="publish-time" data-t="2020-10-04 16:47:08">2020-10-04</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>5<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>522<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>879<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/er-fen-tu-zui-da-pi-pei-xiong-ya-li-mo-ban/" data-flag-title="二分图最大匹配(匈牙利)[模板]" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/duo-chong-bei-bao-er-jin-zhi-chai-fen/" data-flag-title="P1833 樱花(混合背包+二进制拆分)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -619,49 +626,98 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p>给定一张二分图，其左部点集大小为 nn，右部点集大小为 mm，请求出其最大匹配。</p>
-<h2 id="二分图">二分图</h2>
-<p>二分图又称作二部图，是图论中的一种特殊模型。 设G=(V,E)是一个无向图，如果顶点V可分割为两个互不相交的子集(A,B)，并且图中的每条边（i，j）所关联的两个顶点i和j分别属于这两个不同的顶点集(i in A,j in B)，则称图G为一个二分图。</p>
-<p>简单的说，一个图被分成了两部分，相同的部分没有边，那这个图就是二分图，二分图是特殊的图。</p>
-<h2 id="二分图的最大匹配匈牙利算法">二分图的最大匹配：匈牙利算法</h2>
-<p><strong>...看了半天最大流,一头雾水<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mi>w</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">qwq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span></strong></p>
-<ul>
-<li>1.从任意一个没有被配对的点x开始，从点x的边中任意选一条边。如果此时点i没有被配对那么配对成-功，则找到了一条增广路。如果点i此时已经被配对了，那么可以尝试将点i与其他点配对。如果尝试成功，则找到一条增广路。这里用match[ ]来记录配对关系， 即match[i] = x。 并且将配对数+1。 这个过程我们用dfs来实现。。</li>
-<li>2.如果配对失败，就从点x的边中重选一条边尝试。直到点x配对成功或尝试完x所有的边。</li>
-<li>3.接下来对没有配对的点一一进行配对，直到所有的点都尝试完毕找不到新的增广路。</li>
+              <ul>
+<li><a href="https://www.luogu.com.cn/problem/P1833">P1833 樱花</a><br>
+这是一道裸的混合背包（01+完全+多重）</li>
 </ul>
-<h2 id="code">code</h2>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+<h2 id="二进制拆分">二进制拆分</h2>
+<p>我们可以把多重背包进行二进制拆分，将其转化成01背包问题。<br>
+那么，什么是二进制拆分呢？<br>
+首先，一般的多重背包的递推公式是这样的<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>v</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>v</mi><mo>−</mo><mi>k</mi><mo>∗</mo><mi>t</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>]</mo><mo>+</mo><mi>k</mi><mo>∗</mo><mi>c</mi><mo>[</mo><mi>i</mi><mo>]</mo><mi mathvariant="normal">∣</mi><mn>0</mn><mo>&lt;</mo><mo>=</mo><mi>k</mi><mo>&lt;</mo><mo>=</mo><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow></mrow><annotation encoding="application/x-tex">f[i][v]=max{f[i-1][v-k* t[i]]+k* c[i]|0&lt;=k&lt;=p[i]}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">t</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">c</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mord">∣</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span></span><br>
+我们考虑将k进行二进制拆分，从而用O(logp[i])的复杂度来枚举第i件物品选择多少个。<br>
+例如： 如果一个物品可以选9件，则可以拆成1,2,4,2四种物品，这样就可以表示选0-9范围内的所有个数的改物品。<br>
+那么怎么拆呢？<br>
+对于一个数，我们先减去<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">2^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span>,再减去<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">2^1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span>……直到不能减为止。<br>
+比如<br>
+11<br>
+11-1=10<br>
+10-2=8<br>
+8-4=4<br>
+所以11应该拆成1，2，4，4<br>
+那么怎么去实现呢<br>
+对于一个物品，我们把它拆分后，对于每一个拆分的数s，就相当于新建了一个价值为c[i]* s,代价为t[i]* s的新物品。</p>
+<h3 id="code">code</h3>
+<pre><code class="language-c">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#define re register int
 using namespace std;
-const int maxn = 1e5+6;
-int a[501][501],n,m,e,match[maxn],vis[maxn],ans;
-bool dfs(int x)
-{
-	for(int i = 1 ; i &lt;= m ; i++){
-		if(!vis[i] &amp;&amp; a[x][i]){
-			vis[i] = 1;
-			if(!match[i] || dfs(match[i])){
-				match[i] = x;
-				return 1;
-			}		
+int nx,ny,ex,ey,n,f[1010];
+int a[10005],b[10005],c[10005];
+int tp,co[1000005],v[1000005];//尽可能开大，不要把空间开爆了
+inline void pre() {
+	for(re i=1;i&lt;=n;i++) {
+		int t=1;
+		while(c[i]) {
+			co[++tp]=t*a[i];
+			v[tp]=t*b[i];
+			c[i]-=t; t*=2;
+			if(c[i]&lt;t) {//如果剩下的不能再拆，就直接放在一起
+				co[++tp]=a[i]*c[i];
+				v[tp]=b[i]*c[i];
+				break;
+			}
 		}
 	}
+}
+int main() {
+	scanf(&quot;%d:%d%d:%d%d&quot;,&amp;nx,&amp;ny,&amp;ex,&amp;ey,&amp;n);
+	int t=(ex*60+ey)-(nx*60+ny);
+	for(re i=1;i&lt;=n;i++) {
+		scanf(&quot;%d%d%d&quot;,&amp;a[i],&amp;b[i],&amp;c[i]);
+		if(!c[i]) c[i]=999999;
+	}
+	pre();//二进制拆分
+	for(re i=1;i&lt;=tp;i++) {//考虑每个拆出来的物品
+		for(re j=t;j&gt;=co[i];j--)//01背包板子
+			f[j]=max(f[j],f[j-co[i]]+v[i]);
+	}
+	printf(&quot;%d&quot;,f[t]);
 	return 0;
 }
+</code></pre>
+<h2 id="混合背包">混合背包</h2>
+<p>最基本的混合背包，判断是完全，01，或是多重，再选择。<br>
+这题直接上板子好像也能过,不过对于多重背包哪里需要优化一下<br>
+我们可以发现当第ii个朵花,重复第k次01背包时,对于第i朵花dp[k∗t[i]]前(不包括本身)的值都是已经确定了的,由于前面都是确定的就不要再循环到了</p>
+<h3 id="code-2">code</h3>
+<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int c[100001],a[1000001],t[1000001],te1,te2,ts1,ts2,n,tz;//c[],t[]为题目等于,a[]表示最多看的次数,te1小时1,te2分钟1,ts1小时2,ts2分钟2,tz总时间
+int dp[1001];//dp[j]表示消耗了j分钟最多可以有多少美学值
+char cc;//符号':'
 int main()
 {
-	cin&gt;&gt;n&gt;&gt;m&gt;&gt;e;
-	for(int i = 0 ; i &lt; e ; i++){
-		int u,v;
-		cin&gt;&gt;u&gt;&gt;v;
-		if (v &lt;= m)
-		 a[u][v] = 1;
+	cin&gt;&gt;te1&gt;&gt;cc&gt;&gt;te2&gt;&gt;ts1&gt;&gt;cc&gt;&gt;ts2;
+	tz=60*(ts1-te1)+ts2-te2;
+	cin&gt;&gt;n;
+	for(int p=1;p&lt;=n;p++) scanf(&quot;%d%d%d&quot;,&amp;t[p],&amp;c[p],&amp;a[p]);
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(a[i]==0)
+		{
+			for(int j=t[i];j&lt;=tz;j++) dp[j]=max(dp[j],dp[j-t[i]]+c[i]);
+		}
+		else
+		{
+		    for(int l=1;l&lt;=a[i];l++)
+		    for(int j=tz;j&gt;=l*t[i];j--) 
+			{
+				dp[j]=max(dp[j],dp[j-t[i]]+c[i]);
+			}
+		}
 	}
-	for(int i = 1 ; i &lt;= n ; i++){
-		ans += dfs(i);
-		memset(vis, 0, sizeof(vis));
-	}
-	cout&lt;&lt;ans;
+	cout&lt;&lt;dp[tz];
 	return 0;
 }
 </code></pre>
@@ -677,7 +733,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/er-fen-tu-zui-da-pi-pei-xiong-ya-li-mo-ban/" title="二分图最大匹配(匈牙利)[模板]">https://nzt-yzang.github.io/post/er-fen-tu-zui-da-pi-pei-xiong-ya-li-mo-ban/</a>
+      <a href="https://nzt-yzang.github.io/post/duo-chong-bei-bao-er-jin-zhi-chai-fen/" title="P1833 樱花(混合背包+二进制拆分)">https://nzt-yzang.github.io/post/duo-chong-bei-bao-er-jin-zhi-chai-fen/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -690,15 +746,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="P1833 樱花(混合背包+二进制拆分)" href="https://nzt-yzang.github.io/post/duo-chong-bei-bao-er-jin-zhi-chai-fen/">P1833 樱花(混合背包+二进制拆分)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="P1833 樱花(混合背包+二进制拆分)" href="https://nzt-yzang.github.io/post/duo-chong-bei-bao-er-jin-zhi-chai-fen/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="博弈论（巴什博奕，威佐夫博弈，尼姆博弈，斐波那契博弈）" href="https://nzt-yzang.github.io/post/bo-yi-lun-ba-shi-bo-yi-wei-zuo-fu-bo-yi-ni-mu-bo-yi-fei-bo-na-qi-bo-yi/">博弈论（巴什博奕，威佐夫博弈，尼姆博弈，斐波那契博弈）</a>
-        <a class="nav-mobile-next" title="博弈论（巴什博奕，威佐夫博弈，尼姆博弈，斐波那契博弈）" href="https://nzt-yzang.github.io/post/bo-yi-lun-ba-shi-bo-yi-wei-zuo-fu-bo-yi-ni-mu-bo-yi-fei-bo-na-qi-bo-yi/">下一篇</a>
+        <a class="nav-pc-next" title="二分图最大匹配(匈牙利)[模板]" href="https://nzt-yzang.github.io/post/er-fen-tu-zui-da-pi-pei-xiong-ya-li-mo-ban/">二分图最大匹配(匈牙利)[模板]</a>
+        <a class="nav-mobile-next" title="二分图最大匹配(匈牙利)[模板]" href="https://nzt-yzang.github.io/post/er-fen-tu-zui-da-pi-pei-xiong-ya-li-mo-ban/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
