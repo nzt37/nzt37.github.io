@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>Self Page | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601888745057">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1601960186099">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -240,7 +240,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">54</span>
+        <span class="site-item-stat-count">55</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1615,6 +1615,75 @@
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/p2704-noi2001pao-bing-zhen-di/"" data-c="
+          &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P2704&#34;&gt;P2704 [NOI2001]炮兵阵地&lt;/a&gt;&lt;br&gt;
+打了一早上,脑子嗡嗡的...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;题解&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;定义一个数组&lt;br&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Ｆ&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;［&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;ｉ&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;］&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;［&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;ｊ&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;］&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;［&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;ｋ&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;］&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Ｆ［ｉ］［ｊ］［ｋ］&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;Ｆ&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;［&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;ｉ&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;］&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;［&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;ｊ&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;］&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;［&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;ｋ&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;］&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;
+用　ｉ　表示当前枚举到第几行，k 表示当前行的状态，j 表示上一行的状态&lt;br&gt;
+&lt;strong&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;f[i][j][k]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.10764em;&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.05724em;&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03148em;&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;表示第i行的状态为k上一行的状态为j时能放置的炮兵的最大值.&lt;/strong&gt;&lt;br&gt;
+代码中注释很详细了&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+
+char x;
+int n,m,k,ans,a[103],s[1005],g[1005];
+int f[3][1005][1005];//f[i][j][k]表示第i行的状态为k上一行的状态为j时能放置的炮兵的最大值。
+
+int get(int x) { //用于计算有多少炮兵（即有多少1） 。
+	int e = 0;
+	while(x &amp;gt; 0) {
+		e++;
+		x -= x &amp;amp; (-x);/*x减去-x的二进制与x的二进制按位与正好可以去掉x得最小位上的1，
+所以去除几次才能使x=0就是有几个1。*/
+	}
+	return e;
+}
+
+int main( ) {
+	scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;n,&amp;amp;m);
+	for(int i=1; i&amp;lt;=n; i++)
+		for(int j=0; j&amp;lt;m; j++)
+			cin&amp;gt;&amp;gt;x,a[i]&amp;lt;&amp;lt;=1,a[i]+=(x==&#39;H&#39;?1:0);	//转成二进制数
+	for(int i = 0; i &amp;lt;= (1&amp;lt;&amp;lt;m)-1; i++)//枚举每个状态 
+		if((( i &amp;amp; (i&amp;lt;&amp;lt;1)) == 0 ) &amp;amp;&amp;amp; (( i &amp;amp; (i&amp;lt;&amp;lt;2)) ==0 ) &amp;amp;&amp;amp; (( i &amp;amp; (i&amp;gt;&amp;gt;1)) == 0) &amp;amp;&amp;amp;((i &amp;amp; (i&amp;gt;&amp;gt;2)) == 0))
+			//不考虑地图，判断每个1左右2格内是否为1，即判断该状态是否存在。
+		{
+			k++;//每有一种状态存在k++。k即为所有存在的状态数。
+			s[k] = i;//保存每种可能状态i 。
+			g[k] = get(i);//计算该状态i有多少炮兵 。
+			if((i &amp;amp; a[1]) == 0)	f[1][0][k] = g[k];
+			//因为山地被赋值成1，所以若状态i与第一行地图在同一位上没有相同的1，该状态就存在。
+		}
+	for(int i = 1; i &amp;lt;= k; i++)
+		for(int j = 1; j &amp;lt;= k; j++)
+			if(((s[i] &amp;amp; s[j]) == 0) &amp;amp;&amp;amp; ((s[j] &amp;amp; a[2]) == 0))
+				//如果状态i和状态j没有1在同一列，并且状态j和地图不冲突，就存到的第二行 。
+				f[2][i][j] = max(f[2][i][j], f[1][0][i] + g[j]);//求第二行的最大值。
+	for(int i = 3; i &amp;lt;= n; i++)//求剩余行数
+		for(int j = 1; j &amp;lt;= k; j++)
+			if((a[i] &amp;amp; s[j]) == 0)//如果地图第i行与当前状态j不冲突
+				for(int o = 1; o &amp;lt;= k; o++)//枚举i-1行状态
+					if((s[o] &amp;amp; s[j]) == 0)//如果前i-1行状态o与第i行状态j不冲突
+						for(int q = 1; q &amp;lt;= k; q++)//枚举i-2行状态
+							if(((s[q] &amp;amp; s[o]) == 0) &amp;amp;&amp;amp; ((s[q] &amp;amp; s[j]) == 0))
+								//如果当前枚举的第i行与第i-1行和第i-2行不冲突
+								f[i%3][o][j] = max(f[i%3][o][j] , f[(i-1)%3][q][o]+g[j]);//求当前状态的最大值
+	for(int i = 1; i &amp;lt;= k; i++)
+		for(int j = 1; j &amp;lt;= k; j++)
+			ans = max(f[n%3][i][j],ans);//比较计算到第n行时的最大值
+	cout&amp;lt;&amp;lt;ans;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">P2704 [NOI2001]炮兵阵地</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/codeforces-round-675-div-2/"" data-c="
           &lt;h1 id=&#34;afence-水题&#34;&gt;A	Fence (水题)&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1422/problem/A&#34;&gt;A. Fence&lt;/a&gt;&lt;/p&gt;
@@ -1660,6 +1729,70 @@ signed main()
 		}
 		cout&amp;lt;&amp;lt;cnt&amp;lt;&amp;lt;endl;
 	}
+	return 0;
+ } 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;c-bargain&#34;&gt;C - Bargain&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1422/problem/C&#34;&gt;C - Bargain&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意-3&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;给一个由数字组成的字符串,可以任取走数字,求取走后数字的总和&lt;/p&gt;
+&lt;h2 id=&#34;题解-3&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;贡献法优化，从低位往高位去枚举，也就是从后往前枚举。&lt;br&gt;
+枚举到第i位的时候,考虑在i位前取走数字(就是位数高于i的位),设可以删的整个区间的范围为k&lt;br&gt;
+可以发现，取1长的有k种，取2长的有k-2,取3长的有k-3...可以得出有&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;/&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;k*(k+1)/2&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03148em;&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;∗&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03148em;&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;种;&lt;br&gt;
+所以s[i]关于前面区间的贡献为s[i]&lt;em&gt;k&lt;/em&gt;(k+1)/2;&lt;br&gt;
+考虑的i位后面取.&lt;br&gt;
+举个例子。&lt;br&gt;
+8 4 3 2 1&lt;br&gt;
+对1来说，后面没有，那么贡献是0&lt;br&gt;
+对2来说，后面拿1，贡献是2&lt;br&gt;
+对3来说，后面拿1和2，贡献是3，后面拿1，贡献是30，后面拿2，贡献是30.&lt;br&gt;
+对4来说，后面拿123，贡献是4；后面拿23，21，贡献是40，40；后面拿3，2，1，贡献是400，400，400；&lt;br&gt;
+可以定义一个数组来提前处理,计算出每一位需要累加的,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void init(int n)
+{
+	f[0] = 0;
+	f[1] = 1;
+	int tag = 10;
+	for(int i = 2 ; i &amp;lt;= n ; i++){
+		f[i] = (f[i-1]%mod+i*tag%mod)%mod;
+		tag = tag*10%mod;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define int long long
+using namespace std;
+const int mod  = 1e9+7; 
+const int maxn = 1e6+5;
+int f[maxn];
+void init(int n)
+{
+	f[0] = 0;
+	f[1] = 1;
+	int tag = 10;
+	for(int i = 2 ; i &amp;lt;= n ; i++){
+		f[i] = (f[i-1]%mod+i*tag%mod)%mod;
+		tag = tag*10%mod;
+	}
+}
+signed main()
+{
+	string s;
+	cin&amp;gt;&amp;gt;s;
+	reverse(s.begin(),s.end());
+	int tag = 1;
+	int n = s.size()-1,ans = 0;
+	init(n);
+	for(int i = 0 ; i &amp;lt; s.size() ; i++){
+		int m = s[i]-&#39;0&#39;;
+		int num = ((n-i)*(n-i+1))/2;
+		ans = (ans%mod + m*num%mod*tag%mod)%mod;
+		ans = (ans%mod + m*f[i]%mod)%mod;
+		tag = tag%mod*10%mod;
+	}
+	cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
 	return 0;
  } 
 &lt;/code&gt;&lt;/pre&gt;
