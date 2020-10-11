@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>字符串哈希 | Yzang&#39;s Blog</title>
+<title>Diary | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1602428158031">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="字符串哈希" />
+  <meta name="description" content="Diary" />
   <meta name="keywords" content="" />
 </head>
 
@@ -330,7 +330,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#code"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></a></li>
+<li><a href="#1011">10.11</a></li>
 </ul>
 </li>
 </ul>
@@ -600,8 +600,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/zi-fu-chuan-ha-xi/">
-      字符串哈希
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/diary/">
+      Diary
     </a>
   </h1>
   <div class="post-meta">
@@ -609,23 +609,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-09-22 14:27:20">2020-09-22</span>
+      <span class="publish-time" data-t="2020-10-11 22:55:20">2020-10-11</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2<span class="language" data-lan="minute">分钟</span></span>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>230<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>2<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/zi-fu-chuan-ha-xi/" data-flag-title="字符串哈希" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/diary/" data-flag-title="Diary" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -634,43 +634,7 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <!-- more -->
-<p><strong>给定n个字符串,求出有多少相同的字符串</strong><br>
-可以通过哈希数组来判断几个字符串数组是否相同,就是通过一个固定的转换方式将其转换为另一种数组,相同的串转换之后的值一定相同,不同的串转换的值尽量不同.<br>
-<a href="https://www.luogu.com.cn/problem/P3370">P3370 【模板】字符串哈希</a></p>
-<h3 id="code"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></h3>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-#define ull unsigned long long//这里运用了ull 可以自动溢出,也可以找一个很大的素数取mod
-ull base = 133,b[20001],cnt=1;
-string a[10001];
-int n;
-ull Hash(string s)//哈希函数
-{
-	ull ans = 0,len  =s.size();
-	for(int i = 0 ; i &lt; len ; i++)
-	{
-		ans = ans*base + (ull)s[i];//转换
-	}
-	return ans;
-}
-int main()
-{
-	cin&gt;&gt;n;
-	for(int i = 0 ; i &lt; n ; i++)
-	{
-		cin&gt;&gt;a[i];
-		b[i] = Hash(a[i]);
-	}
-	sort(b,b+n);
-	for(int i = 1 ; i &lt; n ; i++ )
-	{
-		if(b[i]!=b[i-1])
-		cnt++;
-	}
-	cout&lt;&lt;cnt;
-	return 0;
-}</code></pre>
+              <h3 id="1011">10.11</h3>
 
             </div>
             
@@ -683,7 +647,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/zi-fu-chuan-ha-xi/" title="字符串哈希">https://nzt-yzang.github.io/post/zi-fu-chuan-ha-xi/</a>
+      <a href="https://nzt-yzang.github.io/post/diary/" title="Diary">https://nzt-yzang.github.io/post/diary/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -696,15 +660,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="最小生成树(Kruskal和Prim)" href="https://nzt-yzang.github.io/post/zui-xiao-sheng-cheng-shu/">最小生成树(Kruskal和Prim)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="最小生成树(Kruskal和Prim)" href="https://nzt-yzang.github.io/post/zui-xiao-sheng-cheng-shu/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="P2678 跳石头(二分答案)" href="https://nzt-yzang.github.io/post/p2678-tiao-shi-tou-er-fen-da-an/">P2678 跳石头(二分答案)</a>
-        <a class="nav-mobile-next" title="P2678 跳石头(二分答案)" href="https://nzt-yzang.github.io/post/p2678-tiao-shi-tou-er-fen-da-an/">下一篇</a>
+        <a class="nav-pc-next" title="Educational Codeforces Round 96 (Rated for Div. 2)" href="https://nzt-yzang.github.io/post/educational-codeforces-round-96-rated-for-div-2/">Educational Codeforces Round 96 (Rated for Div. 2)</a>
+        <a class="nav-mobile-next" title="Educational Codeforces Round 96 (Rated for Div. 2)" href="https://nzt-yzang.github.io/post/educational-codeforces-round-96-rated-for-div-2/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
