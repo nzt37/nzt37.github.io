@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Codeforces Round #672 (Div. 2) | Yzang&#39;s Blog</title>
+<title>Educational Codeforces Round 97 (Rated for Div. 2) | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1603891825338">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="Codeforces Round #672 (Div. 2)" />
+  <meta name="description" content="Educational Codeforces Round 97 (Rated for Div. 2)" />
   <meta name="keywords" content="" />
 </head>
 
@@ -328,22 +328,23 @@
     <ul class="markdownIt-TOC">
 <li><a href="#a">A</a>
 <ul>
-<li><a href="#%E9%A2%98%E6%84%8F">题意:</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3">题解:</a>
-<ul>
-<li><a href="#code">Code</a></li>
-</ul>
-</li>
+<li><a href="#%E9%A2%98%E6%84%8F">题意</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+<li><a href="#code">code</a></li>
 </ul>
 </li>
 <li><a href="#b">B</a>
 <ul>
-<li><a href="#%E9%A2%98%E6%84%8F-2">题意:</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3-2">题解:</a>
-<ul>
-<li><a href="#code-2">Code</a></li>
+<li><a href="#%E9%A2%98%E6%84%8F-2">题意</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3-2">题解</a></li>
+<li><a href="#code-2">code</a></li>
 </ul>
 </li>
+<li><a href="#c">C</a>
+<ul>
+<li><a href="#%E9%A2%98%E6%84%8F-3">题意</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3-3">题解</a></li>
+<li><a href="#code-3">code</a></li>
 </ul>
 </li>
 </ul>
@@ -611,8 +612,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/codeforces-round-672-div-2/">
-      Codeforces Round #672 (Div. 2)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/educational-codeforces-round-97-rated-for-div-2/">
+      Educational Codeforces Round 97 (Rated for Div. 2)
     </a>
   </h1>
   <div class="post-meta">
@@ -620,23 +621,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-09-25 12:59:23">2020-09-25</span>
+      <span class="publish-time" data-t="2020-10-28 20:53:11">2020-10-28</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>5<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>533<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>955<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/codeforces-round-672-div-2/" data-flag-title="Codeforces Round #672 (Div. 2)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/educational-codeforces-round-97-rated-for-div-2/" data-flag-title="Educational Codeforces Round 97 (Rated for Div. 2)" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -645,86 +646,130 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <!-- more -->
-<h1 id="a">A</h1>
-<p><a href="https://codeforces.ml/contest/1420/problem/A">Cubes Sorting</a></p>
-<h2 id="题意">题意:</h2>
-<p>给一个n个数的数列,相邻之间数可交换,并且最多可交换<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mi mathvariant="normal">/</mi><mn>2</mn><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n*(n-1)/2-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>次,若在有效次数内可以交换为非递减序列,则输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi><mi>E</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">YES</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>,否则输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>O</mi></mrow><annotation encoding="application/x-tex">NO</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span></span></span></span></p>
-<h2 id="题解">题解:</h2>
-<p>刚开始做是算出交换次数,然后和最大交换数比较,但是第二个测试点一直过不去.<br>
-可以发现在最坏的情况下n个数需要交换<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>∗</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">n*(n-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>次,所以只需判断是不是最坏情况,如果不是,则交换次数必在有效次数之内</p>
-<h3 id="code">Code</h3>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+              <h1 id="a">A</h1>
+<p><a href="https://codeforces.ml/contest/1437/problem/A">Marketing Scheme</a></p>
+<h2 id="题意">题意</h2>
+<p>给一个区间[ l , r ],取一个数a,对于区间内任何一个数x，都满足x%a &gt;= a/2;</p>
+<h2 id="题解">题解</h2>
+<p>l&lt;=a&lt;=r时，肯定能取到x = a 这时 x%a = 0，不符合；<br>
+当a&gt;r时,对于r是成立的,所以需要考虑 l 的情况,不难看出,l需要满足l &gt;= a/2,即2<em>l&gt;=a;<br>
+所以只需要判断2</em>l&gt;r就行</p>
+<h2 id="code">code</h2>
+<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
 using namespace std;
-int t,n,a[50005],ans;
-int main()
-{
-	cin&gt;&gt;t;
-	while(t--)
-	{
-		cin&gt;&gt;n;
-		ans = 0;
-		for(int i = 1 ; i &lt;= n ; i++){
-			cin&gt;&gt;a[i];
-		}
-		bool vis = true;
-		for(int i = 2 ; i &lt;= n ; i++){
-			if(a[i-1] &gt; a[i]) continue;
-			else{
-				vis = false;
-				break;
-			}
-		}
-		if(vis==false) cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl;
-		else
-		cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;
-	}
-	return 0;
+#define ll long long
+#define endl '\n'
+const int inf=0x3f3f3f3f;
+const int maxn=1e5+5;
+int main(){
+    std::cin.tie(0); 
+    int t;cin&gt;&gt;t;
+    while(t--)
+    {
+        ll l,r;
+        cin&gt;&gt;l&gt;&gt;r;
+        l*=2;
+        if(r&lt;l)  {
+            cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl;
+        }
+        else  {
+            cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;
+        }
+    } 
+    return 0;
 }
 </code></pre>
 <h1 id="b">B</h1>
-<h2 id="题意-2">题意:</h2>
-<p>给定一段序列,求次序列中有多少对满足<br>
-<span class='katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;&amp;&#039; at position 5: a[i]&amp;̲a[j]&gt;=a[i]^a[j]'>a[i]&amp;a[j]&gt;=a[i]^a[j]</span><br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow><annotation encoding="application/x-tex">i&lt;j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69862em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span></p>
-<h2 id="题解-2">题解:</h2>
-<p>如4,7<br>
-4 的二进制 100<br>
-7 的二级制 111<br>
-4&amp;7 =       100(只有1,1,才为1)<br>
-4^7 =        011(相同为假,不同为真)<br>
-可以发现当两个数的最高位相同时,才满足<span class='katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;&amp;&#039; at position 5: a[i]&amp;̲a[j]&gt;=a[i]^a[j]'>a[i]&amp;a[j]&gt;=a[i]^a[j]</span>,所以可以求出所有数字的最高位并储存在数组C中;<br>
-<code>int get_bit(int x,int v) { return (x&gt;&gt;v)&amp;1; }</code> <strong>判断x的第v位上是否为1</strong></p>
-<h3 id="code-2">Code</h3>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+<h2 id="题意-2">题意</h2>
+<p>题意，由偶数个数量相等0和1组成的字符串，反向其中任意字串，问最少反向几次能得到010101...或101010...这样的字符串</p>
+<h2 id="题解-2">题解</h2>
+<p>统计字符串中字串01的个数，和10的个数，从中取max，即字符串中不需反向的个数，用其（总串-不需反向的个数）/2即可</p>
+<h2 id="code-2">code</h2>
+<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
 using namespace std;
-int get_bit(int x,int v) { return (x&gt;&gt;v)&amp;1; } 
-int main()
-{
-	int n;
-	cin&gt;&gt;n;
-	while(n--){
-		int t;
-		cin&gt;&gt;t;
-		int cnt[30] = {};
-		while(t--){
-			int x;
-			cin&gt;&gt;x;
-			for(int i = 29 ; i &gt;= 0 ; i--){//从29开始,可以保证第一个存入cnt数组的位最高位
-				if(get_bit(x,i)){
-					cnt[i]++;
-					break;
-				}
-			}	
-		}
-		long long ans = 0;
-		for(int i = 0 ; i &lt; 30 ; i++){
-			ans += cnt[i] * (cnt[i]-1ll) / 2;//每一位如果&gt;2,则要求出他们的排列组合;
-		}
-		cout&lt;&lt;ans&lt;&lt;endl;
-	}
+#define ll long long
+#define endl '\n'
+const int inf=0x3f3f3f3f;
+const int maxn=1e5+5;
 
-	return 0;
+int main(){
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0); 
+    int t;cin&gt;&gt;t;
+    while(t--)
+    {
+        int n;cin&gt;&gt;n;
+        string s;cin&gt;&gt;s;
+        int ans = 0;
+        int flag = 0;
+        int cnt = 0;
+        for(int i=1;i&lt;n;i++) {
+            if(s[i] == s[i-1] &amp;&amp; s[i-1] == '1')  {
+                ans++;
+            }
+            else if(s[i] == s[i-1] &amp;&amp; s[i-1] == '0')  {
+                cnt++;
+            }
+        }
+        ans = max(ans,cnt);
+        cout&lt;&lt;ans&lt;&lt;endl;
+    } 
+
+    return 0;
+}
+</code></pre>
+<h1 id="c">C</h1>
+<h2 id="题意-3">题意</h2>
+<p>厨师Monocarp刚刚把n道菜放进了烤箱。他知道第i道菜最佳的烹饪时间是ti 分钟。<br>
+在任何正整数时间点T，Monocarp最多只能从烤箱中拿出一道菜。如果第i道菜在第T分钟拿出来，那么其不高兴值为 |T-ti| 。一旦菜从烤箱拿出来，就不能再放回去。<br>
+Monocarp需要将所有菜从烤箱拿出来，求他能得到的最小不开心值。</p>
+<h2 id="题解-3">题解</h2>
+<p>DP<br>
+动态规划，用数组f[i][j] 表示在第i分钟拿出前j道菜得到的最小不开心值。<br>
+对于每个i和j，有两种情况，在第i分钟，要么取第j道菜，要么不取第j道菜。<br>
+如果取，那就是在前i-1分钟取完前j-1道菜，然后在第i分钟取第j道菜。那么不开心值就是f[i-1][j-1]+abs(t[j]-i)。其中t[j]表示第j道菜的最佳烹饪时间<br>
+如果不取，那就是在前i-1分钟就取完了前j道菜。不开心值就是f[i-1][j]。<br>
+所以状态转移公式就是f[i][j]=min(f[i-1][j],f[i-1][j-1]+abs(t[j]-i))。<br>
+还有一个问题是i的范围是多少，因为ti≤n，所以在得到最小不开心值的前提下，在2*n时间内能取完所有的菜。</p>
+<h2 id="code-3">code</h2>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int inf = 1e8+6;
+int a[220];
+int f[1010][1010];
+void solve()
+{
+    int n;
+    cin &gt;&gt; n;
+    for(int i = 1 ; i &lt;= n ; i++){
+        cin &gt;&gt; a[i];
+    }
+    sort(a+1,a+1+n);
+
+    memset(f,0x3f,sizeof(f));
+    for(int i = 0 ; i &lt;= 3*n ; i++) f[0][i] = 0;
+    for(int i = 1 ; i &lt;= n ; i++){
+        for(int j = 1 ; j &lt;= 2*n ; j++){
+            for(int k = i-1 ; k &lt; j ; k++){
+                f[i][j] = min(f[i][j],f[i-1][k] + abs(a[i]-j));
+                cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; &quot; &quot; &lt;&lt; f[i][j]&lt;&lt;&quot; &quot;&lt;&lt;k&lt;&lt;&quot; &quot;&lt;&lt;f[i-1][k] &lt;&lt; &quot; &quot; &lt;&lt; abs(a[i]-j)&lt;&lt; endl;
+            }
+        }
+    }
+    int minn = inf;
+    for(int i = n ; i &lt;= 3*n ; i++){
+        minn = min(minn, f[n][i]);
+    }
+    cout &lt;&lt; minn &lt;&lt; endl;;	
+}
+int main() {
+    int T;
+    cin &gt;&gt; T;
+    while(T--){
+        solve();
+    }
+    return 0;
 }
 
 </code></pre>
@@ -740,7 +785,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/codeforces-round-672-div-2/" title="Codeforces Round #672 (Div. 2)">https://nzt-yzang.github.io/post/codeforces-round-672-div-2/</a>
+      <a href="https://nzt-yzang.github.io/post/educational-codeforces-round-97-rated-for-div-2/" title="Educational Codeforces Round 97 (Rated for Div. 2)">https://nzt-yzang.github.io/post/educational-codeforces-round-97-rated-for-div-2/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -753,15 +798,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="HDU1024  Max Sum Plus Plus(DP)" href="https://nzt-yzang.github.io/post/hdu-1024-max-sum-plus-plusdp/">HDU1024  Max Sum Plus Plus(DP)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="HDU1024  Max Sum Plus Plus(DP)" href="https://nzt-yzang.github.io/post/hdu-1024-max-sum-plus-plusdp/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Kuangbin 专题一 简单搜索(14-6)" href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/">Kuangbin 专题一 简单搜索(14-6)</a>
-        <a class="nav-mobile-next" title="Kuangbin 专题一 简单搜索(14-6)" href="https://nzt-yzang.github.io/post/kuangbin-sou-suo-pian/">下一篇</a>
+        <a class="nav-pc-next" title="  Codeforces Round #679 (Div. 2)" href="https://nzt-yzang.github.io/post/codeforces-round-679-div-2/">  Codeforces Round #679 (Div. 2)</a>
+        <a class="nav-mobile-next" title="  Codeforces Round #679 (Div. 2)" href="https://nzt-yzang.github.io/post/codeforces-round-679-div-2/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

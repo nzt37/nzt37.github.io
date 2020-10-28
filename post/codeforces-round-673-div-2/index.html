@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>   Codeforces Round #673 (Div. 2) | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1603763228018">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1603891825338">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -254,7 +254,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">60</span>
+        <span class="site-item-stat-count">61</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1808,6 +1808,138 @@ int main(){
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/educational-codeforces-round-97-rated-for-div-2/"" data-c="
+          &lt;h1 id=&#34;a&#34;&gt;A&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1437/problem/A&#34;&gt;Marketing Scheme&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;给一个区间[ l , r ],取一个数a,对于区间内任何一个数x，都满足x%a &amp;gt;= a/2;&lt;/p&gt;
+&lt;h2 id=&#34;题解&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;l&amp;lt;=a&amp;lt;=r时，肯定能取到x = a 这时 x%a = 0，不符合；&lt;br&gt;
+当a&amp;gt;r时,对于r是成立的,所以需要考虑 l 的情况,不难看出,l需要满足l &amp;gt;= a/2,即2&lt;em&gt;l&amp;gt;=a;&lt;br&gt;
+所以只需要判断2&lt;/em&gt;l&amp;gt;r就行&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+#define ll long long
+#define endl &#39;\n&#39;
+const int inf=0x3f3f3f3f;
+const int maxn=1e5+5;
+int main(){
+    std::cin.tie(0); 
+    int t;cin&amp;gt;&amp;gt;t;
+    while(t--)
+    {
+        ll l,r;
+        cin&amp;gt;&amp;gt;l&amp;gt;&amp;gt;r;
+        l*=2;
+        if(r&amp;lt;l)  {
+            cout&amp;lt;&amp;lt;&amp;quot;YES&amp;quot;&amp;lt;&amp;lt;endl;
+        }
+        else  {
+            cout&amp;lt;&amp;lt;&amp;quot;NO&amp;quot;&amp;lt;&amp;lt;endl;
+        }
+    } 
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;b&#34;&gt;B&lt;/h1&gt;
+&lt;h2 id=&#34;题意-2&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;题意，由偶数个数量相等0和1组成的字符串，反向其中任意字串，问最少反向几次能得到010101...或101010...这样的字符串&lt;/p&gt;
+&lt;h2 id=&#34;题解-2&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;统计字符串中字串01的个数，和10的个数，从中取max，即字符串中不需反向的个数，用其（总串-不需反向的个数）/2即可&lt;/p&gt;
+&lt;h2 id=&#34;code-2&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+#define ll long long
+#define endl &#39;\n&#39;
+const int inf=0x3f3f3f3f;
+const int maxn=1e5+5;
+
+int main(){
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(0); 
+    int t;cin&amp;gt;&amp;gt;t;
+    while(t--)
+    {
+        int n;cin&amp;gt;&amp;gt;n;
+        string s;cin&amp;gt;&amp;gt;s;
+        int ans = 0;
+        int flag = 0;
+        int cnt = 0;
+        for(int i=1;i&amp;lt;n;i++) {
+            if(s[i] == s[i-1] &amp;amp;&amp;amp; s[i-1] == &#39;1&#39;)  {
+                ans++;
+            }
+            else if(s[i] == s[i-1] &amp;amp;&amp;amp; s[i-1] == &#39;0&#39;)  {
+                cnt++;
+            }
+        }
+        ans = max(ans,cnt);
+        cout&amp;lt;&amp;lt;ans&amp;lt;&amp;lt;endl;
+    } 
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;c&#34;&gt;C&lt;/h1&gt;
+&lt;h2 id=&#34;题意-3&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;厨师Monocarp刚刚把n道菜放进了烤箱。他知道第i道菜最佳的烹饪时间是ti 分钟。&lt;br&gt;
+在任何正整数时间点T，Monocarp最多只能从烤箱中拿出一道菜。如果第i道菜在第T分钟拿出来，那么其不高兴值为 |T-ti| 。一旦菜从烤箱拿出来，就不能再放回去。&lt;br&gt;
+Monocarp需要将所有菜从烤箱拿出来，求他能得到的最小不开心值。&lt;/p&gt;
+&lt;h2 id=&#34;题解-3&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;DP&lt;br&gt;
+动态规划，用数组f[i][j] 表示在第i分钟拿出前j道菜得到的最小不开心值。&lt;br&gt;
+对于每个i和j，有两种情况，在第i分钟，要么取第j道菜，要么不取第j道菜。&lt;br&gt;
+如果取，那就是在前i-1分钟取完前j-1道菜，然后在第i分钟取第j道菜。那么不开心值就是f[i-1][j-1]+abs(t[j]-i)。其中t[j]表示第j道菜的最佳烹饪时间&lt;br&gt;
+如果不取，那就是在前i-1分钟就取完了前j道菜。不开心值就是f[i-1][j]。&lt;br&gt;
+所以状态转移公式就是f[i][j]=min(f[i-1][j],f[i-1][j-1]+abs(t[j]-i))。&lt;br&gt;
+还有一个问题是i的范围是多少，因为ti≤n，所以在得到最小不开心值的前提下，在2*n时间内能取完所有的菜。&lt;/p&gt;
+&lt;h2 id=&#34;code-3&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int inf = 1e8+6;
+int a[220];
+int f[1010][1010];
+void solve()
+{
+    int n;
+    cin &amp;gt;&amp;gt; n;
+    for(int i = 1 ; i &amp;lt;= n ; i++){
+        cin &amp;gt;&amp;gt; a[i];
+    }
+    sort(a+1,a+1+n);
+
+    memset(f,0x3f,sizeof(f));
+    for(int i = 0 ; i &amp;lt;= 3*n ; i++) f[0][i] = 0;
+    for(int i = 1 ; i &amp;lt;= n ; i++){
+        for(int j = 1 ; j &amp;lt;= 2*n ; j++){
+            for(int k = i-1 ; k &amp;lt; j ; k++){
+                f[i][j] = min(f[i][j],f[i-1][k] + abs(a[i]-j));
+                cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;quot; &amp;quot; &amp;lt;&amp;lt; j &amp;lt;&amp;lt; &amp;quot; &amp;quot; &amp;lt;&amp;lt; f[i][j]&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;k&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;f[i-1][k] &amp;lt;&amp;lt; &amp;quot; &amp;quot; &amp;lt;&amp;lt; abs(a[i]-j)&amp;lt;&amp;lt; endl;
+            }
+        }
+    }
+    int minn = inf;
+    for(int i = n ; i &amp;lt;= 3*n ; i++){
+        minn = min(minn, f[n][i]);
+    }
+    cout &amp;lt;&amp;lt; minn &amp;lt;&amp;lt; endl;;	
+}
+int main() {
+    int T;
+    cin &amp;gt;&amp;gt; T;
+    while(T--){
+        solve();
+    }
+    return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+">Educational Codeforces Round 97 (Rated for Div. 2)</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/codeforces-round-679-div-2/"" data-c="
           &lt;h2 id=&#34;a&#34;&gt;A&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1435/problem/A&#34;&gt;A. Finding Sasuke&lt;/a&gt;&lt;/p&gt;
@@ -1888,7 +2020,61 @@ int main() {
     return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
-">  Codeforces Round #679 (Div. 2,</a>
+&lt;h1 id=&#34;c&#34;&gt;C&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1435/problem/C&#34;&gt;Perform Easily&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意-2&#34;&gt;题意&lt;/h2&gt;
+&lt;h2 id=&#34;题解-3&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;分享一个 Pecco 的文章&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/268630329&#34;&gt;在打CodeForces的过程中发现的一个小模型&lt;/a&gt;&lt;br&gt;
+这道题将(b[j]-a[i],j)提出来排个序,然后就可以双指针了&lt;/p&gt;
+&lt;h2 id=&#34;code-3&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 1e5+5;
+const int inf=0x7fffffff;
+struct node{
+    int val, id;
+    friend bool operator&amp;lt;(node a, node b){
+        return a.val &amp;lt; b.val;
+    }
+};
+int a[7],b[maxn],vis[maxn];
+vector&amp;lt;node &amp;gt; v;
+int main() {
+    for(int i = 1 ; i &amp;lt;= 6 ; i++){
+        cin &amp;gt;&amp;gt; a[i];
+    }
+    //    sort(a+1, a+1+6);
+    int n;
+    cin &amp;gt;&amp;gt; n;
+    for(int i = 1 ; i &amp;lt;= n ; i++){
+        cin &amp;gt;&amp;gt; b[i];
+        for(int j = 1 ; j &amp;lt;= 6 ; j++){
+            v.push_back({b[i]-a[j], i});
+        }
+    }
+    sort(v.begin(),v.end());
+    int ans = inf;
+    int cnt = 0;
+    for(int i = 0, j = 0 ; i &amp;lt; 6*n ; i++){//i为右端点,j为左端点
+        if(vis[v[i].id] == 0){
+            cnt++;
+        }
+        vis[v[i].id]++;
+        while(cnt == n){
+            ans = min(ans,v[i].val - v[j].val);
+            vis[v[j].id]--;
+            if(vis[v[j].id] == 0) cnt--;
+            j++;//左端点推进
+
+        }
+    }
+    cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">  Codeforces Round #679 (Div. 2)</a>
       </div>
       
       <div class="item">
@@ -2376,8 +2562,7 @@ int main() {
 &lt;h3 id=&#34;1013&#34;&gt;10.13&lt;/h3&gt;
 &lt;p&gt;由于大四学长无法去蓝桥杯,张修军老师让我去,&lt;br&gt;
 可是是Java组&lt;br&gt;
-Java零基础零基础的我哭了.&lt;br&gt;
-我发现我的算竞路开局就逆风.&lt;/p&gt;
+Java零基础零基础的我哭了.&lt;/p&gt;
 &lt;h3 id=&#34;10141015&#34;&gt;10.14/10.15&lt;/h3&gt;
 &lt;p&gt;用Java写总是会出现一些谜之错误,彷佛回到了刚学c的时候.&lt;/p&gt;
 &lt;h3 id=&#34;1017&#34;&gt;10.17&lt;/h3&gt;
@@ -2386,8 +2571,7 @@ Java零基础零基础的我哭了.&lt;br&gt;
 Java还是用不习惯,以后还是主C++吧;&lt;/p&gt;
 &lt;h3 id=&#34;1019&#34;&gt;10.19&lt;/h3&gt;
 &lt;p&gt;Codeforces Round #676 (Div. 2) &lt;strong&gt;ABC&lt;/strong&gt;&lt;br&gt;
-Codeforces Round #665 (Div. 2) &lt;strong&gt;AB&lt;/strong&gt;&lt;br&gt;
-要学点新东西了&lt;/p&gt;
+Codeforces Round #665 (Div. 2) &lt;strong&gt;AB&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;1020&#34;&gt;10.20&lt;/h3&gt;
 &lt;p&gt;上午:这傻逼音游真难玩;&lt;br&gt;
 下午:这垃圾vim真难配&lt;br&gt;
@@ -2410,8 +2594,13 @@ Codeforces Round #665 (Div. 2) &lt;strong&gt;AB&lt;/strong&gt;&lt;br&gt;
 明天补题&lt;/p&gt;
 &lt;h3 id=&#34;1026&#34;&gt;10.26&lt;/h3&gt;
 &lt;p&gt;总是可以从一些细节发现很多,我可真牛&lt;br&gt;
-我不想因为喜欢 &lt;strong&gt;喜欢&lt;/strong&gt; 而去喜欢.&lt;br&gt;
-这样不公平&lt;/p&gt;
+我不想因为喜欢 &lt;strong&gt;喜欢&lt;/strong&gt; 而去喜欢.&lt;/p&gt;
+&lt;h3 id=&#34;1027&#34;&gt;10.27&lt;/h3&gt;
+&lt;p&gt;打完cf已经十二点半了&lt;br&gt;
+依然做完AB题C知道dp搞半天搞不出来.&lt;br&gt;
+明天补吧&lt;/p&gt;
+&lt;h3 id=&#34;1028&#34;&gt;10.28&lt;/h3&gt;
+&lt;p&gt;似乎真的没什么期待了  (可能这是假的&lt;/p&gt;
 ">Diary</a>
       </div>
       
