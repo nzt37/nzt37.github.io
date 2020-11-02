@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>Codeforces Round #671 (Div. 2) | Yzang&#39;s Blog</title>
+<title>倍增LCA  | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1604324317868">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="Codeforces Round #671 (Div. 2)" />
+  <meta name="description" content="倍增LCA " />
   <meta name="keywords" content="" />
 </head>
 
@@ -326,19 +326,9 @@
   <div class="toc-wrapper auto-number auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#a">A</a><br>
-*
+<li>
 <ul>
-<li><a href="#%E9%A2%98%E6%84%8F"><strong>题意</strong></a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3"><strong>题解</strong></a></li>
-<li><a href="#code"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></a></li>
-</ul>
-</li>
-<li><a href="#b">B</a><br>
-*
-<ul>
-<li><a href="#%E9%A2%98%E6%84%8F-2">题意</a></li>
-<li><a href="#%E9%A2%98%E8%A7%A3-2">题解</a></li>
+<li><a href="#code">code</a></li>
 </ul>
 </li>
 </ul>
@@ -606,8 +596,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt-yzang.github.io/post/codeforces-round-671-div-2/">
-      Codeforces Round #671 (Div. 2)
+    <a class="post-title-link" href="https://nzt-yzang.github.io/post/bei-zeng-lca/">
+      倍增LCA 
     </a>
   </h1>
   <div class="post-meta">
@@ -615,23 +605,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-09-22 21:30:44">2020-09-22</span>
+      <span class="publish-time" data-t="2020-11-02 21:22:44">2020-11-02</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>6<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>559<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>1151<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/codeforces-round-671-div-2/" data-flag-title="Codeforces Round #671 (Div. 2)" class="meta-item pc-show leancloud_visitors">
+    <span id="/post/bei-zeng-lca/" data-flag-title="倍增LCA " class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -640,100 +630,156 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <!-- more -->
-<h1 id="a">A</h1>
-<p><a href="https://codeforces.ml/contest/1419/problem/A">CF1419A Digit Game</a></p>
-<h3 id="题意"><strong>题意</strong></h3>
-<p>有一个由n位数字组成的字符串,A只能标记奇位上的,B只能标记偶数位上的,A先开始标记,剩下的最后一位是奇数则A获胜,反之亦然;</p>
-<h3 id="题解"><strong>题解</strong></h3>
-<p>如果N为奇数,则剩下的最后一个数一定是奇数上的,如果N为偶数,则剩下的最后一位一定是偶数上的,因为A标记的奇数,B标记的偶数,所以只需统计奇数位上的奇数S1,偶数上的偶数S2.<br>
-如果N为奇数,则判断S1是否大于1,若是有,则A必胜,<br>
-如果N为偶数,则判断S2是否大于1,若大于1,则B必胜.</p>
-<h3 id="code"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Code</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></h3>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-int t,n;
-string s;
-int main()
+              <ul>
+<li>LCA（Least Common Ancestors），即最近公共祖先，是指在有根树中，找出某两个结点u和v最近的公共祖先。 ———来自百度百科</li>
+</ul>
+<p>首先要获取a, b节点的深度,记录为deep[a],deep[b];<br>
+采用链式前向星存图</p>
+<pre><code class="language-c">int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
+int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
+int n,m,s;
+struct node{
+    int v,w,next;
+}edge[maxn &lt;&lt; 1];
+
+void addedge(int u,int v)
 {
-	cin&gt;&gt;t;
-	while(t--)
-	{
-		cin&gt;&gt;n;
-		cin&gt;&gt;s;
-		int s1=0,s2=0;
-		for(int i = 0 ; i &lt; s.size() ; i++)
-		{
-			if((i)%2==0)
-			{
-				if((int)(s[i]-'0')%2==1) s1++;  //奇数位 
-			}
-			if((i)%2==1)
-			{
-				if((int)(s[i]-'0')%2==0) s2++;//偶数位 
-			}
-		}
-		if(n%2==0)
-		{
-			if(s2&gt;=1) cout&lt;&lt;2&lt;&lt;endl;
-			else
-			cout&lt;&lt;1&lt;&lt;endl; 
-		}
-		else{
-			if(s1&gt;=1) cout&lt;&lt;1&lt;&lt;endl;
-			else
-			cout&lt;&lt;2&lt;&lt;endl;
-		} 
-	}
-	return 0;
+    edge[++cnt].next = head[u];
+    edge[cnt].v = v;
+    head[u] = cnt;
 }
 </code></pre>
-<h1 id="b">B</h1>
+<p>dfs获取节点深度:</p>
+<pre><code class="language-c">void dfs(int a, int fath=0){
+     if(vis[a]) return;
+     deep[a] = deep[fath]+1;
+     vis[a]=true;
+     for(int i=head[a]; i!=0; i=e[i].next){
+          dfs(e[i].to, a)
+     }
+}
+</code></pre>
+<p>求LCA的方式为:</p>
 <ul>
-<li><a href="https://www.luogu.com.cn/problem/CF1419B">CF1419B Stairs</a></li>
+<li>先让更深的a向上爬,直到和b深度一致;</li>
+<li>此后,a和b一起向上爬,二者一定会在某个祖先节点上首次相遇,即为LCA.<br>
+<strong>不妨让a在b的下方,即deep[a]&gt;deep[b];</strong><br>
+如果是逐层的往上爬,和后序递归求LCA复杂度一样,都是O(N),后序递归其实是逐节点向下的.</li>
 </ul>
-<h3 id="题意-2">题意</h3>
-<p>给出一个有x阶的阶梯,如果这个阶梯可以由x个正方形组成,就被称为完美阶梯,给出小正方形数n,求可以组成多少个完美阶梯</p>
-<h3 id="题解-2">题解</h3>
-<p>忽然发现Div.2前几题好像真的用不到什么算法,但还是做不来.....(甚至题目都看不懂<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Q</mi><mi>A</mi><mi>Q</mi></mrow><annotation encoding="application/x-tex">QAQ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">Q</span><span class="mord mathdefault">A</span><span class="mord mathdefault">Q</span></span></span></span>)<br>
-看图然后想想(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>?</mo></mrow><annotation encoding="application/x-tex">?</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mclose">?</span></span></span></span>)就可以知道<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>o</mi><mi>w</mi><mo>(</mo><mn>2</mn><mo separator="true">,</mo><mi>n</mi><mo>)</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">pow(2,n)-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>阶梯的为完美阶梯,每个阶梯有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>∗</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">x*(x+1)/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/</span><span class="mord">2</span></span></span></span>个正方形,然后贪心,就成</p>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-#define int long long
-int a[2001];
-int t,n,ans;
-//void init()
-//{
-//	a[1] = 1;
-//	for(int i = 2 ; i &lt;= 30 ; i++)
-//	{
-//		a[i] = i + a[i-1];
-//	}
-//}
-signed main()
+<p>一种改进的上爬策略是:</p>
+<p>不是一步一步向上爬,而是2^j步向上跳跃,因此需要记录深度信息和祖先信息.</p>
+<p>设fa[i][j]:i号节点的第2<sup>j代的祖先编号.fa[x][0]表示x的父亲节点.因为2</sup>(j-1)+2<sup>(j-1=2</sup>j</p>
+<p>所以一个节点的2<sup>j代的祖先是其2</sup>(j-1)代的祖先的2^(j-1)的祖先.得fa[i][j]=fa[fa[i][j-1]][j-1].<br>
+dfs预处理得到节点深度信息和祖先信息:</p>
+<pre><code class="language-c">void dfs(int pos,int f)
 {
-	cin&gt;&gt;t;
-//	init();
-	while(t--)
-	{
-		cin&gt;&gt;n;
-		ans = 0;
-		int m = 2;
-		while(true)
-		{
-//			int x = pow(2,m)-1;
-			int x = m-1;
-			int w = (1+x)*x/2; 
-//			if(n&gt;=a[x]) n-=a[x];
-			if(n&gt;=w) n-=w;
-			else break;
-			ans++;
-			m*=2;
-		}
-		cout&lt;&lt;ans&lt;&lt;endl;
-	}
-	return 0;	
-} 
+    if(vis[pos]) return;////已经访问过，则已经得到deep和fa数组，返回 
+    vis[pos] = 1;
+    depth[pos] = depth[f] + 1;////x是y的儿子节点,所以要+1
+    fa[pos][0] = f;////fa[x][0]表示x的父亲节点,而y是x的父亲节点.
+    for(int i = 1; i &lt;= lg[depth[pos]]; i++){
+        fa[pos][i] = fa[fa[pos][i-1]][i-1];////状态转移 2^i=2^(i-1)+2^(i-1)
+    }
+    for(int i = head[pos]; i ; i = edge[i].next){
+        dfs(edge[i].v,pos);////访问儿子节点,并且标记自己是父亲节点
+    }
+}
+</code></pre>
+<p>其中,因为x的2<sup>i级祖先最多是根，则2</sup>i&lt;=dee[x], i&lt;=lg2[deep[x]]</p>
+<pre><code class="language-c">    for(int i = 1; i &lt;= n; ++i)
+        lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
+        ```
+  lg2[1]=0; lg2[2]=1; lg2[3]=1; lg2[4]=2;...dfs预处理的过程:N个节点,每个最大深度lgN, 时间复杂度O(NlogN).LCA过程:先深度一致,深层的向上爬例如，x和y本来相差22的深度，现在x不用往上爬22次，只需要依次跳16、4、2个单位，3次便能达到与y相同的距离。两者深度相等后，如果两个点已经相遇，那么问题就得以解决:
+```c
+int LCA(int a,int b)
+{
+    if(depth[a] &lt; depth[b]){
+        swap(a,b);
+    }
+    while(depth[a] &gt; depth[b]){
+        a = fa[a][lg[depth[a]-depth[b]]-1];//往上面跳跃,deep[x]-deep[y]是高度差.
+    }
+    if(a == b) return a;
+    for(int k = lg[depth[a]] - 1; k &gt;= 0 ; k--){//如何在x,y不相遇的情况下跳到尽可能高的位置？如果找到了这个位置，它的父亲就是LCA了
+        if(fa[a][k] != fa[b][k]){
+            a = fa[a][k];
+            b = fa[b][k];
+        }
+    }
+    return fa[a][0];//必须返回x的父亲节点,也就是Lca(x,y)
+}
+</code></pre>
+<h2 id="code">code</h2>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 5e5 + 6;
+int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
+int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
+int n,m,s;
+struct node{
+    int v,w,next;
+}edge[maxn &lt;&lt; 1];
+
+void addedge(int u,int v)
+{
+    edge[++cnt].next = head[u];
+    edge[cnt].v = v;
+    head[u] = cnt;
+}
+
+
+
+void dfs(int pos,int f)
+{
+    if(vis[pos]) return;
+    vis[pos] = 1;
+    depth[pos] = depth[f] + 1;
+    fa[pos][0] = f;
+    for(int i = 1; i &lt;= lg[depth[pos]]; i++){
+        fa[pos][i] = fa[fa[pos][i-1]][i-1];
+    }
+    for(int i = head[pos]; i ; i = edge[i].next){
+        dfs(edge[i].v,pos);
+    }
+}
+int LCA(int a,int b)
+{
+    if(depth[a] &lt; depth[b]){
+        swap(a,b);
+    }
+    while(depth[a] &gt; depth[b]){
+        a = fa[a][lg[depth[a]-depth[b]]-1];
+    }
+    if(a == b) return a;
+    for(int k = lg[depth[a]] - 1; k &gt;= 0 ; k--){
+        if(fa[a][k] != fa[b][k]){
+            a = fa[a][k];
+            b = fa[b][k];
+        }
+    }
+    return fa[a][0];
+
+}
+int main() {
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;
+    for(int i = 1; i &lt;= n; ++i)
+        lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
+    for(int i = 1; i &lt;= n-1; i++){
+        int u,v;
+        cin &gt;&gt; u &gt;&gt; v;
+        addedge(u,v);
+        addedge(v,u);
+    }
+    dfs(s,0);
+    for(int i = 1; i &lt;= m; i++){
+        int a,b;
+        cin &gt;&gt; a &gt;&gt; b;
+        cout &lt;&lt; LCA(a,b) &lt;&lt; endl;
+    }
+
+    return 0;
+}
 </code></pre>
 
             </div>
@@ -747,7 +793,7 @@ signed main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt-yzang.github.io/post/codeforces-round-671-div-2/" title="Codeforces Round #671 (Div. 2)">https://nzt-yzang.github.io/post/codeforces-round-671-div-2/</a>
+      <a href="https://nzt-yzang.github.io/post/bei-zeng-lca/" title="倍增LCA ">https://nzt-yzang.github.io/post/bei-zeng-lca/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -760,15 +806,11 @@ signed main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="P1451 求细胞数量(搜索)" href="https://nzt-yzang.github.io/post/p1451-qiu-xi-bao-shu-liang-sou-suo/">P1451 求细胞数量(搜索)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="P1451 求细胞数量(搜索)" href="https://nzt-yzang.github.io/post/p1451-qiu-xi-bao-shu-liang-sou-suo/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="最小生成树(Kruskal和Prim)" href="https://nzt-yzang.github.io/post/zui-xiao-sheng-cheng-shu/">最小生成树(Kruskal和Prim)</a>
-        <a class="nav-mobile-next" title="最小生成树(Kruskal和Prim)" href="https://nzt-yzang.github.io/post/zui-xiao-sheng-cheng-shu/">下一篇</a>
+        <a class="nav-pc-next" title="Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)" href="https://nzt-yzang.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/">Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)</a>
+        <a class="nav-mobile-next" title="Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)" href="https://nzt-yzang.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

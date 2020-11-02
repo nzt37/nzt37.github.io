@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>模板 | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1604243807184">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1604324317868">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -254,7 +254,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">61</span>
+        <span class="site-item-stat-count">63</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -344,6 +344,7 @@
 <li><a href="#prim%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91">prim(最小生成树)</a></li>
 <li><a href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95">二分图最大匹配(匈牙利算法)</a></li>
 <li><a href="#%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AFdijkstra-%E5%A0%86%E4%BC%98%E5%8C%96-%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F">单源最短路(dijkstra + 堆优化 + 链式前向星)</a></li>
+<li><a href="#%E5%80%8D%E5%A2%9E%E6%B1%82lca">倍增求LCA</a></li>
 </ul>
 </li>
 </ul>
@@ -632,12 +633,12 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>13<span class="language" data-lan="minute">分钟</span></span>
+      <span>15<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>2223<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>2523<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
@@ -779,7 +780,7 @@ int main()
 求方程在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1, m ]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span>内的整数解（n 和m 均为正整数）</p>
 <pre><code class="language-c">bool calc(ll x)//判断x是否为该多项式的解
 {
-    sum=0;//一定要清零！！！(不然只有10分呜呜呜) 
+    sum=0;//一定要清零！！！
     for(ll i=n;i&gt;=1;i--)
     {
         sum=((A[i]+sum)*x)%p;
@@ -1104,6 +1105,75 @@ int main()
         printf( &quot;%d &quot;, dis[i] );
 	return 0;
 } 
+</code></pre>
+<h2 id="倍增求lca">倍增求LCA</h2>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 5e5 + 6;
+int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
+int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
+int n,m,s;
+struct node{
+    int v,w,next;
+}edge[maxn &lt;&lt; 1];
+
+void addedge(int u,int v)
+{
+    edge[++cnt].next = head[u];
+    edge[cnt].v = v;
+    head[u] = cnt;
+}
+void dfs(int pos,int f)
+{
+    if(vis[pos]) return;
+    vis[pos] = 1;
+    depth[pos] = depth[f] + 1;
+    fa[pos][0] = f;
+    for(int i = 1; i &lt;= lg[depth[pos]]; i++){
+        fa[pos][i] = fa[fa[pos][i-1]][i-1];
+    }
+    for(int i = head[pos]; i ; i = edge[i].next){
+        dfs(edge[i].v,pos);
+    }
+}
+int LCA(int a,int b)
+{
+    if(depth[a] &lt; depth[b]){
+        swap(a,b);
+    }
+    while(depth[a] &gt; depth[b]){
+        a = fa[a][lg[depth[a]-depth[b]]-1];
+    }
+    if(a == b) return a;
+    for(int k = lg[depth[a]] - 1; k &gt;= 0 ; k--){
+        if(fa[a][k] != fa[b][k]){
+            a = fa[a][k];
+            b = fa[b][k];
+        }
+    }
+    return fa[a][0];
+
+}
+int main() {
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;
+    for(int i = 1; i &lt;= n; ++i)
+        lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
+    for(int i = 1; i &lt;= n-1; i++){
+        int u,v;
+        cin &gt;&gt; u &gt;&gt; v;
+        addedge(u,v);
+        addedge(v,u);
+    }
+    dfs(s,0);
+    for(int i = 1; i &lt;= m; i++){
+        int a,b;
+        cin &gt;&gt; a &gt;&gt; b;
+        cout &lt;&lt; LCA(a,b) &lt;&lt; endl;
+    }
+
+    return 0;
+}
 </code></pre>
 
             </div>
@@ -2192,6 +2262,294 @@ int main()
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/bei-zeng-lca/"" data-c="
+          &lt;ul&gt;
+&lt;li&gt;LCA（Least Common Ancestors），即最近公共祖先，是指在有根树中，找出某两个结点u和v最近的公共祖先。 ———来自百度百科&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;首先要获取a, b节点的深度,记录为deep[a],deep[b];&lt;br&gt;
+采用链式前向星存图&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
+int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
+int n,m,s;
+struct node{
+    int v,w,next;
+}edge[maxn &amp;lt;&amp;lt; 1];
+
+void addedge(int u,int v)
+{
+    edge[++cnt].next = head[u];
+    edge[cnt].v = v;
+    head[u] = cnt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;dfs获取节点深度:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void dfs(int a, int fath=0){
+     if(vis[a]) return;
+     deep[a] = deep[fath]+1;
+     vis[a]=true;
+     for(int i=head[a]; i!=0; i=e[i].next){
+          dfs(e[i].to, a)
+     }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;求LCA的方式为:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先让更深的a向上爬,直到和b深度一致;&lt;/li&gt;
+&lt;li&gt;此后,a和b一起向上爬,二者一定会在某个祖先节点上首次相遇,即为LCA.&lt;br&gt;
+&lt;strong&gt;不妨让a在b的下方,即deep[a]&amp;gt;deep[b];&lt;/strong&gt;&lt;br&gt;
+如果是逐层的往上爬,和后序递归求LCA复杂度一样,都是O(N),后序递归其实是逐节点向下的.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一种改进的上爬策略是:&lt;/p&gt;
+&lt;p&gt;不是一步一步向上爬,而是2^j步向上跳跃,因此需要记录深度信息和祖先信息.&lt;/p&gt;
+&lt;p&gt;设fa[i][j]:i号节点的第2&lt;sup&gt;j代的祖先编号.fa[x][0]表示x的父亲节点.因为2&lt;/sup&gt;(j-1)+2&lt;sup&gt;(j-1=2&lt;/sup&gt;j&lt;/p&gt;
+&lt;p&gt;所以一个节点的2&lt;sup&gt;j代的祖先是其2&lt;/sup&gt;(j-1)代的祖先的2^(j-1)的祖先.得fa[i][j]=fa[fa[i][j-1]][j-1].&lt;br&gt;
+dfs预处理得到节点深度信息和祖先信息:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void dfs(int pos,int f)
+{
+    if(vis[pos]) return;////已经访问过，则已经得到deep和fa数组，返回 
+    vis[pos] = 1;
+    depth[pos] = depth[f] + 1;////x是y的儿子节点,所以要+1
+    fa[pos][0] = f;////fa[x][0]表示x的父亲节点,而y是x的父亲节点.
+    for(int i = 1; i &amp;lt;= lg[depth[pos]]; i++){
+        fa[pos][i] = fa[fa[pos][i-1]][i-1];////状态转移 2^i=2^(i-1)+2^(i-1)
+    }
+    for(int i = head[pos]; i ; i = edge[i].next){
+        dfs(edge[i].v,pos);////访问儿子节点,并且标记自己是父亲节点
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中,因为x的2&lt;sup&gt;i级祖先最多是根，则2&lt;/sup&gt;i&amp;lt;=dee[x], i&amp;lt;=lg2[deep[x]]&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;    for(int i = 1; i &amp;lt;= n; ++i)
+        lg[i] = lg[i-1] + (1 &amp;lt;&amp;lt; lg[i-1] == i);
+        ```
+  lg2[1]=0; lg2[2]=1; lg2[3]=1; lg2[4]=2;...dfs预处理的过程:N个节点,每个最大深度lgN, 时间复杂度O(NlogN).LCA过程:先深度一致,深层的向上爬例如，x和y本来相差22的深度，现在x不用往上爬22次，只需要依次跳16、4、2个单位，3次便能达到与y相同的距离。两者深度相等后，如果两个点已经相遇，那么问题就得以解决:
+```c
+int LCA(int a,int b)
+{
+    if(depth[a] &amp;lt; depth[b]){
+        swap(a,b);
+    }
+    while(depth[a] &amp;gt; depth[b]){
+        a = fa[a][lg[depth[a]-depth[b]]-1];//往上面跳跃,deep[x]-deep[y]是高度差.
+    }
+    if(a == b) return a;
+    for(int k = lg[depth[a]] - 1; k &amp;gt;= 0 ; k--){//如何在x,y不相遇的情况下跳到尽可能高的位置？如果找到了这个位置，它的父亲就是LCA了
+        if(fa[a][k] != fa[b][k]){
+            a = fa[a][k];
+            b = fa[b][k];
+        }
+    }
+    return fa[a][0];//必须返回x的父亲节点,也就是Lca(x,y)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 5e5 + 6;
+int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
+int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
+int n,m,s;
+struct node{
+    int v,w,next;
+}edge[maxn &amp;lt;&amp;lt; 1];
+
+void addedge(int u,int v)
+{
+    edge[++cnt].next = head[u];
+    edge[cnt].v = v;
+    head[u] = cnt;
+}
+
+
+
+void dfs(int pos,int f)
+{
+    if(vis[pos]) return;
+    vis[pos] = 1;
+    depth[pos] = depth[f] + 1;
+    fa[pos][0] = f;
+    for(int i = 1; i &amp;lt;= lg[depth[pos]]; i++){
+        fa[pos][i] = fa[fa[pos][i-1]][i-1];
+    }
+    for(int i = head[pos]; i ; i = edge[i].next){
+        dfs(edge[i].v,pos);
+    }
+}
+int LCA(int a,int b)
+{
+    if(depth[a] &amp;lt; depth[b]){
+        swap(a,b);
+    }
+    while(depth[a] &amp;gt; depth[b]){
+        a = fa[a][lg[depth[a]-depth[b]]-1];
+    }
+    if(a == b) return a;
+    for(int k = lg[depth[a]] - 1; k &amp;gt;= 0 ; k--){
+        if(fa[a][k] != fa[b][k]){
+            a = fa[a][k];
+            b = fa[b][k];
+        }
+    }
+    return fa[a][0];
+
+}
+int main() {
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; s;
+    for(int i = 1; i &amp;lt;= n; ++i)
+        lg[i] = lg[i-1] + (1 &amp;lt;&amp;lt; lg[i-1] == i);
+    for(int i = 1; i &amp;lt;= n-1; i++){
+        int u,v;
+        cin &amp;gt;&amp;gt; u &amp;gt;&amp;gt; v;
+        addedge(u,v);
+        addedge(v,u);
+    }
+    dfs(s,0);
+    for(int i = 1; i &amp;lt;= m; i++){
+        int a,b;
+        cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b;
+        cout &amp;lt;&amp;lt; LCA(a,b) &amp;lt;&amp;lt; endl;
+    }
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">倍增LCA </a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/"" data-c="
+          &lt;h1 id=&#34;a&#34;&gt;A&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1445/problem/A&#34;&gt;Array Rearrangment&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;就是给你两个不递减的序列a b 和一个数X 问你能不能重新给b序列 排序一下使得ai+bi&amp;lt;=x 如果能就输出yes 否则no 很简单 只需要暴力一下 倒着遍历b数组顺着遍历a数组就好了&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 1e5 + 6;
+int a[maxn], b[maxn];
+bool cmp(int x,int y){
+    return x &amp;gt; y;
+}
+void solve()
+{
+    int n, m;
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;
+    for(int i = 1; i &amp;lt;= n; i++){
+        cin &amp;gt;&amp;gt; a[i];
+    }
+    for(int j = 1; j &amp;lt;= n; j++){
+        cin &amp;gt;&amp;gt; b[j];
+    }
+    sort(a+1,a+1+n);
+    sort(b+1,b+1+n,cmp);
+    int flag = 0;
+    for(int i = 1; i &amp;lt;= n; i++){
+        if(a[i] + b[i] &amp;gt; m){
+            flag = 1;
+            break;
+        }
+    }
+    if(flag){
+        printf(&amp;quot;No\n&amp;quot;);    
+    }else{
+        printf(&amp;quot;Yes\n&amp;quot;);
+    }
+
+}
+int main() {
+    int T;
+    cin &amp;gt;&amp;gt; T;
+    while(T--){
+        solve();
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;b&#34;&gt;B&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1445/problem/B&#34;&gt;Elimination&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意-2&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;大概意思就是100鸽人 参加比赛 他们的分数大概都是唯一的 而且是递减的 ，现在给出第100鸽人的分数 在第一回合 ，然后还告诉我们第二回合最低的得分是b 同理c d 现在问我们两个回合过去后 最靠后的排名是多少&lt;/p&gt;
+&lt;p&gt;其实分数决定排名，我们只需要求一次最大值 a+b 和c +d 即可 因为a c分别是两个回合排名最靠后的人 （（好像我对题意还是有点懵逼&lt;/p&gt;
+&lt;h2 id=&#34;code-2&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+
+void solve()
+{
+
+    int a,b,c,d;
+    int ma = -1,maxx = -1;
+
+    cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b &amp;gt;&amp;gt; c &amp;gt;&amp;gt; d;
+    ma = max(ma,a+b);
+    maxx = max(maxx,c+d);
+
+    cout &amp;lt;&amp;lt; max(ma,maxx) &amp;lt;&amp;lt; endl;
+}
+int main() {
+    int T;
+    cin &amp;gt;&amp;gt; T;
+    while(T--){
+        solve();
+    }
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;c&#34;&gt;C&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1445/problem/C&#34;&gt;Division&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意-3&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;大概意思就是给你两个数p q 要你找到最大的一个数 使得p%x=0 而且q 不能整除x&lt;/p&gt;
+&lt;h2 id=&#34;题解&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;首先整除 一定是有公共的质因子 而且某一方的所有质因子以及幂次均包含于另一方 那么这个题 如果p q 取余不为0 实际上最大的x就是p 本身&lt;br&gt;
+然后来分析一下p q p%q这种情况&lt;br&gt;
+由于质因子的包含，我们要整一个另一个不能整除的数而且另一方可以整除的数 还是得观察质因子的幂次 不难发现，如果质因子相同，而且每个相同质因子的幂次如果小于等于另一方 显然是整除的 我们只需要每次除去相同质因子直到p%q!=0 记录此时的p&lt;/p&gt;
+&lt;h2 id=&#34;code-3&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+#define int long long
+void solve()
+{
+    int p,q;
+    cin &amp;gt;&amp;gt; p &amp;gt;&amp;gt; q;
+    if(p%q != 0){
+        cout &amp;lt;&amp;lt; p &amp;lt;&amp;lt; endl;
+        return;
+    }
+    int tmp = q;
+    int maxx = -1;
+    for(int i = 2; i*i &amp;lt;= tmp; i++){
+        if(q % i == 0){
+            while(q%i==0) q/=i;
+            int tmp1 = p;
+            while(tmp1 % tmp == 0) tmp1 /= i;
+            maxx = max(maxx, tmp1);
+        }
+    }
+    if(q &amp;gt; 1){
+        int tmp1 = p;
+        while(tmp1 % tmp == 0) tmp1 /= q;
+        maxx = max(maxx,tmp1);
+    }
+    cout &amp;lt;&amp;lt; maxx &amp;lt;&amp;lt; endl;
+}
+signed main() {
+    int T;
+    cin &amp;gt;&amp;gt; T;
+    while(T--){
+        solve();
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/educational-codeforces-round-97-rated-for-div-2/"" data-c="
           &lt;h1 id=&#34;a&#34;&gt;A&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1437/problem/A&#34;&gt;Marketing Scheme&lt;/a&gt;&lt;/p&gt;
@@ -2984,10 +3342,9 @@ Codeforces Round #665 (Div. 2) &lt;strong&gt;AB&lt;/strong&gt;&lt;/p&gt;
 依然做完AB题C知道dp搞半天搞不出来.&lt;br&gt;
 明天补吧&lt;/p&gt;
 &lt;h3 id=&#34;1028&#34;&gt;10.28&lt;/h3&gt;
-&lt;p&gt;似乎真的没什么期待了  (可能是假的&lt;/p&gt;
+&lt;p&gt;刷题可真好玩.&lt;/p&gt;
 &lt;h3 id=&#34;1029&#34;&gt;10.29&lt;/h3&gt;
-&lt;p&gt;最近连题都不太想刷了..(为什么呢&lt;br&gt;
-没有比赛十点多就睡了,有比赛一点睡 (没cf的时候我是不是睡太早了.&lt;br&gt;
+&lt;p&gt;没有比赛十点多就睡了,有比赛一点睡 (没cf的时候我是不是睡太早了.&lt;br&gt;
 刚刚一道DP调了半小时,最后关掉流同步就A了??&lt;/p&gt;
 &lt;h3 id=&#34;1030&#34;&gt;10.30&lt;/h3&gt;
 &lt;p&gt;又要去天梯赛当炮灰了..&lt;br&gt;
@@ -2999,7 +3356,7 @@ Codeforces Round #665 (Div. 2) &lt;strong&gt;AB&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;111&#34;&gt;11.1&lt;/h3&gt;
 &lt;p&gt;昨天晚上三点多才睡.&lt;br&gt;
 真的好烦自己 (越来越看不懂自己了,&lt;br&gt;
-该怎样就怎样吧,反正什么结果我也不会在乎,不是吗??&lt;br&gt;
+该怎样就怎样吧,反正什么结果我也不会在乎,不是吗?? (我在说些什么&lt;br&gt;
 今天晚上由于学长课堂cf和Atcoder都没打 (虽然学长课堂去了一会就回来了&lt;br&gt;
 明天补题吧,&lt;/p&gt;
 ">Diary</a>
@@ -6446,7 +6803,7 @@ int main()
 求方程在&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;[1, m ]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.16666666666666666em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;内的整数解（n 和m 均为正整数）&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;bool calc(ll x)//判断x是否为该多项式的解
 {
-    sum=0;//一定要清零！！！(不然只有10分呜呜呜) 
+    sum=0;//一定要清零！！！
     for(ll i=n;i&amp;gt;=1;i--)
     {
         sum=((A[i]+sum)*x)%p;
@@ -6771,6 +7128,75 @@ int main()
         printf( &amp;quot;%d &amp;quot;, dis[i] );
 	return 0;
 } 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;倍增求lca&#34;&gt;倍增求LCA&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 5e5 + 6;
+int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
+int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
+int n,m,s;
+struct node{
+    int v,w,next;
+}edge[maxn &amp;lt;&amp;lt; 1];
+
+void addedge(int u,int v)
+{
+    edge[++cnt].next = head[u];
+    edge[cnt].v = v;
+    head[u] = cnt;
+}
+void dfs(int pos,int f)
+{
+    if(vis[pos]) return;
+    vis[pos] = 1;
+    depth[pos] = depth[f] + 1;
+    fa[pos][0] = f;
+    for(int i = 1; i &amp;lt;= lg[depth[pos]]; i++){
+        fa[pos][i] = fa[fa[pos][i-1]][i-1];
+    }
+    for(int i = head[pos]; i ; i = edge[i].next){
+        dfs(edge[i].v,pos);
+    }
+}
+int LCA(int a,int b)
+{
+    if(depth[a] &amp;lt; depth[b]){
+        swap(a,b);
+    }
+    while(depth[a] &amp;gt; depth[b]){
+        a = fa[a][lg[depth[a]-depth[b]]-1];
+    }
+    if(a == b) return a;
+    for(int k = lg[depth[a]] - 1; k &amp;gt;= 0 ; k--){
+        if(fa[a][k] != fa[b][k]){
+            a = fa[a][k];
+            b = fa[b][k];
+        }
+    }
+    return fa[a][0];
+
+}
+int main() {
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; s;
+    for(int i = 1; i &amp;lt;= n; ++i)
+        lg[i] = lg[i-1] + (1 &amp;lt;&amp;lt; lg[i-1] == i);
+    for(int i = 1; i &amp;lt;= n-1; i++){
+        int u,v;
+        cin &amp;gt;&amp;gt; u &amp;gt;&amp;gt; v;
+        addedge(u,v);
+        addedge(v,u);
+    }
+    dfs(s,0);
+    for(int i = 1; i &amp;lt;= m; i++){
+        int a,b;
+        cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b;
+        cout &amp;lt;&amp;lt; LCA(a,b) &amp;lt;&amp;lt; endl;
+    }
+
+    return 0;
+}
 &lt;/code&gt;&lt;/pre&gt;
 ">模板</a>
       </div>
