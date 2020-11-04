@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>MySQL学习笔记(一) | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1604465046492">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1604503455930">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -254,7 +254,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">64</span>
+        <span class="site-item-stat-count">65</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1750,6 +1750,103 @@
     <div class="result" id="result">
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/hdu-2586-how-far-away/"" data-c="
+          &lt;p&gt;&lt;a href=&#34;http://acm.hdu.edu.cn/showproblem.php?pid=2586&#34;&gt;hdu 2586-How far away ？&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;题意&#34;&gt;题意&lt;/h2&gt;
+&lt;p&gt;给一棵树，给你已知的每条边的权值，输入一个起点 s 一个终点 t ,求二者间距离。&lt;/p&gt;
+&lt;h2 id=&#34;题解&#34;&gt;题解&lt;/h2&gt;
+&lt;p&gt;这道题把孩子WA傻了,调了2个多小时,,,&lt;br&gt;
+思路很简单，要想从 a 跑到 b  只需要找到二者的 最近公共祖先 lca，之后把 根到 i 节点 距离设为 dis[i] ，&lt;br&gt;
+最终结果 就是 dis[s] +dis[t] - dis[lca] * 2&lt;br&gt;
+&lt;strong&gt;注意,多组数据的情况下链式前向星存图要清空hade,并且cnt置为0;;;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 40006;
+int head[maxn],cnt,depth[maxn],lg[maxn],fa[maxn][30];
+int n,m,N;
+struct ndoe{
+    int v, w, next;
+}edge[maxn &amp;lt;&amp;lt; 1];
+
+void addedge(int u, int v,int w)
+{
+    edge[++cnt].next = head[u];
+    edge[cnt].v = v;
+    edge[cnt].w = w;
+    head[u] = cnt;
+}
+int vis[maxn],dis[maxn];
+void dfs(int pos,int f)
+{
+
+    depth[pos] = depth[f] + 1; 
+    fa[pos][0] = f;
+
+    for(int i = 1; i &amp;lt;= lg[depth[pos]]; i++)
+    {
+        fa[pos][i] = fa[fa[pos][i-1]][i-1];
+    }
+    for(int i = head[pos]; i ; i = edge[i].next){
+        int v = edge[i].v;
+        if(v == f) continue;
+        dis[v] = dis[pos] + edge[i].w;
+        dfs(edge[i].v, pos);
+    }
+}
+int LCA(int a,int b)
+{
+    if(depth[b] &amp;gt; depth[a]){
+        swap(a,b);
+    }
+    while(depth[a] &amp;gt; depth[b]){
+        a = fa[a][lg[depth[a] - depth[b]] - 1];
+    }
+    if(a == b) return a;
+    for(int i = lg[depth[a]] - 1; i &amp;gt;= 0; i--){
+        if(fa[a][i] != fa[b][i]){
+            a = fa[a][i];
+            b = fa[b][i];
+        }
+    }
+    return fa[a][0];
+}
+int main() {
+    int T;
+    cin &amp;gt;&amp;gt; T;
+    for(int i = 1; i &amp;lt;= 40005; ++i)
+        lg[i] = lg[i-1] + (1 &amp;lt;&amp;lt; lg[i-1] == i);
+    while(T--){
+        int n,m;
+        cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;
+        //memset(vis,0,sizeof(vis));
+        //memset(dis,0,sizeof(dis));
+        memset(head,-1,sizeof(head));
+        cnt = 0;
+        for(int i = 1; i &amp;lt;= n -1; i++){
+            int u,v,w;
+            cin &amp;gt;&amp;gt; u &amp;gt;&amp;gt; v &amp;gt;&amp;gt; w;
+            addedge(u,v,w);
+            addedge(v,u,w);
+        }
+        dis[1] = 0;
+        dfs(1,1);
+        for(int i = 1; i &amp;lt;= m; i++){
+            int a,b,ans;
+            cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b;
+            ans = dis[a] + dis[b] - 2*dis[LCA(a,b)];
+            printf(&amp;quot;%d\n&amp;quot; ,ans);
+        }
+
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">hdu 2586-How far away ？</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/codeforces-round-681-div-2-based-on-vk-cup-2019-2020-final/"" data-c="
           &lt;h1 id=&#34;a&#34;&gt;A&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://codeforces.ml/contest/1443/problem/A&#34;&gt;Kids Seating&lt;/a&gt;&lt;/p&gt;
@@ -3003,6 +3100,9 @@ Codeforces Round #665 (Div. 2) &lt;strong&gt;AB&lt;/strong&gt;&lt;/p&gt;
 每周起码学习两种算法吧 (这个不难吧..&lt;br&gt;
 kuangbin专题等到寒假再刷吧&lt;br&gt;
 我可太爱算法了.&lt;/p&gt;
+&lt;h3 id=&#34;114&#34;&gt;11.4&lt;/h3&gt;
+&lt;p&gt;音游玩起来可真上瘾&lt;br&gt;
+晚上hdu2586那道题把我wa傻了,最后调了两个多小时才好,代码能力太弱了,,,&lt;/p&gt;
 ">Diary</a>
       </div>
       
