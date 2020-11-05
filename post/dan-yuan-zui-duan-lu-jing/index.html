@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>单源最短路径 | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1604547659106">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1604584344822">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -3114,7 +3114,10 @@ int main() {
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt-yzang.github.io/post/diary/"" data-c="
-          &lt;h2 id=&#34;oct&#34;&gt;Oct&lt;/h2&gt;
+          &lt;ul&gt;
+&lt;li&gt;我还记得很久以前有人跟我说的话，自己选择的路，跪着也要走完。朋友们，虽然这个世界日益浮躁起来，只要能够为了当时纯粹的梦想和感动坚持努力下去，不管其它人怎么样，我们也能够保持自己的本色走下去。 ----陈立杰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;oct&#34;&gt;Oct&lt;/h2&gt;
 &lt;h3 id=&#34;1012&#34;&gt;10.12&lt;/h3&gt;
 &lt;p&gt;早上两节课玩了两节课游戏,并不是喜欢玩游戏,只是好像没什么做的了.&lt;br&gt;
 下午两点多睡到四点,然后看了看vim的配置,太难,放弃.&lt;br&gt;
@@ -3191,6 +3194,10 @@ kuangbin专题等到寒假再刷吧&lt;br&gt;
 &lt;h3 id=&#34;114&#34;&gt;11.4&lt;/h3&gt;
 &lt;p&gt;音游玩起来可真上瘾&lt;br&gt;
 晚上hdu2586那道题把我wa傻了,最后调了两个多小时才好,代码能力太弱了,,,&lt;/p&gt;
+&lt;h3 id=&#34;115&#34;&gt;11.5&lt;/h3&gt;
+&lt;p&gt;每到这个时候总会生出一种今天又摸鱼的悔疚感&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;q&lt;/mi&gt;&lt;mi&gt;w&lt;/mi&gt;&lt;mi&gt;q&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;qwq&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.625em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.02691em;&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;q&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;
+下午那节课看了后缀数组,看的云里雾里的...&lt;br&gt;
+晚上整理了下KMP的板子.&lt;/p&gt;
 ">Diary</a>
       </div>
       
@@ -6572,7 +6579,8 @@ void get_prime(int n)
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;组合数&#34;&gt;组合数&lt;/h2&gt;
+&lt;h2 id=&#34;组合数学&#34;&gt;组合数学&lt;/h2&gt;
+&lt;h3 id=&#34;排列组合&#34;&gt;排列组合&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void yhsj(int n)
 {
     for (int i = 0; i &amp;lt;= n; ++i){
@@ -6583,6 +6591,36 @@ void get_prime(int n)
                 z[i][j] = z[i - 1][j] + z[i - 1][j - 1];
             }
         }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;卡特兰数&#34;&gt;卡特兰数&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;iostream&amp;gt;
+using namespace std;
+int n;
+long long f[25];
+int main() {
+  f[0] = 1;
+  cin &amp;gt;&amp;gt; n;
+  for (int i = 1; i &amp;lt;= n; i++) f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
+  // 这里用的是常见公式2
+  cout &amp;lt;&amp;lt; f[n] &amp;lt;&amp;lt; endl;
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;公式四&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include&amp;lt;cstdio&amp;gt;
+using namespace std;
+int n;
+int c[41][21];
+int main(){
+
+    scanf(&amp;quot;%d&amp;quot;,&amp;amp;n);
+    for(int i=1;i&amp;lt;=2*n;i++) c[i][1]=c[i][i]=1;
+    for(int i=3;i&amp;lt;=2*n;i++)
+     for(int j=2;j&amp;lt;i;j++)
+      c[i][j]=c[i-1][j]+c[i-1][j-1];
+    printf(&amp;quot;%d&amp;quot;,c[2*n][n]-c[2*n][n-1]);
+    return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;lis&#34;&gt;LIS&lt;/h2&gt;
@@ -6666,6 +6704,116 @@ for(int i = 1 ; i &amp;lt;= n ; i++){
 }
 for(int i = 1 ; i &amp;lt;= n ; i++){
   inv[i]=qpow(fac[i],mod-2);//阶乘的逆元
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;动态规划&#34;&gt;动态规划&lt;/h1&gt;
+&lt;h2 id=&#34;01背包&#34;&gt;01背包&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;for (int i = 1; i &amp;lt;= n; i++)
+    for (int l = W; l &amp;gt;= w[i]; l--)
+         f[l] = max(f[l], f[l - w[i]] + v[i]);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;完全背包&#34;&gt;完全背包&lt;/h2&gt;
+&lt;p&gt;完全背包模型与 0-1 背包类似，与 0-1 背包的区别仅在于一个物品可以选取无限次，而非仅能选取一次。&lt;br&gt;
+所以完全背包和 01 背包的区别就在于对时间大小枚举的顺序不同。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;for(int  i = 1; i &amp;lt;= n; i++)
+  for(int  j = w[i]; j &amp;lt;= m; j++)
+  	f[j] = max(f[j] ,f[j-w[i]] + v[i]);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;多重背包&#34;&gt;多重背包&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1833&#34;&gt;P1833 樱花&lt;/a&gt;&lt;br&gt;
+多重背包也是 0-1 背包的一个变式。与 0-1 背包的区别在于每种物品 y 有 ki个，而非 1 个。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;树形dp&#34;&gt;树形dp&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1352&#34;&gt;P1352 没有上司的舞会&lt;/a&gt;&lt;br&gt;
+f[x][0]表示以x为根的子树,且x不参加舞会的最大快乐值&lt;br&gt;
+f[x][1]表示以x为根的子树，且x参加了舞会的最大快乐值&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+const int maxn = 1e4+6;
+int head[maxn],cnt,vis[maxn],f[6001][2],a[maxn];
+struct ndoe{
+	int v,next;
+}edge[maxn];
+
+void addedge(int u,int v)
+{
+	edge[++cnt].next = head[u];
+	edge[cnt].v = v;
+	head[u] = cnt;
+	
+}
+void dfs(int u)
+{
+	f[u][0] = 0;
+	f[u][1] = a[u];
+	for(int i = head[u]; i ; i = edge[i].next){
+		int j = edge[i].v;
+		dfs(j);
+		f[u][0] += max(f[j][0],f[j][1]);
+		f[u][1] += f[j][0];
+	}
+}
+int main()
+{
+	int n;
+	cin&amp;gt;&amp;gt;n;
+	for(int i = 1 ; i &amp;lt;= n ; i++){
+		cin&amp;gt;&amp;gt;a[i];
+	}
+	for(int i = 1 ; i &amp;lt;= n-1 ; i++){
+		int u,v;
+		cin&amp;gt;&amp;gt;u&amp;gt;&amp;gt;v;
+		vis[u]++;
+		if(u!=0&amp;amp;&amp;amp;v!=0)
+		addedge(v,u);
+	}
+	int t;
+	for(int i = 1 ; i &amp;lt;= n ; i++){
+		if(!vis[i]){
+			t = i;
+			break;
+		}
+	}
+	dfs(t);
+	cout&amp;lt;&amp;lt;max(f[t][0],f[t][1])&amp;lt;&amp;lt;endl;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;字符串&#34;&gt;字符串&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P3375#submit&#34;&gt;P3375 【模板】KMP字符串匹配&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;kmp&#34;&gt;kmp&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const int maxn = 1e7 + 7;
+char a[maxn],b[maxn];
+int p[maxn];
+int main() {
+    cin &amp;gt;&amp;gt; a+1;
+    cin &amp;gt;&amp;gt; b+1;
+    int la = strlen(a+1);
+    int lb = strlen(b+1);
+    int j = 0;
+    p[1] = 0;
+    for(int i = 2; i &amp;lt;= lb; i++) {
+        while(j &amp;gt; 0 &amp;amp;&amp;amp; b[i] != b[j+1]) j = p[j];
+        if(b[i] == b[j+1]) j++;
+        p[i] = j;
+    }
+    j = 0;
+    for(int i = 1; i &amp;lt;= la; i++){
+        while(j &amp;gt; 0 &amp;amp;&amp;amp; a[i] != b[j+1]) j = p[j];
+        if(a[i] == b[j+1]) j++;
+        if(j == lb){
+            printf(&amp;quot;%d\n&amp;quot;,i-lb+1);
+            j = p[j];
+        }
+    }
+    //printf(&amp;quot;\n&amp;quot;);
+    for(int i = 1; i &amp;lt;= lb ; i++){
+        printf(&amp;quot;%d &amp;quot;,p[i]);
+    }
+    return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;图论&#34;&gt;图论&lt;/h1&gt;
