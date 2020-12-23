@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt-yzang.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2020-11-23T04:35:24.892Z</updated>
+    <updated>2020-12-23T06:24:24.756Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt-yzang.github.io"/>
     <link rel="self" href="https://nzt-yzang.github.io/atom.xml"/>
@@ -10,13 +10,6 @@
     <logo>https://nzt-yzang.github.io/images/avatar.png</logo>
     <icon>https://nzt-yzang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Yzang&apos;s Blog</rights>
-    <entry>
-        <title type="html"><![CDATA[学长课堂期中测试]]></title>
-        <id>https://nzt-yzang.github.io/post/xue-chang-ke-tang/</id>
-        <link href="https://nzt-yzang.github.io/post/xue-chang-ke-tang/">
-        </link>
-        <updated>2020-11-23T04:32:22.000Z</updated>
-    </entry>
     <entry>
         <title type="html"><![CDATA[hdu 2586-How far away ？]]></title>
         <id>https://nzt-yzang.github.io/post/hdu-2586-how-far-away/</id>
@@ -93,5 +86,12 @@
         <link href="https://nzt-yzang.github.io/post/p2704-noi2001pao-bing-zhen-di/">
         </link>
         <updated>2020-10-06T04:44:18.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Codeforces Round #675 (Div. 2)]]></title>
+        <id>https://nzt-yzang.github.io/post/codeforces-round-675-div-2/</id>
+        <link href="https://nzt-yzang.github.io/post/codeforces-round-675-div-2/">
+        </link>
+        <updated>2020-10-05T08:56:25.000Z</updated>
     </entry>
 </feed>
