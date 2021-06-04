@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://NZT515.github.io</id>
+    <id>https://nzt37.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2021-06-02T13:36:47.543Z</updated>
+    <updated>2021-06-04T04:47:04.270Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://NZT515.github.io"/>
-    <link rel="self" href="https://NZT515.github.io/atom.xml"/>
+    <link rel="alternate" href="https://nzt37.github.io"/>
+    <link rel="self" href="https://nzt37.github.io/atom.xml"/>
     <subtitle>Just to go.</subtitle>
-    <logo>https://NZT515.github.io/images/avatar.png</logo>
-    <icon>https://NZT515.github.io/favicon.ico</icon>
+    <logo>https://nzt37.github.io/images/avatar.png</logo>
+    <icon>https://nzt37.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yzang&apos;s Blog</rights>
     <entry>
         <title type="html"><![CDATA[单调队列(滑动窗口)]]></title>
-        <id>https://NZT515.github.io/post/dan-diao-dui-lie-hua-dong-chuang-kou/</id>
-        <link href="https://NZT515.github.io/post/dan-diao-dui-lie-hua-dong-chuang-kou/">
+        <id>https://nzt37.github.io/post/dan-diao-dui-lie-hua-dong-chuang-kou/</id>
+        <link href="https://nzt37.github.io/post/dan-diao-dui-lie-hua-dong-chuang-kou/">
         </link>
         <updated>2021-01-24T00:45:36.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[hdu 2586-How far away ？]]></title>
-        <id>https://NZT515.github.io/post/hdu-2586-how-far-away/</id>
-        <link href="https://NZT515.github.io/post/hdu-2586-how-far-away/">
+        <id>https://nzt37.github.io/post/hdu-2586-how-far-away/</id>
+        <link href="https://nzt37.github.io/post/hdu-2586-how-far-away/">
         </link>
         <updated>2020-11-04T15:17:18.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Codeforces Round #681 (Div. 2, based on VK Cup 2019-2020 - Final)]]></title>
-        <id>https://NZT515.github.io/post/codeforces-round-681-div-2-based-on-vk-cup-2019-2020-final/</id>
-        <link href="https://NZT515.github.io/post/codeforces-round-681-div-2-based-on-vk-cup-2019-2020-final/">
+        <id>https://nzt37.github.io/post/codeforces-round-681-div-2-based-on-vk-cup-2019-2020-final/</id>
+        <link href="https://nzt37.github.io/post/codeforces-round-681-div-2-based-on-vk-cup-2019-2020-final/">
         </link>
         <updated>2020-11-04T00:29:08.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[倍增LCA ]]></title>
-        <id>https://NZT515.github.io/post/bei-zeng-lca/</id>
-        <link href="https://NZT515.github.io/post/bei-zeng-lca/">
+        <id>https://nzt37.github.io/post/bei-zeng-lca/</id>
+        <link href="https://nzt37.github.io/post/bei-zeng-lca/">
         </link>
         <updated>2020-11-02T13:22:44.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)]]></title>
-        <id>https://NZT515.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/</id>
-        <link href="https://NZT515.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/">
+        <id>https://nzt37.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/</id>
+        <link href="https://nzt37.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/">
         </link>
         <updated>2020-11-02T12:17:40.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Educational Codeforces Round 97 (Rated for Div. 2)]]></title>
-        <id>https://NZT515.github.io/post/educational-codeforces-round-97-rated-for-div-2/</id>
-        <link href="https://NZT515.github.io/post/educational-codeforces-round-97-rated-for-div-2/">
+        <id>https://nzt37.github.io/post/educational-codeforces-round-97-rated-for-div-2/</id>
+        <link href="https://nzt37.github.io/post/educational-codeforces-round-97-rated-for-div-2/">
         </link>
         <updated>2020-10-28T12:53:11.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[  Codeforces Round #679 (Div. 2)]]></title>
-        <id>https://NZT515.github.io/post/codeforces-round-679-div-2/</id>
-        <link href="https://NZT515.github.io/post/codeforces-round-679-div-2/">
+        <id>https://nzt37.github.io/post/codeforces-round-679-div-2/</id>
+        <link href="https://nzt37.github.io/post/codeforces-round-679-div-2/">
         </link>
         <updated>2020-10-26T12:58:17.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Codeforces Round #678 (Div. 2)]]></title>
-        <id>https://NZT515.github.io/post/codeforces-round-678-div-2/</id>
-        <link href="https://NZT515.github.io/post/codeforces-round-678-div-2/">
+        <id>https://nzt37.github.io/post/codeforces-round-678-div-2/</id>
+        <link href="https://nzt37.github.io/post/codeforces-round-678-div-2/">
         </link>
         <updated>2020-10-25T14:06:06.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Codeforces Round #677 (Div. 3)]]></title>
-        <id>https://NZT515.github.io/post/codeforces-round-677-div-3/</id>
-        <link href="https://NZT515.github.io/post/codeforces-round-677-div-3/">
+        <id>https://nzt37.github.io/post/codeforces-round-677-div-3/</id>
+        <link href="https://nzt37.github.io/post/codeforces-round-677-div-3/">
         </link>
         <updated>2020-10-21T04:50:16.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Codeforces Round #676 (Div. 2)]]></title>
-        <id>https://NZT515.github.io/post/codeforces-round-676-div-2/</id>
-        <link href="https://NZT515.github.io/post/codeforces-round-676-div-2/">
+        <id>https://nzt37.github.io/post/codeforces-round-676-div-2/</id>
+        <link href="https://nzt37.github.io/post/codeforces-round-676-div-2/">
         </link>
         <updated>2020-10-19T07:26:29.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Educational Codeforces Round 96 (Rated for Div. 2)]]></title>
-        <id>https://NZT515.github.io/post/educational-codeforces-round-96-rated-for-div-2/</id>
-        <link href="https://NZT515.github.io/post/educational-codeforces-round-96-rated-for-div-2/">
+        <id>https://nzt37.github.io/post/educational-codeforces-round-96-rated-for-div-2/</id>
+        <link href="https://nzt37.github.io/post/educational-codeforces-round-96-rated-for-div-2/">
         </link>
         <updated>2020-10-11T14:47:23.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[P2704 [NOI2001]炮兵阵地]]></title>
-        <id>https://NZT515.github.io/post/p2704-noi2001pao-bing-zhen-di/</id>
-        <link href="https://NZT515.github.io/post/p2704-noi2001pao-bing-zhen-di/">
+        <id>https://nzt37.github.io/post/p2704-noi2001pao-bing-zhen-di/</id>
+        <link href="https://nzt37.github.io/post/p2704-noi2001pao-bing-zhen-di/">
         </link>
         <updated>2020-10-06T04:44:18.000Z</updated>
     </entry>
