@@ -9,7 +9,7 @@
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
 <title>P2678 跳石头(二分答案) | Yzang&#39;s Blog</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1622784251180">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1623810642040">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -241,7 +241,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">66</span>
+        <span class="site-item-stat-count">67</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1776,6 +1776,48 @@ int main()
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nzt37.github.io/post/li-yong-git-shang-chuan-ben-di-wen-jian-wen-jian-jia-dao-github/"" data-c="
+          &lt;h3 id=&#34;第一步&#34;&gt;&lt;strong&gt;第一步&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/downloads&#34;&gt;点击这里下载git&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;第二步&#34;&gt;&lt;strong&gt;第二步：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;安装完成后，找到Git bash，双击打开。&lt;/p&gt;
+&lt;h3 id=&#34;第三步&#34;&gt;&lt;strong&gt;第三步：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;输入自己的用户名和邮箱（注册github账号时的用户名和邮箱）&lt;br&gt;
+&lt;code&gt;$ git config --global user.name &amp;quot;nzt37&amp;quot;&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;$ git config --global user.email &amp;quot;40187181@qq.com&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;第四步&#34;&gt;&lt;strong&gt;第四步：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;生成SSH key&lt;br&gt;
+&lt;code&gt;$ ssh-keygen -t rsa -C &amp;quot;40187181@qq.com&amp;quot;&lt;/code&gt;&lt;br&gt;
+生成过程中按3次回车键，生成成功后，生成之后在 &lt;code&gt;/C/Users/Niuzetong/.ssh/&lt;/code&gt; 可以看到文件&lt;/p&gt;
+&lt;h3 id=&#34;第五步&#34;&gt;&lt;strong&gt;第五步：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;为github账号配置SSH key,打开Github&lt;br&gt;
+&lt;code&gt;Settings -&amp;gt; SSH and GPG keys -&amp;gt; New SSH key&lt;/code&gt;&lt;br&gt;
+title 随便输，key 将上述生成的&lt;code&gt;id_rsa.pub&lt;/code&gt; 文件内容复制过来&lt;/p&gt;
+&lt;h3 id=&#34;第七步&#34;&gt;&lt;strong&gt;第七步：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;1, 建立git仓库&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cd到你的本地项目根目录下，执行git命令，此命令会在当前目录下创建一个.git文件夹。&lt;br&gt;
+&lt;code&gt;git init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将项目的所有文件添加到仓库中&lt;br&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;输入本次的提交说明，准备提交暂存区中的更改的已跟踪文件，单引号内为说明内容：&lt;br&gt;
+&lt;code&gt;$ git commit -m &amp;quot;nzt37&amp;quot; //引号中的内容为对该文件的描述&lt;/code&gt;&lt;br&gt;
+2,关联github仓库&lt;/li&gt;
+&lt;li&gt;在github中新建一个repository，复制仓库地址：&lt;pre&gt;&lt;code&gt;新建一个repository时会出现下面的代码，直接复制即可
+ $ git remote add origin https://github.com/nzt37/nzt37.github.io.git
+&lt;/code&gt;&lt;/pre&gt;
+如果出现错误：fatal: remote origin already exists，则执行以下语句：&lt;br&gt;
+先执行 &lt;code&gt;$ git remote rm origin&lt;/code&gt; ，然后在执行上述命令&lt;br&gt;
+3，上传代码到github远程仓库&lt;br&gt;
+&lt;code&gt;git push -u origin master&lt;/code&gt;&lt;br&gt;
+执行完后，如果没有异常，等待执行完就上传成功了&lt;br&gt;
+如果出现错误failed to push som refs to…….，则执行以下语句，先把远程服务器github上面的文件拉先来，再push 上去。：&lt;br&gt;
+&lt;code&gt;$ git pull origin master&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+">利用git上传本地文件、文件夹到Github</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nzt37.github.io/post/dan-diao-dui-lie-hua-dong-chuang-kou/"" data-c="
