@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nzt37.github.io</id>
     <title>Yzang&apos;s Blog</title>
-    <updated>2021-06-20T00:55:57.164Z</updated>
+    <updated>2021-07-27T07:42:10.932Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nzt37.github.io"/>
     <link rel="self" href="https://nzt37.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://nzt37.github.io/images/avatar.png</logo>
     <icon>https://nzt37.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yzang&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[关于navicat premium破解]]></title>
+        <id>https://nzt37.github.io/post/guan-yu-navicat-premium-po-jie/</id>
+        <link href="https://nzt37.github.io/post/guan-yu-navicat-premium-po-jie/">
+        </link>
+        <updated>2021-07-27T07:28:36.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python3.8 无法导入pymysql]]></title>
+        <id>https://nzt37.github.io/post/python38-wu-fa-dao-ru-pymysql/</id>
+        <link href="https://nzt37.github.io/post/python38-wu-fa-dao-ru-pymysql/">
+        </link>
+        <updated>2021-07-02T00:40:43.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[  Codeforces Round #726 (Div. 2)]]></title>
         <id>https://nzt37.github.io/post/codeforces-round-726-div-2/</id>
@@ -79,19 +93,5 @@
         <link href="https://nzt37.github.io/post/codeforces-round-678-div-2/">
         </link>
         <updated>2020-10-25T14:06:06.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Codeforces Round #677 (Div. 3)]]></title>
-        <id>https://nzt37.github.io/post/codeforces-round-677-div-3/</id>
-        <link href="https://nzt37.github.io/post/codeforces-round-677-div-3/">
-        </link>
-        <updated>2020-10-21T04:50:16.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Codeforces Round #676 (Div. 2)]]></title>
-        <id>https://nzt37.github.io/post/codeforces-round-676-div-2/</id>
-        <link href="https://nzt37.github.io/post/codeforces-round-676-div-2/">
-        </link>
-        <updated>2020-10-19T07:26:29.000Z</updated>
     </entry>
 </feed>

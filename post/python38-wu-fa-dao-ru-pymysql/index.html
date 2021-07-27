@@ -8,7 +8,7 @@
 <meta name="keywords" content="叶底藏花,亦是大庭叶藏">
 <meta name="description" content="Just to go.">
 <meta name="theme-color" content="#000">
-<title>倍增LCA  | Yzang&#39;s Blog</title>
+<title>python3.8 无法导入pymysql | Yzang&#39;s Blog</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/favicon.ico?v=1627371726112">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nzt-yzang/nzt-yzang.github.io@master/media/fonts/font-awesome.css">
@@ -58,7 +58,7 @@
 </script>
 
 
-  <meta name="description" content="倍增LCA " />
+  <meta name="description" content="python3.8 无法导入pymysql" />
   <meta name="keywords" content="" />
 </head>
 
@@ -315,7 +315,8 @@
     <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#code">code</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98">问题</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a></li>
 </ul>
 </li>
 </ul>
@@ -583,8 +584,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://nzt37.github.io/post/bei-zeng-lca/">
-      倍增LCA 
+    <a class="post-title-link" href="https://nzt37.github.io/post/python38-wu-fa-dao-ru-pymysql/">
+      python3.8 无法导入pymysql
     </a>
   </h1>
   <div class="post-meta">
@@ -592,23 +593,23 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-11-02 21:22:44">2020-11-02</span>
+      <span class="publish-time" data-t="2021-07-02 08:40:43">2021-07-02</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>6<span class="language" data-lan="minute">分钟</span></span>
+      <span>1<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1151<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>41<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
     
     
-    <span id="/post/bei-zeng-lca/" data-flag-title="倍增LCA " class="meta-item pc-show leancloud_visitors">
+    <span id="/post/python38-wu-fa-dao-ru-pymysql/" data-flag-title="python3.8 无法导入pymysql" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span><span class="language" data-lan="view">浏览量</span>：<span class="leancloud-visitors-count"></span></span>
@@ -617,157 +618,10 @@
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <ul>
-<li>LCA（Least Common Ancestors），即最近公共祖先，是指在有根树中，找出某两个结点u和v最近的公共祖先。 ———来自百度百科</li>
-</ul>
-<p>首先要获取a, b节点的深度,记录为deep[a],deep[b];<br>
-采用链式前向星存图</p>
-<pre><code class="language-c">int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
-int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
-int n,m,s;
-struct node{
-    int v,w,next;
-}edge[maxn &lt;&lt; 1];
-
-void addedge(int u,int v)
-{
-    edge[++cnt].next = head[u];
-    edge[cnt].v = v;
-    head[u] = cnt;
-}
-</code></pre>
-<p>dfs获取节点深度:</p>
-<pre><code class="language-c">void dfs(int a, int fath=0){
-     if(vis[a]) return;
-     deep[a] = deep[fath]+1;
-     vis[a]=true;
-     for(int i=head[a]; i!=0; i=e[i].next){
-          dfs(e[i].to, a)
-     }
-}
-</code></pre>
-<p>求LCA的方式为:</p>
-<ul>
-<li>先让更深的a向上爬,直到和b深度一致;</li>
-<li>此后,a和b一起向上爬,二者一定会在某个祖先节点上首次相遇,即为LCA.<br>
-<strong>不妨让a在b的下方,即deep[a]&gt;deep[b];</strong><br>
-如果是逐层的往上爬,和后序递归求LCA复杂度一样,都是O(N),后序递归其实是逐节点向下的.</li>
-</ul>
-<p>一种改进的上爬策略是:</p>
-<p>不是一步一步向上爬,而是2^j步向上跳跃,因此需要记录深度信息和祖先信息.</p>
-<p>设fa[i][j]:i号节点的第2<sup>j代的祖先编号.fa[x][0]表示x的父亲节点.因为2</sup>(j-1)+2<sup>(j-1=2</sup>j</p>
-<p>所以一个节点的2<sup>j代的祖先是其2</sup>(j-1)代的祖先的2^(j-1)的祖先.得fa[i][j]=fa[fa[i][j-1]][j-1].<br>
-dfs预处理得到节点深度信息和祖先信息:</p>
-<pre><code class="language-c">void dfs(int pos,int f)
-{
-    if(vis[pos]) return;////已经访问过，则已经得到deep和fa数组，返回 
-    vis[pos] = 1;
-    depth[pos] = depth[f] + 1;////x是y的儿子节点,所以要+1
-    fa[pos][0] = f;////fa[x][0]表示x的父亲节点,而y是x的父亲节点.
-    for(int i = 1; i &lt;= lg[depth[pos]]; i++){
-        fa[pos][i] = fa[fa[pos][i-1]][i-1];////状态转移 2^i=2^(i-1)+2^(i-1)
-    }
-    for(int i = head[pos]; i ; i = edge[i].next){
-        dfs(edge[i].v,pos);////访问儿子节点,并且标记自己是父亲节点
-    }
-}
-</code></pre>
-<p>其中,因为x的2<sup>i级祖先最多是根，则2</sup>i&lt;=dee[x], i&lt;=lg2[deep[x]]</p>
-<pre><code class="language-c">    for(int i = 1; i &lt;= n; ++i)
-        lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
-        ```
-  lg2[1]=0; lg2[2]=1; lg2[3]=1; lg2[4]=2;...dfs预处理的过程:N个节点,每个最大深度lgN, 时间复杂度O(NlogN).LCA过程:先深度一致,深层的向上爬例如，x和y本来相差22的深度，现在x不用往上爬22次，只需要依次跳16、4、2个单位，3次便能达到与y相同的距离。两者深度相等后，如果两个点已经相遇，那么问题就得以解决:
-```c
-int LCA(int a,int b)
-{
-    if(depth[a] &lt; depth[b]){
-        swap(a,b);
-    }
-    while(depth[a] &gt; depth[b]){
-        a = fa[a][lg[depth[a]-depth[b]]-1];//往上面跳跃,deep[x]-deep[y]是高度差.
-    }
-    if(a == b) return a;
-    for(int k = lg[depth[a]] - 1; k &gt;= 0 ; k--){//如何在x,y不相遇的情况下跳到尽可能高的位置？如果找到了这个位置，它的父亲就是LCA了
-        if(fa[a][k] != fa[b][k]){
-            a = fa[a][k];
-            b = fa[b][k];
-        }
-    }
-    return fa[a][0];//必须返回x的父亲节点,也就是Lca(x,y)
-}
-</code></pre>
-<h2 id="code">code</h2>
-<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
-#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-using namespace std;
-const int maxn = 5e5 + 6;
-int depth[maxn],vis[maxn],fa[maxn][22];//deep[]记录深度 ,fa[i][j]表示i的2^j级祖先
-int head[maxn],cnt,lg[maxn];//lg2数组记录log2(i) 
-int n,m,s;
-struct node{
-    int v,w,next;
-}edge[maxn &lt;&lt; 1];
-
-void addedge(int u,int v)
-{
-    edge[++cnt].next = head[u];
-    edge[cnt].v = v;
-    head[u] = cnt;
-}
-
-
-
-void dfs(int pos,int f)
-{
-    if(vis[pos]) return;
-    vis[pos] = 1;
-    depth[pos] = depth[f] + 1;
-    fa[pos][0] = f;
-    for(int i = 1; i &lt;= lg[depth[pos]]; i++){
-        fa[pos][i] = fa[fa[pos][i-1]][i-1];
-    }
-    for(int i = head[pos]; i ; i = edge[i].next){
-        dfs(edge[i].v,pos);
-    }
-}
-int LCA(int a,int b)
-{
-    if(depth[a] &lt; depth[b]){
-        swap(a,b);
-    }
-    while(depth[a] &gt; depth[b]){
-        a = fa[a][lg[depth[a]-depth[b]]-1];
-    }
-    if(a == b) return a;
-    for(int k = lg[depth[a]] - 1; k &gt;= 0 ; k--){
-        if(fa[a][k] != fa[b][k]){
-            a = fa[a][k];
-            b = fa[b][k];
-        }
-    }
-    return fa[a][0];
-
-}
-int main() {
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;
-    for(int i = 1; i &lt;= n; ++i)
-        lg[i] = lg[i-1] + (1 &lt;&lt; lg[i-1] == i);
-    for(int i = 1; i &lt;= n-1; i++){
-        int u,v;
-        cin &gt;&gt; u &gt;&gt; v;
-        addedge(u,v);
-        addedge(v,u);
-    }
-    dfs(s,0);
-    for(int i = 1; i &lt;= m; i++){
-        int a,b;
-        cin &gt;&gt; a &gt;&gt; b;
-        cout &lt;&lt; LCA(a,b) &lt;&lt; endl;
-    }
-
-    return 0;
-}
-</code></pre>
+              <h2 id="问题">问题</h2>
+<p>我同时使用pip和pip3安装了<code>pymysql</code>，但是每次使用<code>import pymysql</code>时，它都会返回<code>ImportError: No module named 'pymysql'</code></p>
+<h2 id="解决方案">解决方案</h2>
+<p><code>sudo apt-get install python3-pymysql</code></p>
 
             </div>
             
@@ -780,7 +634,7 @@ int main() {
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://nzt37.github.io/post/bei-zeng-lca/" title="倍增LCA ">https://nzt37.github.io/post/bei-zeng-lca/</a>
+      <a href="https://nzt37.github.io/post/python38-wu-fa-dao-ru-pymysql/" title="python3.8 无法导入pymysql">https://nzt37.github.io/post/python38-wu-fa-dao-ru-pymysql/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -794,14 +648,14 @@ int main() {
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="Codeforces Round #681 (Div. 2, based on VK Cup 2019-2020 - Final)" href="https://nzt37.github.io/post/codeforces-round-681-div-2-based-on-vk-cup-2019-2020-final/">Codeforces Round #681 (Div. 2, based on VK Cup 2019-2020 - Final)</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="Codeforces Round #681 (Div. 2, based on VK Cup 2019-2020 - Final)" href="https://nzt37.github.io/post/codeforces-round-681-div-2-based-on-vk-cup-2019-2020-final/">上一篇</a>
+        <a class="nav-pc-next" title="关于navicat premium破解" href="https://nzt37.github.io/post/guan-yu-navicat-premium-po-jie/">关于navicat premium破解</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="关于navicat premium破解" href="https://nzt37.github.io/post/guan-yu-navicat-premium-po-jie/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)" href="https://nzt37.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/">Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)</a>
-        <a class="nav-mobile-next" title="Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)" href="https://nzt37.github.io/post/codeforces-round-680-div-2-based-on-moscow-team-olympiad/">下一篇</a>
+        <a class="nav-pc-next" title="  Codeforces Round #726 (Div. 2)" href="https://nzt37.github.io/post/codeforces-round-726-div-2/">  Codeforces Round #726 (Div. 2)</a>
+        <a class="nav-mobile-next" title="  Codeforces Round #726 (Div. 2)" href="https://nzt37.github.io/post/codeforces-round-726-div-2/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
